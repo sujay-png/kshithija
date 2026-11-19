@@ -1,0 +1,21 @@
+---
+// src/pages/blogs/index.astro
+// Backward compatibility redirect from /blogs to /blog
+const targetUrl = '/blog';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" content="0;url=/blog" />
+    <link rel="canonical" href="https://kshithija.in/blog" />
+    <script is:inline>
+      window.location.replace('/blog');
+    </script>
+    <title>Redirecting to /blog...</title>
+  </head>
+  <body>
+    <p>Redirecting to <a href="/blog">/blog</a>...</p>
+  </body>
+</html>

@@ -1,0 +1,270 @@
+---
+// src/components/FloatingButtons.astro
+// Floating Bottom Buttons matching kshithija.in:
+// 1. Bottom-Left: "Affiliate Program" floating pill with interactive popup drawer
+// 2. Bottom-Right: "WhatsApp Support & Quick Order" floating action button (and Floating Cart basket)
+---
+
+<!-- 1. BOTTOM-LEFT: AFFILIATE PROGRAM FLOATING BUTTON -->
+<div class="fixed left-4 sm:left-6 bottom-4 sm:bottom-6 z-50 font-sans isolate" id="wrnxt-aff-float">
+  
+  <!-- Trigger Pill Button (Exact Match to kshithija.in design) -->
+  <button
+    type="button"
+    id="aff-trigger-btn"
+    aria-expanded="false"
+    aria-controls="wrnxt-aff-float-panel"
+    class="group relative flex items-center gap-2.5 min-h-[50px] sm:min-h-[54px] py-2 pr-4 sm:pr-5 pl-2 rounded-full text-white cursor-pointer shadow-lg hover:shadow-2xl hover:-translate-y-0.5 transition-all duration-200 border border-white/20 select-none"
+    style="background: linear-gradient(135deg, #183e2a 0%, #28633a 58%, #34784a 100%);"
+  >
+    <!-- Gold Handshake Icon Circle -->
+    <span
+      class="w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-lg sm:text-xl shadow-xs border border-white/40 shrink-0 text-[#183e2a]"
+      style="background: linear-gradient(145deg, #f5df9c, #d7b35f);"
+      aria-hidden="true"
+    >
+      🤝
+    </span>
+    <!-- Button Label -->
+    <span class="text-xs sm:text-sm font-bold tracking-tight whitespace-nowrap">
+      Affiliate Program
+    </span>
+  </button>
+
+  <!-- Interactive Affiliate Modal Drawer (Opens above button) -->
+  <div
+    id="wrnxt-aff-float-panel"
+    class="hidden absolute left-0 bottom-[64px] sm:bottom-[70px] w-[310px] sm:w-[340px] max-w-[calc(100vw-32px)] p-6 rounded-3xl bg-[#fffdf8] border border-[#28633a]/20 shadow-2xl text-[#242a24] transition-all animate-in fade-in zoom-in-95 duration-200"
+    role="dialog"
+    aria-labelledby="aff-modal-title"
+  >
+    <!-- Close Button -->
+    <button
+      type="button"
+      id="aff-close-btn"
+      class="absolute top-4 right-4 w-8 h-8 rounded-full bg-[#edf3ed] hover:bg-[#dfeadf] text-[#355640] flex items-center justify-center text-lg font-bold transition-colors cursor-pointer"
+      aria-label="Close"
+    >
+      &times;
+    </button>
+
+    <!-- Large Gold Icon -->
+    <div
+      class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl border border-[#e4d4a5] shadow-xs text-[#183e2a] mb-3"
+      style="background: linear-gradient(145deg, #fff4cf, #e7d08d);"
+      aria-hidden="true"
+    >
+      🤝
+    </div>
+
+    <!-- Title & Description -->
+    <h3 id="aff-modal-title" class="text-xl font-serif font-bold text-[#183e2a] leading-tight mb-1.5">
+      Become an Affiliate
+    </h3>
+    <p class="text-xs sm:text-[13px] text-[#626a61] leading-relaxed mb-4">
+     Share products you love and earn commission from successful referrals.
+    </p>
+
+    <!-- Special referral reward Card (Matching user screenshot) -->
+    <div class="rounded-2xl p-3.5 sm:p-4 mb-4 border-2 border-[#c99f5b]/80 bg-[#fffdf5] shadow-xs text-left">
+      <div class="flex items-center gap-1.5 text-xs sm:text-[13px] font-bold text-[#78350f] mb-1.5">
+        <span class="text-base leading-none">🎉</span>
+        <span>Special referral reward</span>
+      </div>
+      <p class="text-xs sm:text-[12.5px] text-[#4b5563] leading-relaxed">
+        Refer 3 new customers and earn an extra <strong class="text-[#164e2d] font-bold">₹100</strong>. Earn another <strong class="text-[#164e2d] font-bold">₹100</strong> for every additional 3 new customers!
+      </p>
+    </div>
+
+    <!-- Benefits List -->
+    <ul id="aff-benefits-list" class="space-y-2 mb-5 text-xs sm:text-[13px] text-[#3d4b40] font-medium">
+      <li class="flex items-center gap-2">
+        <span class="text-[#28633a] font-bold">✓</span>
+        <span><strong>5% commission</strong></span>
+      </li>
+      <li class="flex items-center gap-2">
+        <span class="text-[#28633a] font-bold">✓</span>
+        <span>Personal customer discount coupon</span>
+      </li>
+      <li class="flex items-center gap-2">
+        <span class="text-[#28633a] font-bold">✓</span>
+        <span>Affiliate dashboard</span>
+      </li>
+    </ul>
+
+    <!-- CTA Links -->
+    <div class="space-y-3" id="aff-cta-container">
+      <a
+        id="aff-cta-join-btn"
+        href="/affiliate-registration"
+        class="block text-center py-3.5 px-5 rounded-xl text-white text-base sm:text-sm uppercase tracking-wider shadow-md hover:brightness-110 active:scale-98 transition-all cursor-pointer leading-tight"
+        style="background: linear-gradient(135deg, #183e2a, #34784a);"
+      >
+        JOIN NOW
+      </a>
+      <a
+        id="aff-cta-login-link"
+        href="/affiliate-login"
+        class="block text-center text-sm sm:text-base font-semibold text-[#28633a] hover:underline transition-all cursor-pointer pt-1"
+      >
+        Already registered? Login
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<!-- 2. BOTTOM-RIGHT: WHATSAPP DIRECT CHAT & CART BUTTONS -->
+<div class="fixed right-4 sm:right-6 bottom-4 sm:bottom-6 z-50 flex flex-col items-end gap-3 font-sans select-none">
+  
+  <!-- WhatsApp Consultation Floating Button -->
+  <div class="relative group">
+    <!-- Hover Tooltip -->
+    <div class="absolute right-[calc(100%+12px)] top-1/2 -translate-y-1/2 hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#082213] text-white text-xs font-medium whitespace-nowrap shadow-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+      <span>Chat with Herbal Expert</span>
+      <span class="w-2 h-2 rounded-full bg-[#25D366] animate-pulse"></span>
+    </div>
+
+
+  </div>
+
+  <!-- Floating Cart Basket (Matching xoo-wsc-basket from kshithija.in) -->
+  <div class="relative group">
+    <button
+      type="button"
+      id="open-cart-btn"
+      aria-label="View Shopping Basket"
+      class="flex items-center justify-center w-12 h-12 sm:w-13 sm:h-13 rounded-full bg-white hover:bg-[#faf7f2] text-[#082213] border border-[#ded5c5] shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-200 relative cursor-pointer"
+    >
+      <!-- Item Counter Badge -->
+      <span
+        id="floating-cart-counter"
+        class="absolute -top-1.5 -left-1.5 w-5 h-5 rounded-full bg-[#082213] text-white text-[11px] font-bold flex items-center justify-center border-2 border-white shadow-2xs"
+      >
+        0
+      </span>
+
+      <!-- Shopping Bag Icon -->
+      <svg class="w-5 h-5 sm:w-6 sm:h-6 text-[#183e2a]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+      </svg>
+    </button>
+  </div>
+
+</div>
+
+<!-- Client script to handle Affiliate modal toggle and keyboard accessibility -->
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const floatWrapper = document.getElementById('wrnxt-aff-float');
+    const triggerBtn = document.getElementById('aff-trigger-btn');
+    const panel = document.getElementById('wrnxt-aff-float-panel');
+    const closeBtn = document.getElementById('aff-close-btn');
+
+    if (!floatWrapper || !triggerBtn || !panel) return;
+
+    function openPanel() {
+      panel.classList.remove('hidden');
+      triggerBtn.setAttribute('aria-expanded', 'true');
+    }
+
+    function closePanel() {
+      panel.classList.add('hidden');
+      triggerBtn.setAttribute('aria-expanded', 'false');
+    }
+
+    triggerBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (panel.classList.contains('hidden')) {
+        openPanel();
+      } else {
+        closePanel();
+      }
+    });
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closePanel();
+      });
+    }
+
+    // Close when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!floatWrapper.contains(e.target)) {
+        closePanel();
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closePanel();
+      }
+    });
+
+    // Dynamic CTA state based on user authentication
+    function updateAffiliateState() {
+      const joinBtn = document.getElementById('aff-cta-join-btn');
+      const loginLink = document.getElementById('aff-cta-login-link');
+      const benefitsList = document.getElementById('aff-benefits-list');
+      if (!joinBtn) return;
+
+      const token = localStorage.getItem('kshithija_auth_token');
+      let user = null;
+      try {
+        const raw = localStorage.getItem('kshithija_auth_user');
+        if (raw) user = JSON.parse(raw);
+      } catch {}
+
+      const isLoggedIn = Boolean(token);
+      const isAffiliate = Boolean(
+        user && (
+          user.isAffiliate === true ||
+          user.isAffiliate === '1' ||
+          user.isAffiliate === 1 ||
+          (Array.isArray(user.roles) && user.roles.includes('affiliate'))
+        )
+      );
+
+      if (isLoggedIn) {
+        // Hide benefits list when logged in
+        if (benefitsList) benefitsList.classList.add('hidden');
+
+        if (isAffiliate) {
+          joinBtn.textContent = 'Go to Affiliate Dashboard';
+          joinBtn.href = '/affiliate-dashboard';
+          if (loginLink) {
+            loginLink.classList.remove('hidden');
+            loginLink.textContent = 'View your partner commissions & links';
+            loginLink.href = '/affiliate-dashboard';
+          }
+        } else {
+          // Logged in: show "Join now the affiliate program"
+          joinBtn.textContent = 'Join now the affiliate program';
+          joinBtn.href = '/affiliate-registration';
+          if (loginLink) {
+            loginLink.classList.add('hidden');
+          }
+        }
+      } else {
+        // Show benefits list when not logged in
+        if (benefitsList) benefitsList.classList.remove('hidden');
+
+        // Not logged in: show "JOIN NOW" and "Already registered? Login"
+        joinBtn.textContent = 'JOIN NOW';
+        joinBtn.href = '/affiliate-registration';
+        if (loginLink) {
+          loginLink.classList.remove('hidden');
+          loginLink.textContent = 'Already registered? Login';
+          loginLink.href = '/affiliate-login';
+        }
+      }
+    }
+
+    updateAffiliateState();
+    window.addEventListener('auth:state-change', updateAffiliateState);
+    window.addEventListener('storage', updateAffiliateState);
+  });
+</script>
+

@@ -1,23 +1,160 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+import '../styles/global.css';
+import Footer from './Footer.astro';
+import Header from './Header.astro';
+import FloatingButtons from '@components/common/FloatingButtons.astro';
+import CartDrawer from '@components/common/CartDrawer.astro';
+import { getPageSeo, siteConfig, type SeoMeta } from '@data/seo';
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  imageAlt?: string;
+  canonical?: string;
+  keywords?: string[];
+  robots?: string;
+  noindex?: boolean;
+  type?: 'website' | 'article' | 'product';
+  publishedTime?: string;
+  modifiedTime?: string;
+  author?: string;
+  price?: string | number;
+  currency?: string;
+  availability?: string;
+  jsonLd?: Record<string, any> | Record<string, any>[];
+  seo?: Partial<SeoMeta>;
+}
+
+const {
+  title,
+  description,
+  image,
+  imageAlt,
+  canonical,
+  keywords,
+  robots,
+  noindex,
+  type,
+  publishedTime,
+  modifiedTime,
+  author,
+  price,
+  currency,
+  availability,
+  jsonLd,
+  seo: customSeo,
+} = Astro.props;
+
+// Compute final dynamic SEO for this page using centralized seo.ts
+const resolvedRobots = noindex ? 'noindex, nofollow' : robots;
+const pageSeo = getPageSeo(Astro.url.pathname, {
+  title,
+  description,
+  image,
+  imageAlt,
+  canonical,
+  keywords,
+  robots: resolvedRobots,
+  type,
+  publishedTime,
+  modifiedTime,
+  author,
+  price,
+  currency,
+  availability,
+  jsonLd,
+  ...customSeo,
+});
+
+// JSON-LD structured schemas array
+const schemas = Array.isArray(pageSeo.jsonLd)
+  ? pageSeo.jsonLd
+  : pageSeo.jsonLd
+    ? [pageSeo.jsonLd]
+    : [];
+---
+
+<!doctype html>
+<html lang="en" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary SEO Metadata (Dynamically Centralized via @data/seo) -->
+    <title>{pageSeo.title}</title>
+    <meta name="title" content={pageSeo.title} />
+    <meta name="description" content={pageSeo.description} />
+    {pageSeo.keywords && pageSeo.keywords.length > 0 && (
+      <meta name="keywords" content={pageSeo.keywords.join(', ')} />
+    )}
+    <meta name="robots" content={pageSeo.robots} />
+    <link rel="canonical" href={pageSeo.canonical} />
+
+    <!-- Favicon and Brand Icons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/images/logo.png" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={pageSeo.type} />
+    <meta property="og:url" content={pageSeo.canonical} />
+    <meta property="og:title" content={pageSeo.title} />
+    <meta property="og:description" content={pageSeo.description} />
+    <meta property="og:image" content={pageSeo.image} />
+    {pageSeo.imageAlt && <meta property="og:image:alt" content={pageSeo.imageAlt} />}
+    <meta property="og:site_name" content={siteConfig.siteName} />
+    <meta property="og:locale" content={siteConfig.locale} />
+
+    <!-- Open Graph Article Extras -->
+    {pageSeo.type === 'article' && pageSeo.publishedTime && (
+      <meta property="article:published_time" content={pageSeo.publishedTime} />
+    )}
+    {pageSeo.type === 'article' && pageSeo.author && (
+      <meta property="article:author" content={pageSeo.author} />
+    )}
+
+    <!-- Open Graph Product Extras -->
+    {pageSeo.type === 'product' && pageSeo.price && (
+      <>
+        <meta property="product:price:amount" content={String(pageSeo.price)} />
+        <meta property="product:price:currency" content={pageSeo.currency || 'INR'} />
+        {pageSeo.availability && (
+          <meta
+            property="product:availability"
+            content={pageSeo.availability.includes('InStock') ? 'in stock' : 'out of stock'}
+          />
+        )}
+      </>
+    )}
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content={siteConfig.twitterHandle} />
+    <meta name="twitter:title" content={pageSeo.title} />
+    <meta name="twitter:description" content={pageSeo.description} />
+    <meta name="twitter:image" content={pageSeo.image} />
+
+    <!-- Schema.org JSON-LD Structured Data -->
+    {schemas.map((schema) => (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    ))}
+
+    <!-- Typography & Fonts Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Great+Vibes&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="relative overflow-x-clip">
+    <Header />
+    <main class="w-full overflow-x-clip">
+      <slot />
+    </main>
+    <Footer />
+    <FloatingButtons />
+    <CartDrawer />
+  </body>
+</html>

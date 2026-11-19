@@ -1,0 +1,483 @@
+Here are **3 clean, modular snippets** that you can add as separate snippets in WordPress (**Code Snippets $\rightarrow$ Add New**). 
+
+---
+
+### Snippet 1: Headless Authentication & User Account API
+> **Title in Code Snippets:** `1. Headless Auth & Account API`  
+> **Code Type:** `PHP Snippet`  
+> **What it does:** Powers login, session verification, profile editing, customer orders, and password resets.
+
+```php
+<?php
+/**
+ * Kshithija Enterprises: Headless Customer Auth & User API
+ */
+
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+// Shared helper: verify client secret
+function kshithija_verify_headless_secret( WP_REST_Request $request ) {
+    $secret = $request->get_header( 'X-Headless-Secret' );
+    $expected = defined( 'HEADLESS_AUTH_SECRET' ) ? HEADLESS_AUTH_SECRET : '19827fe00484d444da19911adf8110ec30dc2d4e51cfe55f47a22c02d8d18d71';
+    if ( empty( $secret ) || ! hash_equals( $expected, $secret ) ) {
+        return new WP_Error( 'unauthorized_client', 'Invalid secret.', [ 'status' => 401 ] );
+    }
+    return true;
+}
+
+// Shared helper: generate token
+function kshithija_generate_token( WP_User $user, $ttl = 604800 ) {
+    $secret = defined( 'HEADLESS_AUTH_SECRET' ) ? HEADLESS_AUTH_SECRET : '19827fe00484d444da19911adf8110ec30dc2d4e51cfe55f47a22c02d8d18d71';
+    $header = base64_encode( json_encode( [ 'typ' => 'JWT', 'alg' => 'HS256' ] ) );
+    $payload = base64_encode( json_encode( [
+        'sub'   => $user->ID,
+        'email' => $user->user_email,
+        'iat'   => time(),
+        'exp'   => time() + $ttl,
+    ] ) );
+    $sig = base64_encode( hash_hmac( 'sha256', "{$header}.{$payload}", $secret, true ) );
+    return "{$header}.{$payload}.{$sig}";
+}
+
+// Shared helper: validate token
+function kshithija_authenticate_request( WP_REST_Request $request ) {
+    $sec = kshithija_verify_headless_secret( $request );
+    if ( is_wp_error( $sec ) ) return $sec;
+
+    $auth = $request->get_header( 'Authorization' );
+    if ( empty( $auth ) || ! preg_match( '/Bearer\s+(.*)$/i', $auth, $m ) ) {
+        return new WP_Error( 'missing_token', 'Bearer token required.', [ 'status' => 401 ] );
+    }
+
+    $secret = defined( 'HEADLESS_AUTH_SECRET' ) ? HEADLESS_AUTH_SECRET : '19827fe00484d444da19911adf8110ec30dc2d4e51cfe55f47a22c02d8d18d71';
+    $parts = explode( '.', trim( $m[1] ) );
+    if ( count( $parts ) !== 3 ) return new WP_Error( 'invalid_token', 'Malformed token.', [ 'status' => 401 ] );
+
+    $expected = base64_encode( hash_hmac( 'sha256', "{$parts[0]}.{$parts[1]}", $secret, true ) );
+    if ( ! hash_equals( $expected, $parts[2] ) ) return new WP_Error( 'invalid_sig', 'Invalid signature.', [ 'status' => 401 ] );
+
+    $payload = json_decode( base64_decode( $parts[1] ), true );
+    if ( ! isset( $payload['sub'] ) || ( isset( $payload['exp'] ) && time() > $payload['exp'] ) ) {
+        return new WP_Error( 'expired_token', 'Session expired.', [ 'status' => 401 ] );
+    }
+
+    $request->set_param( '_auth_user_id', $payload['sub'] );
+    return true;
+}
+
+// CORS Headers
+add_filter( 'rest_pre_serve_request', function( $served ) {
+    $origin = $_SERVER['HTTP_ORIGIN'] ?? '*';
+    header( 'Access-Control-Allow-Origin: ' . $origin );
+    header( 'Access-Control-Allow-Methods: GET, POST, OPTIONS' );
+    header( 'Access-Control-Allow-Credentials: true' );
+    header( 'Access-Control-Allow-Headers: Authorization, Content-Type, X-Headless-Secret' );
+    if ( isset( $_SERVER['REQUEST_METHOD'] ) && 'OPTIONS' === $_SERVER['REQUEST_METHOD'] ) {
+        status_header( 200 );
+        exit;
+    }
+    return $served;
+} );
+
+// Register Auth & Account Routes
+add_action( 'rest_api_init', function() {
+    register_rest_route( 'headless/v1', '/auth/login', [
+        'methods'             => 'POST',
+        'permission_callback' => 'kshithija_verify_headless_secret',
+        'callback'            => function( WP_REST_Request $request ) {
+            $user_login = sanitize_text_field( $request->get_param( 'username' ) ?: $request->get_param( 'email' ) );
+            $password   = (string) $request->get_param( 'password' );
+            $remember   = (bool) $request->get_param( 'rememberme' );
+
+            $user = wp_authenticate( $user_login, $password );
+            if ( is_wp_error( $user ) ) {
+                return new WP_Error( 'invalid_credentials', 'Invalid username or password.', [ 'status' => 401 ] );
+            }
+
+            $ttl = $remember ? ( 30 * DAY_IN_SECONDS ) : ( 7 * DAY_IN_SECONDS );
+            $token = kshithija_generate_token( $user, $ttl );
+
+            // Ensure coupon is synced
+            $coupon_data = function_exists( 'kshithija_get_or_create_affiliate_coupon' ) 
+                ? kshithija_get_or_create_affiliate_coupon( $user->ID ) : null;
+
+            return rest_ensure_response( [
+                'success' => true,
+                'token'   => $token,
+                'user'    => [
+                    'id'          => $user->ID,
+                    'username'    => $user->user_login,
+                    'email'       => $user->user_email,
+                    'displayName' => $user->display_name,
+                    'firstName'   => get_user_meta( $user->ID, 'first_name', true ) ?: $user->display_name,
+                    'lastName'    => get_user_meta( $user->ID, 'last_name', true ) ?: '',
+                    'roles'       => (array) $user->roles,
+                    'isAffiliate' => true,
+                    'affiliateId' => $user->user_login,
+                    'coupon'      => $coupon_data ? [ 'code' => $coupon_data['code'], 'amount' => '5' ] : null,
+                ],
+            ] );
+        },
+    ] );
+
+    register_rest_route( 'headless/v1', '/auth/verify', [
+        'methods'             => 'GET',
+        'permission_callback' => 'kshithija_authenticate_request',
+        'callback'            => function( $request ) {
+            $u = get_userdata( (int) $request->get_param( '_auth_user_id' ) );
+            return rest_ensure_response( [ 'valid' => true, 'user' => [ 'id' => $u->ID, 'email' => $u->user_email, 'displayName' => $u->display_name ] ] );
+        },
+    ] );
+
+    register_rest_route( 'headless/v1', '/account/me', [
+        'methods'             => 'GET',
+        'permission_callback' => 'kshithija_authenticate_request',
+        'callback'            => function( $request ) {
+            $uid = (int) $request->get_param( '_auth_user_id' );
+            $u = get_userdata( $uid );
+            return rest_ensure_response( [
+                'success' => true,
+                'user'    => [ 'id' => $u->ID, 'username' => $u->user_login, 'email' => $u->user_email, 'displayName' => $u->display_name ],
+                'billing' => [
+                    'firstName' => get_user_meta( $uid, 'billing_first_name', true ) ?: '',
+                    'lastName'  => get_user_meta( $uid, 'billing_last_name', true ) ?: '',
+                    'phone'     => get_user_meta( $uid, 'billing_phone', true ) ?: '',
+                    'email'     => get_user_meta( $uid, 'billing_email', true ) ?: $u->user_email,
+                    'address1'  => get_user_meta( $uid, 'billing_address_1', true ) ?: '',
+                    'city'      => get_user_meta( $uid, 'billing_city', true ) ?: '',
+                    'state'     => get_user_meta( $uid, 'billing_state', true ) ?: '',
+                    'postcode'  => get_user_meta( $uid, 'billing_postcode', true ) ?: '',
+                ],
+            ] );
+        },
+    ] );
+
+    register_rest_route( 'headless/v1', '/account/orders', [
+        'methods'             => 'GET',
+        'permission_callback' => 'kshithija_authenticate_request',
+        'callback'            => function( $request ) {
+            $uid = (int) $request->get_param( '_auth_user_id' );
+            if ( ! function_exists( 'wc_get_orders' ) ) return rest_ensure_response( [ 'success' => true, 'orders' => [] ] );
+            $wc_orders = wc_get_orders( [ 'customer_id' => $uid, 'limit' => 30, 'orderby' => 'date', 'order' => 'DESC' ] );
+            $list = [];
+            foreach ( $wc_orders as $o ) {
+                $list[] = [
+                    'id'             => $o->get_id(),
+                    'orderNumber'    => $o->get_order_number(),
+                    'status'         => $o->get_status(),
+                    'date'           => $o->get_date_created() ? $o->get_date_created()->date( 'Y-m-d H:i:s' ) : '',
+                    'total'          => (float) $o->get_total(),
+                    'totalFormatted' => '₹' . number_format( (float) $o->get_total(), 2 ),
+                ];
+            }
+            return rest_ensure_response( [ 'success' => true, 'orders' => $list ] );
+        },
+    ] );
+} );
+```
+
+---
+
+### Snippet 2: Dynamic Name + Number Affiliate Coupons
+> **Title in Code Snippets:** `2. Dynamic Affiliate Coupons`  
+> **Code Type:** `PHP Snippet`  
+> **What it does:** Generates dynamic Name + Number coupons for whoever logs in, fetches coupons from the WooCommerce table, updates placeholders (`AFFILIATE101`, `PARTNER101`), and syncs to Affiliate Master.
+
+```php
+<?php
+/**
+ * Kshithija Enterprises: Dynamic Name + Number Affiliate Coupon Auto-Sync
+ */
+
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+// Hook on WordPress user login & init to heal coupons
+add_action( 'wp_login', function( $login, $user ) {
+    if ( $user && isset( $user->ID ) ) kshithija_get_or_create_affiliate_coupon( $user->ID );
+}, 10, 2 );
+
+// Core function: Generate Name + Number coupon & fetch from coupon table
+function kshithija_get_or_create_affiliate_coupon( $user_id, $custom_code = '' ) {
+    $user = get_userdata( $user_id );
+    if ( ! $user ) return null;
+
+    $username = $user->user_login;
+
+    if ( ! empty( $custom_code ) ) {
+        $target_code = strtoupper( preg_replace( '/[^a-zA-Z0-9]/', '', $custom_code ) );
+    } else {
+        // Dynamic Name + Number for whoever logs in (case-insensitive)
+        $first_name = get_user_meta( $user_id, 'first_name', true );
+        $last_name  = get_user_meta( $user_id, 'last_name', true );
+        $raw_name   = trim( (string) $first_name . (string) $last_name );
+        if ( empty( $raw_name ) ) {
+            $raw_name = (string) $username;
+        }
+        $clean_name = strtoupper( preg_replace( '/[^a-zA-Z0-9]/', '', $raw_name ) );
+        if ( empty( $clean_name ) ) {
+            $clean_name = strtoupper( preg_replace( '/[^a-zA-Z0-9]/', '', (string) $username ) );
+        }
+
+        if ( substr( $clean_name, -3 ) === '101' ) {
+            $target_code = $clean_name;
+        } else {
+            $target_code = $clean_name . '101';
+        }
+    }
+
+    // 1. Fetch existing coupon directly from shop_coupon table
+    $coupon_id = 0;
+    $saved_id = (int) ( get_user_meta( $user_id, 'wrnxt_coupon_id', true ) ?: get_user_meta( $user_id, '_affiliate_coupon_id', true ) );
+
+    if ( $saved_id > 0 && get_post_type( $saved_id ) === 'shop_coupon' ) {
+        $coupon_id = $saved_id;
+    }
+
+    if ( ! $coupon_id ) {
+        $coupons = get_posts( [
+            'post_type'   => 'shop_coupon',
+            'post_status' => 'any',
+            'numberposts' => 1,
+            'meta_query'  => [
+                'relation' => 'OR',
+                [ 'key' => '_affiliate_user_id', 'value' => $user_id, 'compare' => '=' ],
+                [ 'key' => 'coupon_affiliate_user', 'value' => $user_id, 'compare' => '=' ],
+                [ 'key' => '_affiliate_username', 'value' => $username, 'compare' => '=' ],
+            ],
+        ] );
+        if ( ! empty( $coupons ) ) {
+            $coupon_id = $coupons[0]->ID;
+        }
+    }
+
+    // 2. If coupon exists in coupon table
+    if ( $coupon_id > 0 ) {
+        update_post_meta( $coupon_id, 'coupon_amount', '5' );
+        update_post_meta( $coupon_id, 'discount_type', 'percent' );
+
+        $current_title = strtoupper( get_the_title( $coupon_id ) );
+
+        // If coupon has generic placeholder (AFFILIATE101, PARTNER101, KSHI-), update to target code
+        if ( $current_title !== $target_code && ( $current_title === 'AFFILIATE101' || $current_title === 'PARTNER101' || strpos( $current_title, 'AFFILIATE' ) === 0 || strpos( $current_title, 'PARTNER' ) === 0 || strpos( $current_title, 'KSHI-' ) === 0 || ! empty( $custom_code ) ) ) {
+            if ( class_exists( 'WC_Coupon' ) ) {
+                $wc = new WC_Coupon( $coupon_id );
+                $wc->set_code( $target_code );
+                $wc->set_amount( 5 );
+                $wc->save();
+            } else {
+                wp_update_post( [ 'ID' => $coupon_id, 'post_title' => $target_code, 'post_name' => sanitize_title( $target_code ) ] );
+            }
+        }
+    } else {
+        // Create new shop_coupon in WooCommerce
+        $desc = sprintf( 'Affiliate coupon for %s (@%s)', $user->display_name, $username );
+        if ( class_exists( 'WC_Coupon' ) ) {
+            $wc = new WC_Coupon();
+            $wc->set_code( $target_code );
+            $wc->set_discount_type( 'percent' );
+            $wc->set_amount( 5 );
+            $wc->set_description( $desc );
+            $wc->save();
+            $coupon_id = $wc->get_id();
+        } else {
+            $coupon_id = wp_insert_post( [
+                'post_title'   => $target_code,
+                'post_name'    => sanitize_title( $target_code ),
+                'post_status'  => 'publish',
+                'post_author'  => $user_id,
+                'post_type'    => 'shop_coupon',
+            ] );
+            update_post_meta( $coupon_id, 'discount_type', 'percent' );
+            update_post_meta( $coupon_id, 'coupon_amount', '5' );
+        }
+    }
+
+    $final_code = strtoupper( get_the_title( $coupon_id ) ?: $target_code );
+
+    // Update metadata
+    update_post_meta( $coupon_id, '_affiliate_user_id', $user_id );
+    update_post_meta( $coupon_id, '_affiliate_username', $username );
+    update_user_meta( $user_id, 'wrnxt_coupon', $final_code );
+    update_user_meta( $user_id, 'wrnxt_coupon_code', $final_code );
+    update_user_meta( $user_id, 'affiliate_coupon', $final_code );
+    update_user_meta( $user_id, 'wrnxt_coupon_id', $coupon_id );
+    update_user_meta( $user_id, '_affiliate_coupon_id', $coupon_id );
+
+    // Sync to WRNXT Affiliate Master custom table
+    global $wpdb;
+    $wrnxt_tables = $wpdb->get_col( "SHOW TABLES LIKE '{$wpdb->prefix}wrnxt%'" );
+    if ( ! empty( $wrnxt_tables ) ) {
+        foreach ( $wrnxt_tables as $table ) {
+            $cols = $wpdb->get_col( "DESCRIBE {$table}", 0 );
+            if ( empty( $cols ) ) continue;
+            $cols_map = array_change_key_case( array_flip( $cols ), CASE_LOWER );
+
+            $user_col = isset( $cols_map['user_id'] ) ? 'user_id' : ( isset( $cols_map['affiliate_id'] ) ? 'affiliate_id' : null );
+            $coupon_col = isset( $cols_map['coupon_code'] ) ? 'coupon_code' : ( isset( $cols_map['coupon'] ) ? 'coupon' : null );
+
+            if ( $user_col && $coupon_col ) {
+                $row_id = $wpdb->get_var( $wpdb->prepare(
+                    "SELECT id FROM {$table} WHERE {$user_col} = %s OR {$user_col} = %s LIMIT 1",
+                    (string) $user_id, $username
+                ) );
+                if ( $row_id ) {
+                    $wpdb->update( $table, [ $coupon_col => $final_code ], [ 'id' => $row_id ] );
+                }
+            }
+        }
+    }
+
+    return [
+        'id'           => $coupon_id,
+        'code'         => $final_code,
+        'amount'       => '5',
+        'discountType' => 'percent',
+        'usageCount'   => (int) get_post_meta( $coupon_id, 'usage_count', true ),
+        'status'       => 'publish',
+        'dateCreated'  => get_the_date( 'Y-m-d', $coupon_id ),
+    ];
+}
+
+// REST Routes: /affiliate/coupon
+add_action( 'rest_api_init', function() {
+    register_rest_route( 'headless/v1', '/affiliate/coupon', [
+        [
+            'methods'             => 'GET',
+            'permission_callback' => 'kshithija_authenticate_request',
+            'callback'            => function( $request ) {
+                $uid = (int) $request->get_param( '_auth_user_id' );
+                $coupon = kshithija_get_or_create_affiliate_coupon( $uid );
+                return rest_ensure_response( [ 'success' => true, 'coupon' => $coupon ] );
+            },
+        ],
+        [
+            'methods'             => 'POST',
+            'permission_callback' => 'kshithija_authenticate_request',
+            'callback'            => function( $request ) {
+                $uid = (int) $request->get_param( '_auth_user_id' );
+                $code = strtoupper( preg_replace( '/[^A-Z0-9\-]/', '', (string) $request->get_param( 'code' ) ) );
+                if ( strlen( $code ) < 3 || strlen( $code ) > 25 ) {
+                    return new WP_Error( 'invalid_code', 'Code must be 3-25 alphanumeric characters.', [ 'status' => 400 ] );
+                }
+                $coupon = kshithija_get_or_create_affiliate_coupon( $uid, $code );
+                return rest_ensure_response( [ 'success' => true, 'message' => 'Coupon saved.', 'coupon' => $coupon ] );
+            },
+        ],
+    ] );
+} );
+```
+
+---
+
+### Snippet 3: Affiliate Orders & Referral Commission Tracking
+> **Title in Code Snippets:** `3. Affiliate Referral Orders & Rewards`  
+> **Code Type:** `PHP Snippet`  
+> **What it does:** Queries WooCommerce for orders where customers entered the affiliate's coupon at checkout, tracks sales volume, and calculates their 10% commission.
+
+```php
+<?php
+/**
+ * Kshithija Enterprises: Affiliate Referral Orders & Commission Tracking
+ */
+
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+add_action( 'rest_api_init', function() {
+    register_rest_route( 'headless/v1', '/affiliate/orders', [
+        'methods'             => 'GET',
+        'permission_callback' => 'kshithija_authenticate_request',
+        'callback'            => function( $request ) {
+            $user_id = (int) $request->get_param( '_auth_user_id' );
+            $coupon = function_exists( 'kshithija_get_or_create_affiliate_coupon' ) 
+                ? kshithija_get_or_create_affiliate_coupon( $user_id ) : null;
+
+            $coupon_code = strtolower( trim( $coupon['code'] ?? '' ) );
+            if ( empty( $coupon_code ) ) {
+                return rest_ensure_response( [
+                    'success' => true,
+                    'summary' => [
+                        'totalOrders'                  => 0,
+                        'totalSales'                   => 0,
+                        'totalSalesFormatted'          => '₹0',
+                        'salesRewardsEarned'           => 0,
+                        'salesRewardsEarnedFormatted'  => '₹0',
+                        'pendingSalesRewards'          => 0,
+                        'pendingSalesRewardsFormatted' => '₹0',
+                        'commissionRate'               => 10,
+                    ],
+                    'orders' => [],
+                ] );
+            }
+
+            global $wpdb;
+            $order_ids = $wpdb->get_col( $wpdb->prepare(
+                "SELECT DISTINCT order_id FROM {$wpdb->prefix}woocommerce_order_items WHERE order_item_type = 'coupon' AND LOWER(order_item_name) = %s",
+                $coupon_code
+            ) );
+
+            $total_orders = 0; $total_sales = 0; $sales_rewards = 0; $pending_rewards = 0;
+            $orders_list = [];
+
+            foreach ( (array) $order_ids as $oid ) {
+                $order = wc_get_order( $oid );
+                if ( ! $order ) continue;
+                $status = $order->get_status();
+                if ( in_array( $status, [ 'cancelled', 'failed', 'refunded' ], true ) ) continue;
+
+                $total = (float) $order->get_total();
+                $commission = round( $total * 0.10, 2 );
+
+                $total_orders++;
+                $total_sales += $total;
+                if ( in_array( $status, [ 'completed', 'processing' ], true ) ) {
+                    $sales_rewards += $commission;
+                } else {
+                    $pending_rewards += $commission;
+                }
+
+                $orders_list[] = [
+                    'id'                  => $order->get_id(),
+                    'orderNumber'         => $order->get_order_number(),
+                    'dateFormatted'       => $order->get_date_created() ? $order->get_date_created()->date( 'F j, Y' ) : '',
+                    'status'              => $status,
+                    'statusLabel'         => wc_get_order_status_name( $status ),
+                    'customer'            => $order->get_billing_first_name() ? $order->get_billing_first_name() . ' ' . substr( $order->get_billing_last_name(), 0, 1 ) . '.' : 'Verified Customer',
+                    'itemsSummary'        => $order->get_item_count() . ' items',
+                    'itemCount'           => $order->get_item_count(),
+                    'total'               => $total,
+                    'totalFormatted'      => '₹' . number_format( $total, 0 ),
+                    'commission'          => $commission,
+                    'commissionFormatted' => '₹' . number_format( $commission, 0 ),
+                    'couponUsed'          => strtoupper( $coupon_code ),
+                ];
+            }
+
+            return rest_ensure_response( [
+                'success' => true,
+                'summary' => [
+                    'totalOrders'                  => $total_orders,
+                    'totalSales'                   => round( $total_sales, 2 ),
+                    'totalSalesFormatted'          => '₹' . number_format( $total_sales, 0 ),
+                    'salesRewardsEarned'           => round( $sales_rewards, 2 ),
+                    'salesRewardsEarnedFormatted'  => '₹' . number_format( $sales_rewards, 0 ),
+                    'pendingSalesRewards'          => round( $pending_rewards, 2 ),
+                    'pendingSalesRewardsFormatted' => '₹' . number_format( $pending_rewards, 0 ),
+                    'commissionRate'               => 10,
+                ],
+                'orders'  => $orders_list,
+            ] );
+        },
+    ] );
+} );
+```
+
+---
+
+### Setup Instructions:
+1. In WordPress Admin, go to **Code Snippets $\rightarrow$ Add New**.
+2. Add **Snippet 1**, click **Save Snippet & Activate**.
+3. Add **Snippet 2**, click **Save Snippet & Activate**.
+4. Add **Snippet 3**, click **Save Snippet & Activate**.
+*(If your editor has `<?php` already at the top, omit the `<?php` from line 1).*
+
+Once activated, logging in will automatically update coupon #10356 to **`NAVANEETH101`** and sync to the Affiliate Master table.

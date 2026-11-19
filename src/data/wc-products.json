@@ -1,0 +1,1255 @@
+﻿[
+    {
+        "id":  7104,
+        "name":  "Grow Hair-100% Natural Anti-Dandruff Hair Cream (30 g)",
+        "slug":  "grow-hair-30-g",
+        "parent":  0,
+        "type":  "simple",
+        "variation":  "",
+        "permalink":  "https://kshithija.in/product/grow-hair-30-g/",
+        "sku":  "",
+        "short_description":  "",
+        "description":  "\u003cp\u003eAre you experiencing dandruff? Are you sensitive to hair care products?\u003cbr /\u003e\nTry BioT’s “Grow Hair” A 100% natural anti dandruff hair cream formulated with six earth ingredients blended at the right proportion. They work instantly to eliminate scalp inflammation, control fungal activity, and restore a clean, healthy, dandruff free scalp for almost whoever applies them.\u003c/p\u003e\n\u003cp\u003eBioT’s Grow Hair Cream is 100% natural, safe for sensitive scalps, and lab-tested at Bio.T. Laboratoires, Bengaluru.\u003ca href=\"https://en.wikipedia.org/wiki/Hair_follicle\"\u003e  \u003c/a\u003e\u003c/p\u003e",
+        "on_sale":  false,
+        "prices":  {
+                       "price":  "36900",
+                       "regular_price":  "36900",
+                       "sale_price":  "36900",
+                       "price_range":  null,
+                       "currency_code":  "INR",
+                       "currency_symbol":  "₹",
+                       "currency_minor_unit":  2,
+                       "currency_decimal_separator":  ".",
+                       "currency_thousand_separator":  ",",
+                       "currency_prefix":  "₹",
+                       "currency_suffix":  ""
+                   },
+        "price_html":  "\u003cspan class=\"woocommerce-Price-amount amount\"\u003e\u003cspan class=\"woocommerce-Price-currencySymbol\"\u003e\u0026#8377;\u003c/span\u003e369.00\u003c/span\u003e",
+        "average_rating":  "0",
+        "review_count":  0,
+        "images":  [
+                       {
+                           "id":  8542,
+                           "src":  "https://kshithija.in/wp-content/uploads/2026/08/content-28.webp",
+                           "thumbnail":  "https://kshithija.in/wp-content/uploads/2026/08/content-28-300x300.webp",
+                           "srcset":  "https://kshithija.in/wp-content/uploads/2026/08/content-28.webp 1254w, https://kshithija.in/wp-content/uploads/2026/08/content-28-300x300.webp 300w, https://kshithija.in/wp-content/uploads/2026/08/content-28-1024x1024.webp 1024w, https://kshithija.in/wp-content/uploads/2026/08/content-28-150x150.webp 150w, https://kshithija.in/wp-content/uploads/2026/08/content-28-768x768.webp 768w, https://kshithija.in/wp-content/uploads/2026/08/content-28-600x600.webp 600w, https://kshithija.in/wp-content/uploads/2026/08/content-28-100x100.webp 100w",
+                           "sizes":  "(max-width: 1254px) 100vw, 1254px",
+                           "thumbnail_srcset":  "https://kshithija.in/wp-content/uploads/2026/08/content-28-300x300.webp 300w, https://kshithija.in/wp-content/uploads/2026/08/content-28-1024x1024.webp 1024w, https://kshithija.in/wp-content/uploads/2026/08/content-28-150x150.webp 150w, https://kshithija.in/wp-content/uploads/2026/08/content-28-768x768.webp 768w, https://kshithija.in/wp-content/uploads/2026/08/content-28-600x600.webp 600w, https://kshithija.in/wp-content/uploads/2026/08/content-28-100x100.webp 100w, https://kshithija.in/wp-content/uploads/2026/08/content-28.webp 1254w",
+                           "thumbnail_sizes":  "(max-width: 300px) 100vw, 300px",
+                           "name":  "content (28)",
+                           "alt":  "natural anti dandruff hair cream for itch and flakes"
+                       },
+                       {
+                           "id":  7146,
+                           "src":  "https://kshithija.in/wp-content/uploads/2026/08/hair-cream.webp",
+                           "thumbnail":  "https://kshithija.in/wp-content/uploads/2026/08/hair-cream-300x300.webp",
+                           "srcset":  "https://kshithija.in/wp-content/uploads/2026/08/hair-cream.webp 1254w, https://kshithija.in/wp-content/uploads/2026/08/hair-cream-300x300.webp 300w, https://kshithija.in/wp-content/uploads/2026/08/hair-cream-1024x1024.webp 1024w, https://kshithija.in/wp-content/uploads/2026/08/hair-cream-150x150.webp 150w, https://kshithija.in/wp-content/uploads/2026/08/hair-cream-768x768.webp 768w, https://kshithija.in/wp-content/uploads/2026/08/hair-cream-600x600.webp 600w, https://kshithija.in/wp-content/uploads/2026/08/hair-cream-100x100.webp 100w",
+                           "sizes":  "(max-width: 1254px) 100vw, 1254px",
+                           "thumbnail_srcset":  "https://kshithija.in/wp-content/uploads/2026/08/hair-cream-300x300.webp 300w, https://kshithija.in/wp-content/uploads/2026/08/hair-cream-1024x1024.webp 1024w, https://kshithija.in/wp-content/uploads/2026/08/hair-cream-150x150.webp 150w, https://kshithija.in/wp-content/uploads/2026/08/hair-cream-768x768.webp 768w, https://kshithija.in/wp-content/uploads/2026/08/hair-cream-600x600.webp 600w, https://kshithija.in/wp-content/uploads/2026/08/hair-cream-100x100.webp 100w, https://kshithija.in/wp-content/uploads/2026/08/hair-cream.webp 1254w",
+                           "thumbnail_sizes":  "(max-width: 300px) 100vw, 300px",
+                           "name":  "Herbal hair growth",
+                           "alt":  "natural anti dandruff hair cream"
+                       },
+                       {
+                           "id":  4635,
+                           "src":  "https://kshithija.in/wp-content/uploads/2025/12/Untitled-design-19-1-scaled.png",
+                           "thumbnail":  "https://kshithija.in/wp-content/uploads/2025/12/Untitled-design-19-1-300x300.png",
+                           "srcset":  "https://kshithija.in/wp-content/uploads/2025/12/Untitled-design-19-1-scaled.png 2055w, https://kshithija.in/wp-content/uploads/2025/12/Untitled-design-19-1-241x300.png 241w, https://kshithija.in/wp-content/uploads/2025/12/Untitled-design-19-1-822x1024.png 822w, https://kshithija.in/wp-content/uploads/2025/12/Untitled-design-19-1-768x957.png 768w, https://kshithija.in/wp-content/uploads/2025/12/Untitled-design-19-1-1233x1536.png 1233w, https://kshithija.in/wp-content/uploads/2025/12/Untitled-design-19-1-1644x2048.png 1644w, https://kshithija.in/wp-content/uploads/2025/12/Untitled-design-19-1-600x747.png 600w",
+                           "sizes":  "(max-width: 2055px) 100vw, 2055px",
+                           "thumbnail_srcset":  "https://kshithija.in/wp-content/uploads/2025/12/Untitled-design-19-1-300x300.png 300w, https://kshithija.in/wp-content/uploads/2025/12/Untitled-design-19-1-150x150.png 150w, https://kshithija.in/wp-content/uploads/2025/12/Untitled-design-19-1-100x100.png 100w",
+                           "thumbnail_sizes":  "(max-width: 300px) 100vw, 300px",
+                           "name":  "Untitled design (19)",
+                           "alt":  "natural anti dandruff hair cream"
+                       },
+                       {
+                           "id":  8516,
+                           "src":  "https://kshithija.in/wp-content/uploads/2026/08/content-25.webp",
+                           "thumbnail":  "https://kshithija.in/wp-content/uploads/2026/08/content-25-300x300.webp",
+                           "srcset":  "https://kshithija.in/wp-content/uploads/2026/08/content-25.webp 1254w, https://kshithija.in/wp-content/uploads/2026/08/content-25-300x300.webp 300w, https://kshithija.in/wp-content/uploads/2026/08/content-25-1024x1024.webp 1024w, https://kshithija.in/wp-content/uploads/2026/08/content-25-150x150.webp 150w, https://kshithija.in/wp-content/uploads/2026/08/content-25-768x768.webp 768w, https://kshithija.in/wp-content/uploads/2026/08/content-25-600x600.webp 600w, https://kshithija.in/wp-content/uploads/2026/08/content-25-100x100.webp 100w",
+                           "sizes":  "(max-width: 1254px) 100vw, 1254px",
+                           "thumbnail_srcset":  "https://kshithija.in/wp-content/uploads/2026/08/content-25-300x300.webp 300w, https://kshithija.in/wp-content/uploads/2026/08/content-25-1024x1024.webp 1024w, https://kshithija.in/wp-content/uploads/2026/08/content-25-150x150.webp 150w, https://kshithija.in/wp-content/uploads/2026/08/content-25-768x768.webp 768w, https://kshithija.in/wp-content/uploads/2026/08/content-25-600x600.webp 600w, https://kshithija.in/wp-content/uploads/2026/08/content-25-100x100.webp 100w, https://kshithija.in/wp-content/uploads/2026/08/content-25.webp 1254w",
+                           "thumbnail_sizes":  "(max-width: 300px) 100vw, 300px",
+                           "name":  "hair growth",
+                           "alt":  "natural anti dandruff hair cream controls Malassezia fungus"
+                       },
+                       {
+                           "id":  8517,
+                           "src":  "https://kshithija.in/wp-content/uploads/2026/08/hair-care.webp",
+                           "thumbnail":  "https://kshithija.in/wp-content/uploads/2026/08/hair-care-300x300.webp",
+                           "srcset":  "https://kshithija.in/wp-content/uploads/2026/08/hair-care.webp 1254w, https://kshithija.in/wp-content/uploads/2026/08/hair-care-300x300.webp 300w, https://kshithija.in/wp-content/uploads/2026/08/hair-care-1024x1024.webp 1024w, https://kshithija.in/wp-content/uploads/2026/08/hair-care-150x150.webp 150w, https://kshithija.in/wp-content/uploads/2026/08/hair-care-768x768.webp 768w, https://kshithija.in/wp-content/uploads/2026/08/hair-care-600x600.webp 600w, https://kshithija.in/wp-content/uploads/2026/08/hair-care-100x100.webp 100w",
+                           "sizes":  "(max-width: 1254px) 100vw, 1254px",
+                           "thumbnail_srcset":  "https://kshithija.in/wp-content/uploads/2026/08/hair-care-300x300.webp 300w, https://kshithija.in/wp-content/uploads/2026/08/hair-care-1024x1024.webp 1024w, https://kshithija.in/wp-content/uploads/2026/08/hair-care-150x150.webp 150w, https://kshithija.in/wp-content/uploads/2026/08/hair-care-768x768.webp 768w, https://kshithija.in/wp-content/uploads/2026/08/hair-care-600x600.webp 600w, https://kshithija.in/wp-content/uploads/2026/08/hair-care-100x100.webp 100w, https://kshithija.in/wp-content/uploads/2026/08/hair-care.webp 1254w",
+                           "thumbnail_sizes":  "(max-width: 300px) 100vw, 300px",
+                           "name":  "hair care",
+                           "alt":  "natural anti dandruff hair cream texture close up"
+                       },
+                       {
+                           "id":  8518,
+                           "src":  "https://kshithija.in/wp-content/uploads/2026/08/content-26.webp",
+                           "thumbnail":  "https://kshithija.in/wp-content/uploads/2026/08/content-26-300x300.webp",
+                           "srcset":  "https://kshithija.in/wp-content/uploads/2026/08/content-26.webp 1254w, https://kshithija.in/wp-content/uploads/2026/08/content-26-300x300.webp 300w, https://kshithija.in/wp-content/uploads/2026/08/content-26-1024x1024.webp 1024w, https://kshithija.in/wp-content/uploads/2026/08/content-26-150x150.webp 150w, https://kshithija.in/wp-content/uploads/2026/08/content-26-768x768.webp 768w, https://kshithija.in/wp-content/uploads/2026/08/content-26-600x600.webp 600w, https://kshithija.in/wp-content/uploads/2026/08/content-26-100x100.webp 100w",
+                           "sizes":  "(max-width: 1254px) 100vw, 1254px",
+                           "thumbnail_srcset":  "https://kshithija.in/wp-content/uploads/2026/08/content-26-300x300.webp 300w, https://kshithija.in/wp-content/uploads/2026/08/content-26-1024x1024.webp 1024w, https://kshithija.in/wp-content/uploads/2026/08/content-26-150x150.webp 150w, https://kshithija.in/wp-content/uploads/2026/08/content-26-768x768.webp 768w, https://kshithija.in/wp-content/uploads/2026/08/content-26-600x600.webp 600w, https://kshithija.in/wp-content/uploads/2026/08/content-26-100x100.webp 100w, https://kshithija.in/wp-content/uploads/2026/08/content-26.webp 1254w",
+                           "thumbnail_sizes":  "(max-width: 300px) 100vw, 300px",
+                           "name":  "content (26)",
+                           "alt":  "pplying natural anti dandruff hair cream on scalp"
+                       },
+                       {
+                           "id":  8519,
+                           "src":  "https://kshithija.in/wp-content/uploads/2026/08/content-27.webp",
+                           "thumbnail":  "https://kshithija.in/wp-content/uploads/2026/08/content-27-300x300.webp",
+                           "srcset":  "https://kshithija.in/wp-content/uploads/2026/08/content-27.webp 1254w, https://kshithija.in/wp-content/uploads/2026/08/content-27-300x300.webp 300w, https://kshithija.in/wp-content/uploads/2026/08/content-27-1024x1024.webp 1024w, https://kshithija.in/wp-content/uploads/2026/08/content-27-150x150.webp 150w, https://kshithija.in/wp-content/uploads/2026/08/content-27-768x768.webp 768w, https://kshithija.in/wp-content/uploads/2026/08/content-27-600x600.webp 600w, https://kshithija.in/wp-content/uploads/2026/08/content-27-100x100.webp 100w",
+                           "sizes":  "(max-width: 1254px) 100vw, 1254px",
+                           "thumbnail_srcset":  "https://kshithija.in/wp-content/uploads/2026/08/content-27-300x300.webp 300w, https://kshithija.in/wp-content/uploads/2026/08/content-27-1024x1024.webp 1024w, https://kshithija.in/wp-content/uploads/2026/08/content-27-150x150.webp 150w, https://kshithija.in/wp-content/uploads/2026/08/content-27-768x768.webp 768w, https://kshithija.in/wp-content/uploads/2026/08/content-27-600x600.webp 600w, https://kshithija.in/wp-content/uploads/2026/08/content-27-100x100.webp 100w, https://kshithija.in/wp-content/uploads/2026/08/content-27.webp 1254w",
+                           "thumbnail_sizes":  "(max-width: 300px) 100vw, 300px",
+                           "name":  "content (27)",
+                           "alt":  "natural anti dandruff hair cream bottle front view"
+                       }
+                   ],
+        "categories":  [
+                           {
+                               "id":  54,
+                               "name":  "All",
+                               "slug":  "all",
+                               "link":  "https://kshithija.in/product-category/all/"
+                           },
+                           {
+                               "id":  55,
+                               "name":  "Beauty Products",
+                               "slug":  "beauty",
+                               "link":  "https://kshithija.in/product-category/all/beauty/"
+                           },
+                           {
+                               "id":  42,
+                               "name":  "hair cream",
+                               "slug":  "hair-cream",
+                               "link":  "https://kshithija.in/product-category/hair-cream/"
+                           }
+                       ],
+        "tags":  [
+
+                 ],
+        "brands":  [
+
+                   ],
+        "attributes":  [
+
+                       ],
+        "variations":  [
+
+                       ],
+        "grouped_products":  [
+
+                             ],
+        "has_options":  false,
+        "is_purchasable":  true,
+        "is_in_stock":  true,
+        "is_on_backorder":  false,
+        "low_stock_remaining":  null,
+        "stock_availability":  {
+                                   "text":  "",
+                                   "class":  "in-stock"
+                               },
+        "sold_individually":  false,
+        "weight":  "",
+        "dimensions":  {
+                           "length":  "",
+                           "width":  "",
+                           "height":  ""
+                       },
+        "formatted_weight":  "N/A",
+        "formatted_dimensions":  "N/A",
+        "add_to_cart":  {
+                            "text":  "Add to cart",
+                            "description":  "Add to cart: \u0026ldquo;Grow Hair-100% Natural Anti-Dandruff Hair Cream (30 g)\u0026rdquo;",
+                            "url":  "/wp-json/wc/store/v1/products?per_page=100\u0026#038;add-to-cart=7104",
+                            "single_text":  "Add to cart",
+                            "minimum":  1,
+                            "maximum":  9999,
+                            "multiple_of":  1
+                        },
+        "is_password_protected":  false,
+        "extensions":  {
+
+                       },
+        "_links":  {
+                       "self":  [
+                                    {
+                                        "href":  "https://kshithija.in/wp-json/wc/store/v1/products/7104",
+                                        "targetHints":  {
+                                                            "allow":  [
+                                                                          "GET"
+                                                                      ]
+                                                        }
+                                    }
+                                ],
+                       "collection":  [
+                                          {
+                                              "href":  "https://kshithija.in/wp-json/wc/store/v1/products"
+                                          }
+                                      ],
+                       "related":  [
+                                       {
+                                           "embeddable":  true,
+                                           "href":  "https://kshithija.in/wp-json/wc/store/v1/products?related=7104\u0026per_page=10"
+                                       }
+                                   ]
+                   }
+    },
+    {
+        "id":  2758,
+        "name":  "Chaithanya 2000 Plus \u0026#8211; Natural Wellness Supplement (Without Sugar)",
+        "slug":  "chaithanya-2000-plus-without-sugar",
+        "parent":  0,
+        "type":  "simple",
+        "variation":  "",
+        "permalink":  "https://kshithija.in/product/chaithanya-2000-plus-without-sugar/",
+        "sku":  "",
+        "short_description":  "",
+        "description":  "\u003cp dir=\"auto\"\u003e\u003cstrong\u003eProduct Description\u003c/strong\u003e\u003c/p\u003e\n\u003cp dir=\"auto\"\u003eCHAITHATHANYA 2000 PLUS 500.g  without sugar is a premium, traditionally inspired natural wellness products food supplement crafted from the finest nuts, ancient millets, protein-rich dals, and powerful Ayurvedic roots.\u003ca href=\"https://kshithija.in/blog/sugar-free-natural-energy-supplement/\"\u003e \u003c/a\u003e\u003c/p\u003e\n\u003cp dir=\"auto\"\u003eDesigned for those seeking real muscular strength, bulk, and sustained energy without synthetic additives or chemicals.\u003c/p\u003e\n\u003cp dir=\"auto\"\u003e\u003cstrong\u003eKey Ingredients:\u003c/strong\u003e\u003c/p\u003e\n\u003cul dir=\"auto\"\u003e\n\u003cli\u003e\u003cstrong\u003eNuts \u0026amp; Seeds:\u003c/strong\u003e Badam (Almonds), Pista (Pistachios), Walnut, Cashew Nut, Ground Nut, Soya\u003ca href=\"https://en.wikipedia.org/wiki/Nut_(food)\"\u003e   \u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eMillets \u0026amp; Grains:\u003c/strong\u003e Wheat, Ragi, Jowar\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eDals \u0026amp; Pulses:\u003c/strong\u003e Horse Gram, Channa Dal, Toor Dal, Urid Dal, Bengal Gram Dal\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eAyurvedic Powerhouses:\u003c/strong\u003e Ashwagandha Root, Nannari Root, Jeera (Cumin), Maithihi (Fenugreek), Vanilla Powder\u003c/li\u003e\n\u003c/ul\u003e",
+        "on_sale":  false,
+        "prices":  {
+                       "price":  "26000",
+                       "regular_price":  "26000",
+                       "sale_price":  "26000",
+                       "price_range":  null,
+                       "currency_code":  "INR",
+                       "currency_symbol":  "₹",
+                       "currency_minor_unit":  2,
+                       "currency_decimal_separator":  ".",
+                       "currency_thousand_separator":  ",",
+                       "currency_prefix":  "₹",
+                       "currency_suffix":  ""
+                   },
+        "price_html":  "\u003cspan class=\"woocommerce-Price-amount amount\"\u003e\u003cspan class=\"woocommerce-Price-currencySymbol\"\u003e\u0026#8377;\u003c/span\u003e260.00\u003c/span\u003e",
+        "average_rating":  "0",
+        "review_count":  0,
+        "images":  [
+                       {
+                           "id":  5230,
+                           "src":  "https://kshithija.in/wp-content/uploads/2026/02/Untitled-design-21-scaled.png",
+                           "thumbnail":  "https://kshithija.in/wp-content/uploads/2026/02/Untitled-design-21-300x300.png",
+                           "srcset":  "https://kshithija.in/wp-content/uploads/2026/02/Untitled-design-21-scaled.png 1920w, https://kshithija.in/wp-content/uploads/2026/02/Untitled-design-21-225x300.png 225w, https://kshithija.in/wp-content/uploads/2026/02/Untitled-design-21-768x1024.png 768w, https://kshithija.in/wp-content/uploads/2026/02/Untitled-design-21-1152x1536.png 1152w, https://kshithija.in/wp-content/uploads/2026/02/Untitled-design-21-1536x2048.png 1536w, https://kshithija.in/wp-content/uploads/2026/02/Untitled-design-21-600x800.png 600w",
+                           "sizes":  "(max-width: 1920px) 100vw, 1920px",
+                           "thumbnail_srcset":  "https://kshithija.in/wp-content/uploads/2026/02/Untitled-design-21-300x300.png 300w, https://kshithija.in/wp-content/uploads/2026/02/Untitled-design-21-150x150.png 150w, https://kshithija.in/wp-content/uploads/2026/02/Untitled-design-21-100x100.png 100w",
+                           "thumbnail_sizes":  "(max-width: 300px) 100vw, 300px",
+                           "name":  "Untitled design (21)",
+                           "alt":  "Natural Wellness Products Chaithanya 2000 Plus organic manure for plant growth"
+                       },
+                       {
+                           "id":  1980,
+                           "src":  "https://kshithija.in/wp-content/uploads/2026/02/image-17.webp",
+                           "thumbnail":  "https://kshithija.in/wp-content/uploads/2026/02/image-17-300x300.webp",
+                           "srcset":  "https://kshithija.in/wp-content/uploads/2026/02/image-17.webp 912w, https://kshithija.in/wp-content/uploads/2026/02/image-17-241x300.webp 241w, https://kshithija.in/wp-content/uploads/2026/02/image-17-822x1024.webp 822w, https://kshithija.in/wp-content/uploads/2026/02/image-17-768x957.webp 768w, https://kshithija.in/wp-content/uploads/2026/02/image-17-600x747.webp 600w",
+                           "sizes":  "(max-width: 912px) 100vw, 912px",
+                           "thumbnail_srcset":  "https://kshithija.in/wp-content/uploads/2026/02/image-17-300x300.webp 300w, https://kshithija.in/wp-content/uploads/2026/02/image-17-150x150.webp 150w, https://kshithija.in/wp-content/uploads/2026/02/image-17-100x100.webp 100w",
+                           "thumbnail_sizes":  "(max-width: 300px) 100vw, 300px",
+                           "name":  "image (17)",
+                           "alt":  ""
+                       },
+                       {
+                           "id":  1981,
+                           "src":  "https://kshithija.in/wp-content/uploads/2026/02/WhatsApp-Image-2026-02-09-at-3.48.34-PM.jpeg",
+                           "thumbnail":  "https://kshithija.in/wp-content/uploads/2026/02/WhatsApp-Image-2026-02-09-at-3.48.34-PM-300x300.jpeg",
+                           "srcset":  "https://kshithija.in/wp-content/uploads/2026/02/WhatsApp-Image-2026-02-09-at-3.48.34-PM.jpeg 1080w, https://kshithija.in/wp-content/uploads/2026/02/WhatsApp-Image-2026-02-09-at-3.48.34-PM-240x300.jpeg 240w, https://kshithija.in/wp-content/uploads/2026/02/WhatsApp-Image-2026-02-09-at-3.48.34-PM-819x1024.jpeg 819w, https://kshithija.in/wp-content/uploads/2026/02/WhatsApp-Image-2026-02-09-at-3.48.34-PM-768x960.jpeg 768w, https://kshithija.in/wp-content/uploads/2026/02/WhatsApp-Image-2026-02-09-at-3.48.34-PM-600x750.jpeg 600w",
+                           "sizes":  "(max-width: 1080px) 100vw, 1080px",
+                           "thumbnail_srcset":  "https://kshithija.in/wp-content/uploads/2026/02/WhatsApp-Image-2026-02-09-at-3.48.34-PM-300x300.jpeg 300w, https://kshithija.in/wp-content/uploads/2026/02/WhatsApp-Image-2026-02-09-at-3.48.34-PM-150x150.jpeg 150w, https://kshithija.in/wp-content/uploads/2026/02/WhatsApp-Image-2026-02-09-at-3.48.34-PM-100x100.jpeg 100w",
+                           "thumbnail_sizes":  "(max-width: 300px) 100vw, 300px",
+                           "name":  "WhatsApp Image 2026-02-09 at 3.48.34 PM",
+                           "alt":  ""
+                       },
+                       {
+                           "id":  1982,
+                           "src":  "https://kshithija.in/wp-content/uploads/2026/02/image-20.webp",
+                           "thumbnail":  "https://kshithija.in/wp-content/uploads/2026/02/image-20-300x300.webp",
+                           "srcset":  "https://kshithija.in/wp-content/uploads/2026/02/image-20.webp 912w, https://kshithija.in/wp-content/uploads/2026/02/image-20-241x300.webp 241w, https://kshithija.in/wp-content/uploads/2026/02/image-20-822x1024.webp 822w, https://kshithija.in/wp-content/uploads/2026/02/image-20-768x957.webp 768w, https://kshithija.in/wp-content/uploads/2026/02/image-20-600x747.webp 600w",
+                           "sizes":  "(max-width: 912px) 100vw, 912px",
+                           "thumbnail_srcset":  "https://kshithija.in/wp-content/uploads/2026/02/image-20-300x300.webp 300w, https://kshithija.in/wp-content/uploads/2026/02/image-20-150x150.webp 150w, https://kshithija.in/wp-content/uploads/2026/02/image-20-100x100.webp 100w",
+                           "thumbnail_sizes":  "(max-width: 300px) 100vw, 300px",
+                           "name":  "image (20)",
+                           "alt":  ""
+                       }
+                   ],
+        "categories":  [
+                           {
+                               "id":  49,
+                               "name":  "chaithanya 2000+ (WS)",
+                               "slug":  "chaithanya-2000-ws",
+                               "link":  "https://kshithija.in/product-category/chaithanya-2000-ws/"
+                           },
+                           {
+                               "id":  54,
+                               "name":  "All",
+                               "slug":  "all",
+                               "link":  "https://kshithija.in/product-category/all/"
+                           },
+                           {
+                               "id":  56,
+                               "name":  "Wellness Products",
+                               "slug":  "wellness",
+                               "link":  "https://kshithija.in/product-category/all/wellness/"
+                           }
+                       ],
+        "tags":  [
+                     {
+                         "id":  50,
+                         "name":  "500.g",
+                         "slug":  "500-g",
+                         "link":  "https://kshithija.in/product-tag/500-g/"
+                     }
+                 ],
+        "brands":  [
+
+                   ],
+        "attributes":  [
+                           {
+                               "id":  1,
+                               "name":  "flavour",
+                               "taxonomy":  "pa_flavour",
+                               "has_variations":  true,
+                               "terms":  [
+                                             {
+                                                 "id":  46,
+                                                 "name":  "With Sugar",
+                                                 "slug":  "with-sugar"
+                                             },
+                                             {
+                                                 "id":  48,
+                                                 "name":  "without sugar",
+                                                 "slug":  "without-sugar"
+                                             }
+                                         ]
+                           }
+                       ],
+        "variations":  [
+
+                       ],
+        "grouped_products":  [
+
+                             ],
+        "has_options":  false,
+        "is_purchasable":  true,
+        "is_in_stock":  true,
+        "is_on_backorder":  false,
+        "low_stock_remaining":  null,
+        "stock_availability":  {
+                                   "text":  "",
+                                   "class":  "in-stock"
+                               },
+        "sold_individually":  false,
+        "weight":  "",
+        "dimensions":  {
+                           "length":  "",
+                           "width":  "",
+                           "height":  ""
+                       },
+        "formatted_weight":  "N/A",
+        "formatted_dimensions":  "N/A",
+        "add_to_cart":  {
+                            "text":  "Add to cart",
+                            "description":  "Add to cart: \u0026ldquo;Chaithanya 2000 Plus \u0026#8211; Natural Wellness Supplement (Without Sugar)\u0026rdquo;",
+                            "url":  "/wp-json/wc/store/v1/products?per_page=100\u0026#038;add-to-cart=2758",
+                            "single_text":  "Add to cart",
+                            "minimum":  1,
+                            "maximum":  9999,
+                            "multiple_of":  1
+                        },
+        "is_password_protected":  false,
+        "extensions":  {
+
+                       },
+        "_links":  {
+                       "self":  [
+                                    {
+                                        "href":  "https://kshithija.in/wp-json/wc/store/v1/products/2758",
+                                        "targetHints":  {
+                                                            "allow":  [
+                                                                          "GET"
+                                                                      ]
+                                                        }
+                                    }
+                                ],
+                       "collection":  [
+                                          {
+                                              "href":  "https://kshithija.in/wp-json/wc/store/v1/products"
+                                          }
+                                      ],
+                       "related":  [
+                                       {
+                                           "embeddable":  true,
+                                           "href":  "https://kshithija.in/wp-json/wc/store/v1/products?related=2758\u0026per_page=10"
+                                       }
+                                   ]
+                   }
+    },
+    {
+        "id":  1963,
+        "name":  "Natural Wellness Products for a Healthier Lifestyle",
+        "slug":  "chaithanya-2000-plus",
+        "parent":  0,
+        "type":  "simple",
+        "variation":  "",
+        "permalink":  "https://kshithija.in/product/chaithanya-2000-plus/",
+        "sku":  "",
+        "short_description":  "\u003cp\u003e500.g\u003c/p\u003e",
+        "description":  "\u003cp dir=\"auto\"\u003e\u003cstrong\u003eProduct Description\u003c/strong\u003e\u003c/p\u003e\n\u003cp dir=\"auto\"\u003eCHAITHATHANYA 2000 PLUS is a premium, traditionally inspired natural wellness supplement crafted from the finest nuts, ancient millets, protein-rich dals, and powerful Ayurvedic roots   .\u003c/p\u003e\n\u003cp dir=\"auto\"\u003eDesigned for those seeking real muscular strength, bulk, and sustained energy without synthetic additives or chemicals.\u003ca href=\"https://kshithija.in/product/chaithanya-2000-plus-without-sugar/\"\u003e  \u003c/a\u003e\u003c/p\u003e\n\u003cp dir=\"auto\"\u003e\u003cstrong\u003eKey Ingredients:\u003c/strong\u003e\u003c/p\u003e\n\u003cul dir=\"auto\"\u003e\n\u003cli\u003e\u003cstrong\u003eNuts \u0026amp; Seeds:\u003c/strong\u003e Badam (Almonds), Pista (Pistachios), Walnut, Cashew Nut, Ground Nut, Soya\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eMillets \u0026amp; Grains:\u003c/strong\u003e Wheat, Ragi, Jowar\u003ca href=\"https://en.wikipedia.org/wiki/Grain\"\u003e  \u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eDals \u0026amp; Pulses:\u003c/strong\u003e Horse Gram, Channa Dal, Toor Dal, Urid Dal, Bengal Gram Dal\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eAyurvedic Powerhouses:\u003c/strong\u003e Ashwagandha Root, Nannari Root, Jeera (Cumin), Maithihi (Fenugreek), Vanilla Powder\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eNatural Sweetness:\u003c/strong\u003e Powdered Sugar Cubes\u003c/li\u003e\n\u003c/ul\u003e",
+        "on_sale":  false,
+        "prices":  {
+                       "price":  "25000",
+                       "regular_price":  "25000",
+                       "sale_price":  "25000",
+                       "price_range":  null,
+                       "currency_code":  "INR",
+                       "currency_symbol":  "₹",
+                       "currency_minor_unit":  2,
+                       "currency_decimal_separator":  ".",
+                       "currency_thousand_separator":  ",",
+                       "currency_prefix":  "₹",
+                       "currency_suffix":  ""
+                   },
+        "price_html":  "\u003cspan class=\"woocommerce-Price-amount amount\"\u003e\u003cspan class=\"woocommerce-Price-currencySymbol\"\u003e\u0026#8377;\u003c/span\u003e250.00\u003c/span\u003e",
+        "average_rating":  "0",
+        "review_count":  0,
+        "images":  [
+                       {
+                           "id":  5230,
+                           "src":  "https://kshithija.in/wp-content/uploads/2026/02/Untitled-design-21-scaled.png",
+                           "thumbnail":  "https://kshithija.in/wp-content/uploads/2026/02/Untitled-design-21-300x300.png",
+                           "srcset":  "https://kshithija.in/wp-content/uploads/2026/02/Untitled-design-21-scaled.png 1920w, https://kshithija.in/wp-content/uploads/2026/02/Untitled-design-21-225x300.png 225w, https://kshithija.in/wp-content/uploads/2026/02/Untitled-design-21-768x1024.png 768w, https://kshithija.in/wp-content/uploads/2026/02/Untitled-design-21-1152x1536.png 1152w, https://kshithija.in/wp-content/uploads/2026/02/Untitled-design-21-1536x2048.png 1536w, https://kshithija.in/wp-content/uploads/2026/02/Untitled-design-21-600x800.png 600w",
+                           "sizes":  "(max-width: 1920px) 100vw, 1920px",
+                           "thumbnail_srcset":  "https://kshithija.in/wp-content/uploads/2026/02/Untitled-design-21-300x300.png 300w, https://kshithija.in/wp-content/uploads/2026/02/Untitled-design-21-150x150.png 150w, https://kshithija.in/wp-content/uploads/2026/02/Untitled-design-21-100x100.png 100w",
+                           "thumbnail_sizes":  "(max-width: 300px) 100vw, 300px",
+                           "name":  "Untitled design (21)",
+                           "alt":  "Natural Wellness Products Chaithanya 2000 Plus organic manure for plant growth"
+                       },
+                       {
+                           "id":  1980,
+                           "src":  "https://kshithija.in/wp-content/uploads/2026/02/image-17.webp",
+                           "thumbnail":  "https://kshithija.in/wp-content/uploads/2026/02/image-17-300x300.webp",
+                           "srcset":  "https://kshithija.in/wp-content/uploads/2026/02/image-17.webp 912w, https://kshithija.in/wp-content/uploads/2026/02/image-17-241x300.webp 241w, https://kshithija.in/wp-content/uploads/2026/02/image-17-822x1024.webp 822w, https://kshithija.in/wp-content/uploads/2026/02/image-17-768x957.webp 768w, https://kshithija.in/wp-content/uploads/2026/02/image-17-600x747.webp 600w",
+                           "sizes":  "(max-width: 912px) 100vw, 912px",
+                           "thumbnail_srcset":  "https://kshithija.in/wp-content/uploads/2026/02/image-17-300x300.webp 300w, https://kshithija.in/wp-content/uploads/2026/02/image-17-150x150.webp 150w, https://kshithija.in/wp-content/uploads/2026/02/image-17-100x100.webp 100w",
+                           "thumbnail_sizes":  "(max-width: 300px) 100vw, 300px",
+                           "name":  "image (17)",
+                           "alt":  ""
+                       },
+                       {
+                           "id":  1981,
+                           "src":  "https://kshithija.in/wp-content/uploads/2026/02/WhatsApp-Image-2026-02-09-at-3.48.34-PM.jpeg",
+                           "thumbnail":  "https://kshithija.in/wp-content/uploads/2026/02/WhatsApp-Image-2026-02-09-at-3.48.34-PM-300x300.jpeg",
+                           "srcset":  "https://kshithija.in/wp-content/uploads/2026/02/WhatsApp-Image-2026-02-09-at-3.48.34-PM.jpeg 1080w, https://kshithija.in/wp-content/uploads/2026/02/WhatsApp-Image-2026-02-09-at-3.48.34-PM-240x300.jpeg 240w, https://kshithija.in/wp-content/uploads/2026/02/WhatsApp-Image-2026-02-09-at-3.48.34-PM-819x1024.jpeg 819w, https://kshithija.in/wp-content/uploads/2026/02/WhatsApp-Image-2026-02-09-at-3.48.34-PM-768x960.jpeg 768w, https://kshithija.in/wp-content/uploads/2026/02/WhatsApp-Image-2026-02-09-at-3.48.34-PM-600x750.jpeg 600w",
+                           "sizes":  "(max-width: 1080px) 100vw, 1080px",
+                           "thumbnail_srcset":  "https://kshithija.in/wp-content/uploads/2026/02/WhatsApp-Image-2026-02-09-at-3.48.34-PM-300x300.jpeg 300w, https://kshithija.in/wp-content/uploads/2026/02/WhatsApp-Image-2026-02-09-at-3.48.34-PM-150x150.jpeg 150w, https://kshithija.in/wp-content/uploads/2026/02/WhatsApp-Image-2026-02-09-at-3.48.34-PM-100x100.jpeg 100w",
+                           "thumbnail_sizes":  "(max-width: 300px) 100vw, 300px",
+                           "name":  "WhatsApp Image 2026-02-09 at 3.48.34 PM",
+                           "alt":  ""
+                       },
+                       {
+                           "id":  1982,
+                           "src":  "https://kshithija.in/wp-content/uploads/2026/02/image-20.webp",
+                           "thumbnail":  "https://kshithija.in/wp-content/uploads/2026/02/image-20-300x300.webp",
+                           "srcset":  "https://kshithija.in/wp-content/uploads/2026/02/image-20.webp 912w, https://kshithija.in/wp-content/uploads/2026/02/image-20-241x300.webp 241w, https://kshithija.in/wp-content/uploads/2026/02/image-20-822x1024.webp 822w, https://kshithija.in/wp-content/uploads/2026/02/image-20-768x957.webp 768w, https://kshithija.in/wp-content/uploads/2026/02/image-20-600x747.webp 600w",
+                           "sizes":  "(max-width: 912px) 100vw, 912px",
+                           "thumbnail_srcset":  "https://kshithija.in/wp-content/uploads/2026/02/image-20-300x300.webp 300w, https://kshithija.in/wp-content/uploads/2026/02/image-20-150x150.webp 150w, https://kshithija.in/wp-content/uploads/2026/02/image-20-100x100.webp 100w",
+                           "thumbnail_sizes":  "(max-width: 300px) 100vw, 300px",
+                           "name":  "image (20)",
+                           "alt":  ""
+                       }
+                   ],
+        "categories":  [
+                           {
+                               "id":  45,
+                               "name":  "chaithanya 2000+",
+                               "slug":  "chaithanya-2000",
+                               "link":  "https://kshithija.in/product-category/chaithanya-2000/"
+                           },
+                           {
+                               "id":  54,
+                               "name":  "All",
+                               "slug":  "all",
+                               "link":  "https://kshithija.in/product-category/all/"
+                           },
+                           {
+                               "id":  56,
+                               "name":  "Wellness Products",
+                               "slug":  "wellness",
+                               "link":  "https://kshithija.in/product-category/all/wellness/"
+                           }
+                       ],
+        "tags":  [
+
+                 ],
+        "brands":  [
+
+                   ],
+        "attributes":  [
+                           {
+                               "id":  1,
+                               "name":  "flavour",
+                               "taxonomy":  "pa_flavour",
+                               "has_variations":  true,
+                               "terms":  [
+                                             {
+                                                 "id":  46,
+                                                 "name":  "With Sugar",
+                                                 "slug":  "with-sugar"
+                                             },
+                                             {
+                                                 "id":  48,
+                                                 "name":  "without sugar",
+                                                 "slug":  "without-sugar"
+                                             }
+                                         ]
+                           }
+                       ],
+        "variations":  [
+
+                       ],
+        "grouped_products":  [
+
+                             ],
+        "has_options":  false,
+        "is_purchasable":  true,
+        "is_in_stock":  true,
+        "is_on_backorder":  false,
+        "low_stock_remaining":  null,
+        "stock_availability":  {
+                                   "text":  "",
+                                   "class":  "in-stock"
+                               },
+        "sold_individually":  false,
+        "weight":  "",
+        "dimensions":  {
+                           "length":  "",
+                           "width":  "",
+                           "height":  ""
+                       },
+        "formatted_weight":  "N/A",
+        "formatted_dimensions":  "N/A",
+        "add_to_cart":  {
+                            "text":  "Add to cart",
+                            "description":  "Add to cart: \u0026ldquo;Natural Wellness Products for a Healthier Lifestyle\u0026rdquo;",
+                            "url":  "/wp-json/wc/store/v1/products?per_page=100\u0026#038;add-to-cart=1963",
+                            "single_text":  "Add to cart",
+                            "minimum":  1,
+                            "maximum":  9999,
+                            "multiple_of":  1
+                        },
+        "is_password_protected":  false,
+        "extensions":  {
+
+                       },
+        "_links":  {
+                       "self":  [
+                                    {
+                                        "href":  "https://kshithija.in/wp-json/wc/store/v1/products/1963",
+                                        "targetHints":  {
+                                                            "allow":  [
+                                                                          "GET"
+                                                                      ]
+                                                        }
+                                    }
+                                ],
+                       "collection":  [
+                                          {
+                                              "href":  "https://kshithija.in/wp-json/wc/store/v1/products"
+                                          }
+                                      ],
+                       "related":  [
+                                       {
+                                           "embeddable":  true,
+                                           "href":  "https://kshithija.in/wp-json/wc/store/v1/products?related=1963\u0026per_page=10"
+                                       }
+                                   ]
+                   }
+    },
+    {
+        "id":  1690,
+        "name":  "Kshithija Pure Honey Natural \u0026#038; Raw",
+        "slug":  "kshithija-pure-honey",
+        "parent":  0,
+        "type":  "simple",
+        "variation":  "",
+        "permalink":  "https://kshithija.in/product/kshithija-pure-honey/",
+        "sku":  "",
+        "short_description":  "",
+        "description":  "\u003cp\u003e\u003cstrong\u003eWhy Choose Kshithija Pure Honey?\u003c/strong\u003e\u003c/p\u003e\n\u003cp\u003eIs your family getting truly pure honey? In a market flooded with processed options and sugar blends, finding natural honey can be a challenge. Your body deserves nutrition straight from nature untouched, unadulterated, and full of goodness. Kshithija Pure Honey brings you exactly that: honey as nature intended, buy pure honey online packed with nutrients and enchanting sweetness.\u003ca href=\"https://en.wikipedia.org/wiki/Honey\"\u003e   \u003c/a\u003e\u003c/p\u003e\n\u003cp\u003e\u003cstrong\u003eUnmatched Purity and Authenticity\u003c/strong\u003e\u003c/p\u003e\n\u003cp\u003eKshithija Pure Honey is sourced carefully from natural bee farms, ensuring that it maintains its natural richness and raw flavor. What sets us apart is the commitment to purity. Our honey is free from added sugars, artificial flavors, and harmful preservatives. Every jar is hygienically packed to preserve its quality while delivering the wholesome goodness your family deserves.\u003c/p\u003e\n\u003cp\u003e\u003cstrong\u003eBenefits of Kshithija Pure Honey\u003c/strong\u003e\u003c/p\u003e\n\u003cp\u003eChoose Kshithija Pure Honey for exceptional health benefits and culinary versatility. Rich in antioxidants, enzymes, and natural sweetness, our honey can be your everyday companion for boosting immunity, improving digestion, and elevating your meals. Whether you drizzle it over pancakes, stir it into tea, or enjoy a spoonful straight, Kshithija Pure Honey makes life sweeter naturally.\u003ca href=\"https://kshithija.in/product/kshithija-pure-honey/\"\u003e   \u003c/a\u003e\u003c/p\u003e",
+        "on_sale":  true,
+        "prices":  {
+                       "price":  "25800",
+                       "regular_price":  "26000",
+                       "sale_price":  "25800",
+                       "price_range":  null,
+                       "currency_code":  "INR",
+                       "currency_symbol":  "₹",
+                       "currency_minor_unit":  2,
+                       "currency_decimal_separator":  ".",
+                       "currency_thousand_separator":  ",",
+                       "currency_prefix":  "₹",
+                       "currency_suffix":  ""
+                   },
+        "price_html":  "\u003cdel aria-hidden=\"true\"\u003e\u003cspan class=\"woocommerce-Price-amount amount\"\u003e\u003cspan class=\"woocommerce-Price-currencySymbol\"\u003e\u0026#8377;\u003c/span\u003e260.00\u003c/span\u003e\u003c/del\u003e \u003cspan class=\"screen-reader-text\"\u003eOriginal price was: \u0026#8377;260.00.\u003c/span\u003e\u003cins aria-hidden=\"true\"\u003e\u003cspan class=\"woocommerce-Price-amount amount\"\u003e\u003cspan class=\"woocommerce-Price-currencySymbol\"\u003e\u0026#8377;\u003c/span\u003e258.00\u003c/span\u003e\u003c/ins\u003e\u003cspan class=\"screen-reader-text\"\u003eCurrent price is: \u0026#8377;258.00.\u003c/span\u003e",
+        "average_rating":  "0",
+        "review_count":  0,
+        "images":  [
+                       {
+                           "id":  1956,
+                           "src":  "https://kshithija.in/wp-content/uploads/2026/01/kshithija-posters-6.webp",
+                           "thumbnail":  "https://kshithija.in/wp-content/uploads/2026/01/kshithija-posters-6-300x300.webp",
+                           "srcset":  "https://kshithija.in/wp-content/uploads/2026/01/kshithija-posters-6.webp 1080w, https://kshithija.in/wp-content/uploads/2026/01/kshithija-posters-6-240x300.webp 240w, https://kshithija.in/wp-content/uploads/2026/01/kshithija-posters-6-819x1024.webp 819w, https://kshithija.in/wp-content/uploads/2026/01/kshithija-posters-6-768x960.webp 768w, https://kshithija.in/wp-content/uploads/2026/01/kshithija-posters-6-600x750.webp 600w",
+                           "sizes":  "(max-width: 1080px) 100vw, 1080px",
+                           "thumbnail_srcset":  "https://kshithija.in/wp-content/uploads/2026/01/kshithija-posters-6-300x300.webp 300w, https://kshithija.in/wp-content/uploads/2026/01/kshithija-posters-6-150x150.webp 150w, https://kshithija.in/wp-content/uploads/2026/01/kshithija-posters-6-100x100.webp 100w",
+                           "thumbnail_sizes":  "(max-width: 300px) 100vw, 300px",
+                           "name":  "kshithija posters (6)",
+                           "alt":  "buy pure honey online comb with pure natural honey dripping"
+                       },
+                       {
+                           "id":  1956,
+                           "src":  "https://kshithija.in/wp-content/uploads/2026/01/kshithija-posters-6.webp",
+                           "thumbnail":  "https://kshithija.in/wp-content/uploads/2026/01/kshithija-posters-6-300x300.webp",
+                           "srcset":  "https://kshithija.in/wp-content/uploads/2026/01/kshithija-posters-6.webp 1080w, https://kshithija.in/wp-content/uploads/2026/01/kshithija-posters-6-240x300.webp 240w, https://kshithija.in/wp-content/uploads/2026/01/kshithija-posters-6-819x1024.webp 819w, https://kshithija.in/wp-content/uploads/2026/01/kshithija-posters-6-768x960.webp 768w, https://kshithija.in/wp-content/uploads/2026/01/kshithija-posters-6-600x750.webp 600w",
+                           "sizes":  "(max-width: 1080px) 100vw, 1080px",
+                           "thumbnail_srcset":  "https://kshithija.in/wp-content/uploads/2026/01/kshithija-posters-6-300x300.webp 300w, https://kshithija.in/wp-content/uploads/2026/01/kshithija-posters-6-150x150.webp 150w, https://kshithija.in/wp-content/uploads/2026/01/kshithija-posters-6-100x100.webp 100w",
+                           "thumbnail_sizes":  "(max-width: 300px) 100vw, 300px",
+                           "name":  "kshithija posters (6)",
+                           "alt":  "buy pure honey online comb with pure natural honey dripping"
+                       },
+                       {
+                           "id":  1681,
+                           "src":  "https://kshithija.in/wp-content/uploads/2026/01/kshithija-pure-honey.png",
+                           "thumbnail":  "https://kshithija.in/wp-content/uploads/2026/01/kshithija-pure-honey-300x300.png",
+                           "srcset":  "https://kshithija.in/wp-content/uploads/2026/01/kshithija-pure-honey.png 1080w, https://kshithija.in/wp-content/uploads/2026/01/kshithija-pure-honey-240x300.png 240w, https://kshithija.in/wp-content/uploads/2026/01/kshithija-pure-honey-819x1024.png 819w, https://kshithija.in/wp-content/uploads/2026/01/kshithija-pure-honey-768x960.png 768w, https://kshithija.in/wp-content/uploads/2026/01/kshithija-pure-honey-600x750.png 600w",
+                           "sizes":  "(max-width: 1080px) 100vw, 1080px",
+                           "thumbnail_srcset":  "https://kshithija.in/wp-content/uploads/2026/01/kshithija-pure-honey-300x300.png 300w, https://kshithija.in/wp-content/uploads/2026/01/kshithija-pure-honey-150x150.png 150w, https://kshithija.in/wp-content/uploads/2026/01/kshithija-pure-honey-100x100.png 100w",
+                           "thumbnail_sizes":  "(max-width: 300px) 100vw, 300px",
+                           "name":  "kshithija pure honey",
+                           "alt":  ""
+                       },
+                       {
+                           "id":  1957,
+                           "src":  "https://kshithija.in/wp-content/uploads/2026/01/kshithija-posters-5-e1782821574185.webp",
+                           "thumbnail":  "https://kshithija.in/wp-content/uploads/2026/01/kshithija-posters-5-e1782821574185-300x300.webp",
+                           "srcset":  "https://kshithija.in/wp-content/uploads/2026/01/kshithija-posters-5-e1782821574185.webp 600w, https://kshithija.in/wp-content/uploads/2026/01/kshithija-posters-5-e1782821574185-300x207.webp 300w",
+                           "sizes":  "(max-width: 600px) 100vw, 600px",
+                           "thumbnail_srcset":  "https://kshithija.in/wp-content/uploads/2026/01/kshithija-posters-5-e1782821574185-300x300.webp 300w, https://kshithija.in/wp-content/uploads/2026/01/kshithija-posters-5-e1782821574185-150x150.webp 150w, https://kshithija.in/wp-content/uploads/2026/01/kshithija-posters-5-e1782821574185-100x100.webp 100w",
+                           "thumbnail_sizes":  "(max-width: 300px) 100vw, 300px",
+                           "name":  "kshithija posters (5)",
+                           "alt":  "Kshithija pure honey"
+                       }
+                   ],
+        "categories":  [
+                           {
+                               "id":  54,
+                               "name":  "All",
+                               "slug":  "all",
+                               "link":  "https://kshithija.in/product-category/all/"
+                           },
+                           {
+                               "id":  41,
+                               "name":  "honey",
+                               "slug":  "honey",
+                               "link":  "https://kshithija.in/product-category/honey/"
+                           },
+                           {
+                               "id":  56,
+                               "name":  "Wellness Products",
+                               "slug":  "wellness",
+                               "link":  "https://kshithija.in/product-category/all/wellness/"
+                           }
+                       ],
+        "tags":  [
+
+                 ],
+        "brands":  [
+
+                   ],
+        "attributes":  [
+
+                       ],
+        "variations":  [
+
+                       ],
+        "grouped_products":  [
+
+                             ],
+        "has_options":  false,
+        "is_purchasable":  true,
+        "is_in_stock":  false,
+        "is_on_backorder":  false,
+        "low_stock_remaining":  null,
+        "stock_availability":  {
+                                   "text":  "Out of stock",
+                                   "class":  "out-of-stock"
+                               },
+        "sold_individually":  false,
+        "weight":  "",
+        "dimensions":  {
+                           "length":  "",
+                           "width":  "",
+                           "height":  ""
+                       },
+        "formatted_weight":  "N/A",
+        "formatted_dimensions":  "N/A",
+        "add_to_cart":  {
+                            "text":  "Read more",
+                            "description":  "Read more about \u0026ldquo;Kshithija Pure Honey Natural \u0026#038; Raw\u0026rdquo;",
+                            "url":  "https://kshithija.in/product/kshithija-pure-honey/",
+                            "single_text":  "Add to cart",
+                            "minimum":  1,
+                            "maximum":  9999,
+                            "multiple_of":  1
+                        },
+        "is_password_protected":  false,
+        "extensions":  {
+
+                       },
+        "_links":  {
+                       "self":  [
+                                    {
+                                        "href":  "https://kshithija.in/wp-json/wc/store/v1/products/1690",
+                                        "targetHints":  {
+                                                            "allow":  [
+                                                                          "GET"
+                                                                      ]
+                                                        }
+                                    }
+                                ],
+                       "collection":  [
+                                          {
+                                              "href":  "https://kshithija.in/wp-json/wc/store/v1/products"
+                                          }
+                                      ],
+                       "related":  [
+                                       {
+                                           "embeddable":  true,
+                                           "href":  "https://kshithija.in/wp-json/wc/store/v1/products?related=1690\u0026per_page=10"
+                                       }
+                                   ]
+                   }
+    },
+    {
+        "id":  1137,
+        "name":  "100% Natural Healing Skin Cream Vasel",
+        "slug":  "vasel",
+        "parent":  0,
+        "type":  "simple",
+        "variation":  "",
+        "permalink":  "https://kshithija.in/product/vasel/",
+        "sku":  "",
+        "short_description":  "",
+        "description":  "\u003cp\u003eAre you struggling with dry lips, cracked heels, skin rashes, itching or weather-damaged skin?\u003c/p\u003e\n\u003cp\u003eTry BioT’s VaseL- a 100% natural, petroleum-free skin protectant made from three powerful earth ingredients: Coconut Oil, Beeswax, and Aloe Vera, blended in the ideal ratio to nourish, protect, and repair even the most sensitive skin. BioT’s VaseL is fully natural healing cream, deeply healing, and lab-tested at Bio.T Laboratoires, Bengaluru.\u003c/p\u003e\n\u003cdiv class=\"elementor-element elementor-element-a21dedc elementor-widget-mobile__width-initial elementor-widget elementor-widget-heading\" data-id=\"a21dedc\" data-element_type=\"widget\" data-widget_type=\"heading.default\"\u003e\n\u003cp class=\"elementor-heading-title elementor-size-default\"\u003e\u003cstrong\u003eWhat Actually Causes Dry, Damaged, Irritated Skin?\u003c/strong\u003e\u003c/p\u003e\n\u003c/div\u003e\n\u003cdiv class=\"elementor-element elementor-element-b0b5a75 elementor-widget__width-initial elementor-widget-mobile__width-initial elementor-widget elementor-widget-text-editor\" data-id=\"b0b5a75\" data-element_type=\"widget\" data-widget_type=\"text-editor.default\"\u003e\n\u003cp\u003eMost skin problems like dryness, cracked heels, chapped lips, rashes, or itching happen when your skin barrier breaks down. Weather extremes, pollution, hot/cold air, cosmetics, and fungal/bacterial exposure all weaken the natural oil–moisture balance of the skin.\u003ca href=\"https://en.wikipedia.org/wiki/Natural_skin_care\"\u003e   \u003c/a\u003e\u003c/p\u003e\n\u003cp\u003eWhen the barrier is damaged, your skin loses moisture quickly and becomes vulnerable to:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eCracks, flakes, and peeling\u003c/li\u003e\n\u003cli\u003eItching and discomfort\u003c/li\u003e\n\u003cli\u003eFungal outbreaks (like ringworm)\u003c/li\u003e\n\u003cli\u003eSlow wound healing\u003c/li\u003e\n\u003cli\u003eSensitivity to pollution and temperature changes\u003c/li\u003e\n\u003cli\u003eIncreased irritation and redness That is exactly what our three natural ingredients are designed to do.\u003ca href=\"https://kshithija.in/botanical-extracts-used-in-skincare-products/\"\u003e   \u003c/a\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/div\u003e",
+        "on_sale":  true,
+        "prices":  {
+                       "price":  "7300",
+                       "regular_price":  "7700",
+                       "sale_price":  "7300",
+                       "price_range":  null,
+                       "currency_code":  "INR",
+                       "currency_symbol":  "₹",
+                       "currency_minor_unit":  2,
+                       "currency_decimal_separator":  ".",
+                       "currency_thousand_separator":  ",",
+                       "currency_prefix":  "₹",
+                       "currency_suffix":  ""
+                   },
+        "price_html":  "\u003cdel aria-hidden=\"true\"\u003e\u003cspan class=\"woocommerce-Price-amount amount\"\u003e\u003cspan class=\"woocommerce-Price-currencySymbol\"\u003e\u0026#8377;\u003c/span\u003e77.00\u003c/span\u003e\u003c/del\u003e \u003cspan class=\"screen-reader-text\"\u003eOriginal price was: \u0026#8377;77.00.\u003c/span\u003e\u003cins aria-hidden=\"true\"\u003e\u003cspan class=\"woocommerce-Price-amount amount\"\u003e\u003cspan class=\"woocommerce-Price-currencySymbol\"\u003e\u0026#8377;\u003c/span\u003e73.00\u003c/span\u003e\u003c/ins\u003e\u003cspan class=\"screen-reader-text\"\u003eCurrent price is: \u0026#8377;73.00.\u003c/span\u003e",
+        "average_rating":  "0",
+        "review_count":  0,
+        "images":  [
+                       {
+                           "id":  1939,
+                           "src":  "https://kshithija.in/wp-content/uploads/2025/12/image-12.webp",
+                           "thumbnail":  "https://kshithija.in/wp-content/uploads/2025/12/image-12-300x300.webp",
+                           "srcset":  "https://kshithija.in/wp-content/uploads/2025/12/image-12.webp 992w, https://kshithija.in/wp-content/uploads/2025/12/image-12-286x300.webp 286w, https://kshithija.in/wp-content/uploads/2025/12/image-12-977x1024.webp 977w, https://kshithija.in/wp-content/uploads/2025/12/image-12-768x805.webp 768w, https://kshithija.in/wp-content/uploads/2025/12/image-12-600x629.webp 600w",
+                           "sizes":  "(max-width: 992px) 100vw, 992px",
+                           "thumbnail_srcset":  "https://kshithija.in/wp-content/uploads/2025/12/image-12-300x300.webp 300w, https://kshithija.in/wp-content/uploads/2025/12/image-12-150x150.webp 150w, https://kshithija.in/wp-content/uploads/2025/12/image-12-100x100.webp 100w",
+                           "thumbnail_sizes":  "(max-width: 300px) 100vw, 300px",
+                           "name":  "image (12)",
+                           "alt":  "natural healing cream for cracked heels and dry skin"
+                       },
+                       {
+                           "id":  1938,
+                           "src":  "https://kshithija.in/wp-content/uploads/2025/12/image-13.webp",
+                           "thumbnail":  "https://kshithija.in/wp-content/uploads/2025/12/image-13-300x300.webp",
+                           "srcset":  "https://kshithija.in/wp-content/uploads/2025/12/image-13.webp 992w, https://kshithija.in/wp-content/uploads/2025/12/image-13-286x300.webp 286w, https://kshithija.in/wp-content/uploads/2025/12/image-13-977x1024.webp 977w, https://kshithija.in/wp-content/uploads/2025/12/image-13-768x805.webp 768w, https://kshithija.in/wp-content/uploads/2025/12/image-13-600x629.webp 600w",
+                           "sizes":  "(max-width: 992px) 100vw, 992px",
+                           "thumbnail_srcset":  "https://kshithija.in/wp-content/uploads/2025/12/image-13-300x300.webp 300w, https://kshithija.in/wp-content/uploads/2025/12/image-13-150x150.webp 150w, https://kshithija.in/wp-content/uploads/2025/12/image-13-100x100.webp 100w",
+                           "thumbnail_sizes":  "(max-width: 300px) 100vw, 300px",
+                           "name":  "image (13)",
+                           "alt":  ""
+                       },
+                       {
+                           "id":  1937,
+                           "src":  "https://kshithija.in/wp-content/uploads/2025/12/image-14.webp",
+                           "thumbnail":  "https://kshithija.in/wp-content/uploads/2025/12/image-14-300x300.webp",
+                           "srcset":  "https://kshithija.in/wp-content/uploads/2025/12/image-14.webp 1168w, https://kshithija.in/wp-content/uploads/2025/12/image-14-300x226.webp 300w, https://kshithija.in/wp-content/uploads/2025/12/image-14-1024x772.webp 1024w, https://kshithija.in/wp-content/uploads/2025/12/image-14-768x579.webp 768w, https://kshithija.in/wp-content/uploads/2025/12/image-14-600x452.webp 600w",
+                           "sizes":  "(max-width: 1168px) 100vw, 1168px",
+                           "thumbnail_srcset":  "https://kshithija.in/wp-content/uploads/2025/12/image-14-300x300.webp 300w, https://kshithija.in/wp-content/uploads/2025/12/image-14-150x150.webp 150w, https://kshithija.in/wp-content/uploads/2025/12/image-14-100x100.webp 100w",
+                           "thumbnail_sizes":  "(max-width: 300px) 100vw, 300px",
+                           "name":  "image (14)",
+                           "alt":  "Bio\u0027Ts Vasel"
+                       },
+                       {
+                           "id":  1927,
+                           "src":  "https://kshithija.in/wp-content/uploads/2025/12/75e2d8c1-2420-4931-97f5-cbbb6b200b95.jpg",
+                           "thumbnail":  "https://kshithija.in/wp-content/uploads/2025/12/75e2d8c1-2420-4931-97f5-cbbb6b200b95-300x300.jpg",
+                           "srcset":  "https://kshithija.in/wp-content/uploads/2025/12/75e2d8c1-2420-4931-97f5-cbbb6b200b95.jpg 880w, https://kshithija.in/wp-content/uploads/2025/12/75e2d8c1-2420-4931-97f5-cbbb6b200b95-226x300.jpg 226w, https://kshithija.in/wp-content/uploads/2025/12/75e2d8c1-2420-4931-97f5-cbbb6b200b95-772x1024.jpg 772w, https://kshithija.in/wp-content/uploads/2025/12/75e2d8c1-2420-4931-97f5-cbbb6b200b95-768x1019.jpg 768w, https://kshithija.in/wp-content/uploads/2025/12/75e2d8c1-2420-4931-97f5-cbbb6b200b95-600x796.jpg 600w",
+                           "sizes":  "(max-width: 880px) 100vw, 880px",
+                           "thumbnail_srcset":  "https://kshithija.in/wp-content/uploads/2025/12/75e2d8c1-2420-4931-97f5-cbbb6b200b95-300x300.jpg 300w, https://kshithija.in/wp-content/uploads/2025/12/75e2d8c1-2420-4931-97f5-cbbb6b200b95-150x150.jpg 150w, https://kshithija.in/wp-content/uploads/2025/12/75e2d8c1-2420-4931-97f5-cbbb6b200b95-100x100.jpg 100w",
+                           "thumbnail_sizes":  "(max-width: 300px) 100vw, 300px",
+                           "name":  "75e2d8c1-2420-4931-97f5-cbbb6b200b95",
+                           "alt":  ""
+                       }
+                   ],
+        "categories":  [
+                           {
+                               "id":  54,
+                               "name":  "All",
+                               "slug":  "all",
+                               "link":  "https://kshithija.in/product-category/all/"
+                           },
+                           {
+                               "id":  55,
+                               "name":  "Beauty Products",
+                               "slug":  "beauty",
+                               "link":  "https://kshithija.in/product-category/all/beauty/"
+                           },
+                           {
+                               "id":  43,
+                               "name":  "vasel",
+                               "slug":  "vasel",
+                               "link":  "https://kshithija.in/product-category/vasel/"
+                           }
+                       ],
+        "tags":  [
+
+                 ],
+        "brands":  [
+
+                   ],
+        "attributes":  [
+
+                       ],
+        "variations":  [
+
+                       ],
+        "grouped_products":  [
+
+                             ],
+        "has_options":  false,
+        "is_purchasable":  true,
+        "is_in_stock":  true,
+        "is_on_backorder":  false,
+        "low_stock_remaining":  null,
+        "stock_availability":  {
+                                   "text":  "",
+                                   "class":  "in-stock"
+                               },
+        "sold_individually":  false,
+        "weight":  "",
+        "dimensions":  {
+                           "length":  "",
+                           "width":  "",
+                           "height":  ""
+                       },
+        "formatted_weight":  "N/A",
+        "formatted_dimensions":  "N/A",
+        "add_to_cart":  {
+                            "text":  "Add to cart",
+                            "description":  "Add to cart: \u0026ldquo;100% Natural Healing Skin Cream Vasel\u0026rdquo;",
+                            "url":  "/wp-json/wc/store/v1/products?per_page=100\u0026#038;add-to-cart=1137",
+                            "single_text":  "Add to cart",
+                            "minimum":  1,
+                            "maximum":  9999,
+                            "multiple_of":  1
+                        },
+        "is_password_protected":  false,
+        "extensions":  {
+
+                       },
+        "_links":  {
+                       "self":  [
+                                    {
+                                        "href":  "https://kshithija.in/wp-json/wc/store/v1/products/1137",
+                                        "targetHints":  {
+                                                            "allow":  [
+                                                                          "GET"
+                                                                      ]
+                                                        }
+                                    }
+                                ],
+                       "collection":  [
+                                          {
+                                              "href":  "https://kshithija.in/wp-json/wc/store/v1/products"
+                                          }
+                                      ],
+                       "related":  [
+                                       {
+                                           "embeddable":  true,
+                                           "href":  "https://kshithija.in/wp-json/wc/store/v1/products?related=1137\u0026per_page=10"
+                                       }
+                                   ]
+                   }
+    },
+    {
+        "id":  1136,
+        "name":  "Vishaka All Day Smart Aloe Vera Multipurpose Skin Cream",
+        "slug":  "vishaka-aloe-vera-multipurpose-skin-cream-80g",
+        "parent":  0,
+        "type":  "simple",
+        "variation":  "",
+        "permalink":  "https://kshithija.in/product/vishaka-aloe-vera-multipurpose-skin-cream-80g/",
+        "sku":  "",
+        "short_description":  "",
+        "description":  "\u003ch2\u003eAloe vera multipurpose skin cream for humid climate\u003c/h2\u003e\n\u003cp\u003e\u003cspan style=\"font-weight: 400\"\u003eAll Day Smart Aloe Vera Based Multipurpose Skin Cream is a 100% natural cream which works as a multi-purpose skin treatment to nourish, heal, and protect your skin all day and night. \u003c/span\u003e\u003c/p\u003e\n\u003cp\u003eIts lightweight, non-greasy, and non-sticky formula absorbs quickly, leaving your skin feeling soft, fresh, and comfortable throughout the day. Being non-comedogenic, it is suitable for all skin types, including oily, dry, combination, sensitive, and \u003cspan style=\"color: #008000\"\u003e\u003ca style=\"color: #008000\" href=\"https://kshithija.in/blog/what-causes-acne-breakouts/\"\u003eacne-prone skin.\u003c/a\u003e\u003c/span\u003e\u003c/p\u003e\n\u003cp\u003e\u003cspan style=\"font-weight: 400\"\u003eInstead of using many different products for your daily skincare needs, All Day Smart makes it easy to keep your routine simple. One cream that works both day and night, and can be used in many ways throughout your day.\u003cbr /\u003e\n\u003c/span\u003e\u003c/p\u003e\n\u003ch2\u003e\u003cb\u003eSimple Skincare. Everyday Confidence.\u003c/b\u003e\u003c/h2\u003e\n\u003cp\u003e\u003cspan style=\"font-weight: 400\"\u003eWhether you\u0026#8217;re beginning your morning skincare, refreshing your skin during the day, or finishing up your nighttime routine, All Day Smart is made to fit naturally into your everyday life. Enjoy simple, natural, and flexible skincare with All Day Smart.\u003c/span\u003e\u003cspan style=\"font-weight: 400\"\u003e \u003c/span\u003e\u003c/p\u003e",
+        "on_sale":  true,
+        "prices":  {
+                       "price":  "38000",
+                       "regular_price":  "39000",
+                       "sale_price":  "38000",
+                       "price_range":  null,
+                       "currency_code":  "INR",
+                       "currency_symbol":  "₹",
+                       "currency_minor_unit":  2,
+                       "currency_decimal_separator":  ".",
+                       "currency_thousand_separator":  ",",
+                       "currency_prefix":  "₹",
+                       "currency_suffix":  ""
+                   },
+        "price_html":  "\u003cdel aria-hidden=\"true\"\u003e\u003cspan class=\"woocommerce-Price-amount amount\"\u003e\u003cspan class=\"woocommerce-Price-currencySymbol\"\u003e\u0026#8377;\u003c/span\u003e390.00\u003c/span\u003e\u003c/del\u003e \u003cspan class=\"screen-reader-text\"\u003eOriginal price was: \u0026#8377;390.00.\u003c/span\u003e\u003cins aria-hidden=\"true\"\u003e\u003cspan class=\"woocommerce-Price-amount amount\"\u003e\u003cspan class=\"woocommerce-Price-currencySymbol\"\u003e\u0026#8377;\u003c/span\u003e380.00\u003c/span\u003e\u003c/ins\u003e\u003cspan class=\"screen-reader-text\"\u003eCurrent price is: \u0026#8377;380.00.\u003c/span\u003e",
+        "average_rating":  "0",
+        "review_count":  0,
+        "images":  [
+                       {
+                           "id":  1888,
+                           "src":  "https://kshithija.in/wp-content/uploads/2025/12/image-6.webp",
+                           "thumbnail":  "https://kshithija.in/wp-content/uploads/2025/12/image-6-300x300.webp",
+                           "srcset":  "https://kshithija.in/wp-content/uploads/2025/12/image-6.webp 912w, https://kshithija.in/wp-content/uploads/2025/12/image-6-241x300.webp 241w, https://kshithija.in/wp-content/uploads/2025/12/image-6-822x1024.webp 822w, https://kshithija.in/wp-content/uploads/2025/12/image-6-768x957.webp 768w, https://kshithija.in/wp-content/uploads/2025/12/image-6-600x747.webp 600w",
+                           "sizes":  "(max-width: 912px) 100vw, 912px",
+                           "thumbnail_srcset":  "https://kshithija.in/wp-content/uploads/2025/12/image-6-300x300.webp 300w, https://kshithija.in/wp-content/uploads/2025/12/image-6-150x150.webp 150w, https://kshithija.in/wp-content/uploads/2025/12/image-6-100x100.webp 100w",
+                           "thumbnail_sizes":  "(max-width: 300px) 100vw, 300px",
+                           "name":  "aloe vera multipurpose skin cream",
+                           "alt":  "aloe vera multipurpose skin cream for humid climate"
+                       },
+                       {
+                           "id":  1889,
+                           "src":  "https://kshithija.in/wp-content/uploads/2025/12/image-11.webp",
+                           "thumbnail":  "https://kshithija.in/wp-content/uploads/2025/12/image-11-300x300.webp",
+                           "srcset":  "https://kshithija.in/wp-content/uploads/2025/12/image-11.webp 880w, https://kshithija.in/wp-content/uploads/2025/12/image-11-226x300.webp 226w, https://kshithija.in/wp-content/uploads/2025/12/image-11-772x1024.webp 772w, https://kshithija.in/wp-content/uploads/2025/12/image-11-768x1019.webp 768w, https://kshithija.in/wp-content/uploads/2025/12/image-11-600x796.webp 600w",
+                           "sizes":  "(max-width: 880px) 100vw, 880px",
+                           "thumbnail_srcset":  "https://kshithija.in/wp-content/uploads/2025/12/image-11-300x300.webp 300w, https://kshithija.in/wp-content/uploads/2025/12/image-11-150x150.webp 150w, https://kshithija.in/wp-content/uploads/2025/12/image-11-100x100.webp 100w",
+                           "thumbnail_sizes":  "(max-width: 300px) 100vw, 300px",
+                           "name":  "",
+                           "alt":  "Multipurpose Creams"
+                       },
+                       {
+                           "id":  1890,
+                           "src":  "https://kshithija.in/wp-content/uploads/2025/12/image-10.webp",
+                           "thumbnail":  "https://kshithija.in/wp-content/uploads/2025/12/image-10-300x300.webp",
+                           "srcset":  "https://kshithija.in/wp-content/uploads/2025/12/image-10.webp 880w, https://kshithija.in/wp-content/uploads/2025/12/image-10-226x300.webp 226w, https://kshithija.in/wp-content/uploads/2025/12/image-10-772x1024.webp 772w, https://kshithija.in/wp-content/uploads/2025/12/image-10-768x1019.webp 768w, https://kshithija.in/wp-content/uploads/2025/12/image-10-600x796.webp 600w",
+                           "sizes":  "(max-width: 880px) 100vw, 880px",
+                           "thumbnail_srcset":  "https://kshithija.in/wp-content/uploads/2025/12/image-10-300x300.webp 300w, https://kshithija.in/wp-content/uploads/2025/12/image-10-150x150.webp 150w, https://kshithija.in/wp-content/uploads/2025/12/image-10-100x100.webp 100w",
+                           "thumbnail_sizes":  "(max-width: 300px) 100vw, 300px",
+                           "name":  "image (10)",
+                           "alt":  "all day smart multipurpose cream"
+                       },
+                       {
+                           "id":  1887,
+                           "src":  "https://kshithija.in/wp-content/uploads/2025/12/image-7.webp",
+                           "thumbnail":  "https://kshithija.in/wp-content/uploads/2025/12/image-7-300x300.webp",
+                           "srcset":  "https://kshithija.in/wp-content/uploads/2025/12/image-7.webp 912w, https://kshithija.in/wp-content/uploads/2025/12/image-7-241x300.webp 241w, https://kshithija.in/wp-content/uploads/2025/12/image-7-822x1024.webp 822w, https://kshithija.in/wp-content/uploads/2025/12/image-7-768x957.webp 768w, https://kshithija.in/wp-content/uploads/2025/12/image-7-600x747.webp 600w",
+                           "sizes":  "(max-width: 912px) 100vw, 912px",
+                           "thumbnail_srcset":  "https://kshithija.in/wp-content/uploads/2025/12/image-7-300x300.webp 300w, https://kshithija.in/wp-content/uploads/2025/12/image-7-150x150.webp 150w, https://kshithija.in/wp-content/uploads/2025/12/image-7-100x100.webp 100w",
+                           "thumbnail_sizes":  "(max-width: 300px) 100vw, 300px",
+                           "name":  "image (7)",
+                           "alt":  "100% natural Multipurpose Cream"
+                       }
+                   ],
+        "categories":  [
+                           {
+                               "id":  44,
+                               "name":  "all day smart",
+                               "slug":  "all-day-smart",
+                               "link":  "https://kshithija.in/product-category/all-day-smart/"
+                           },
+                           {
+                               "id":  54,
+                               "name":  "All",
+                               "slug":  "all",
+                               "link":  "https://kshithija.in/product-category/all/"
+                           },
+                           {
+                               "id":  55,
+                               "name":  "Beauty Products",
+                               "slug":  "beauty",
+                               "link":  "https://kshithija.in/product-category/all/beauty/"
+                           }
+                       ],
+        "tags":  [
+
+                 ],
+        "brands":  [
+
+                   ],
+        "attributes":  [
+
+                       ],
+        "variations":  [
+
+                       ],
+        "grouped_products":  [
+
+                             ],
+        "has_options":  false,
+        "is_purchasable":  true,
+        "is_in_stock":  true,
+        "is_on_backorder":  false,
+        "low_stock_remaining":  null,
+        "stock_availability":  {
+                                   "text":  "",
+                                   "class":  "in-stock"
+                               },
+        "sold_individually":  false,
+        "weight":  "",
+        "dimensions":  {
+                           "length":  "",
+                           "width":  "",
+                           "height":  ""
+                       },
+        "formatted_weight":  "N/A",
+        "formatted_dimensions":  "N/A",
+        "add_to_cart":  {
+                            "text":  "Add to cart",
+                            "description":  "Add to cart: \u0026ldquo;Vishaka All Day Smart Aloe Vera Multipurpose Skin Cream\u0026rdquo;",
+                            "url":  "/wp-json/wc/store/v1/products?per_page=100\u0026#038;add-to-cart=1136",
+                            "single_text":  "Add to cart",
+                            "minimum":  1,
+                            "maximum":  9999,
+                            "multiple_of":  1
+                        },
+        "is_password_protected":  false,
+        "extensions":  {
+
+                       },
+        "_links":  {
+                       "self":  [
+                                    {
+                                        "href":  "https://kshithija.in/wp-json/wc/store/v1/products/1136",
+                                        "targetHints":  {
+                                                            "allow":  [
+                                                                          "GET"
+                                                                      ]
+                                                        }
+                                    }
+                                ],
+                       "collection":  [
+                                          {
+                                              "href":  "https://kshithija.in/wp-json/wc/store/v1/products"
+                                          }
+                                      ],
+                       "related":  [
+                                       {
+                                           "embeddable":  true,
+                                           "href":  "https://kshithija.in/wp-json/wc/store/v1/products?related=1136\u0026per_page=10"
+                                       }
+                                   ]
+                   }
+    },
+    {
+        "id":  1078,
+        "name":  "Natural Hair Growth Cream for Hair Fall Control",
+        "slug":  "best-anti-dandruff-hair-cream",
+        "parent":  0,
+        "type":  "simple",
+        "variation":  "",
+        "permalink":  "https://kshithija.in/product/best-anti-dandruff-hair-cream/",
+        "sku":  "",
+        "short_description":  "",
+        "description":  "\u003cp\u003eAre you experiencing dandruff? Are you sensitive to hair care products?\u003cbr /\u003e\nTry BioT’s “Grow Hair” A 100% natural hair growth cream formulated with six earth ingredients blended at the right proportion. They work instantly to eliminate scalp inflammation, control fungal activity, and restore a clean, healthy, dandruff free scalp for almost whoever applies them.\u003ca href=\"https://kshithija.in/product/grow-hair-30-g/\"\u003e \u003c/a\u003e\u003c/p\u003e\n\u003cp\u003eBioT’s Grow Hair Cream is 100% natural, safe for sensitive scalps, and lab-tested at Bio.T. Laboratoires, Bengaluru.\u003ca href=\"https://en.wikipedia.org/wiki/Hair_loss\"\u003e  \u003c/a\u003e\u003c/p\u003e",
+        "on_sale":  false,
+        "prices":  {
+                       "price":  "69900",
+                       "regular_price":  "69900",
+                       "sale_price":  "69900",
+                       "price_range":  null,
+                       "currency_code":  "INR",
+                       "currency_symbol":  "₹",
+                       "currency_minor_unit":  2,
+                       "currency_decimal_separator":  ".",
+                       "currency_thousand_separator":  ",",
+                       "currency_prefix":  "₹",
+                       "currency_suffix":  ""
+                   },
+        "price_html":  "\u003cspan class=\"woocommerce-Price-amount amount\"\u003e\u003cspan class=\"woocommerce-Price-currencySymbol\"\u003e\u0026#8377;\u003c/span\u003e699.00\u003c/span\u003e",
+        "average_rating":  "0",
+        "review_count":  0,
+        "images":  [
+                       {
+                           "id":  1801,
+                           "src":  "https://kshithija.in/wp-content/uploads/2026/02/image-3.webp",
+                           "thumbnail":  "https://kshithija.in/wp-content/uploads/2026/02/image-3-300x300.webp",
+                           "srcset":  "https://kshithija.in/wp-content/uploads/2026/02/image-3.webp 1232w, https://kshithija.in/wp-content/uploads/2026/02/image-3-300x206.webp 300w, https://kshithija.in/wp-content/uploads/2026/02/image-3-1024x705.webp 1024w, https://kshithija.in/wp-content/uploads/2026/02/image-3-768x529.webp 768w, https://kshithija.in/wp-content/uploads/2026/02/image-3-600x413.webp 600w",
+                           "sizes":  "(max-width: 1232px) 100vw, 1232px",
+                           "thumbnail_srcset":  "https://kshithija.in/wp-content/uploads/2026/02/image-3-300x300.webp 300w, https://kshithija.in/wp-content/uploads/2026/02/image-3-150x150.webp 150w, https://kshithija.in/wp-content/uploads/2026/02/image-3-100x100.webp 100w",
+                           "thumbnail_sizes":  "(max-width: 300px) 100vw, 300px",
+                           "name":  "image (3)",
+                           "alt":  "Natural Hair Growth Cream for Hair Fall Control"
+                       },
+                       {
+                           "id":  466,
+                           "src":  "https://kshithija.in/wp-content/uploads/2025/11/hair-2-1.png",
+                           "thumbnail":  "https://kshithija.in/wp-content/uploads/2025/11/hair-2-1-300x300.png",
+                           "srcset":  "https://kshithija.in/wp-content/uploads/2025/11/hair-2-1.png 1478w, https://kshithija.in/wp-content/uploads/2025/11/hair-2-1-600x414.png 600w, https://kshithija.in/wp-content/uploads/2025/11/hair-2-1-300x207.png 300w, https://kshithija.in/wp-content/uploads/2025/11/hair-2-1-1024x707.png 1024w, https://kshithija.in/wp-content/uploads/2025/11/hair-2-1-768x530.png 768w",
+                           "sizes":  "(max-width: 1478px) 100vw, 1478px",
+                           "thumbnail_srcset":  "https://kshithija.in/wp-content/uploads/2025/11/hair-2-1-300x300.png 300w, https://kshithija.in/wp-content/uploads/2025/11/hair-2-1-100x100.png 100w, https://kshithija.in/wp-content/uploads/2025/11/hair-2-1-150x150.png 150w",
+                           "thumbnail_sizes":  "(max-width: 300px) 100vw, 300px",
+                           "name":  "hair 2",
+                           "alt":  ""
+                       },
+                       {
+                           "id":  1801,
+                           "src":  "https://kshithija.in/wp-content/uploads/2026/02/image-3.webp",
+                           "thumbnail":  "https://kshithija.in/wp-content/uploads/2026/02/image-3-300x300.webp",
+                           "srcset":  "https://kshithija.in/wp-content/uploads/2026/02/image-3.webp 1232w, https://kshithija.in/wp-content/uploads/2026/02/image-3-300x206.webp 300w, https://kshithija.in/wp-content/uploads/2026/02/image-3-1024x705.webp 1024w, https://kshithija.in/wp-content/uploads/2026/02/image-3-768x529.webp 768w, https://kshithija.in/wp-content/uploads/2026/02/image-3-600x413.webp 600w",
+                           "sizes":  "(max-width: 1232px) 100vw, 1232px",
+                           "thumbnail_srcset":  "https://kshithija.in/wp-content/uploads/2026/02/image-3-300x300.webp 300w, https://kshithija.in/wp-content/uploads/2026/02/image-3-150x150.webp 150w, https://kshithija.in/wp-content/uploads/2026/02/image-3-100x100.webp 100w",
+                           "thumbnail_sizes":  "(max-width: 300px) 100vw, 300px",
+                           "name":  "image (3)",
+                           "alt":  "Natural Hair Growth Cream for Hair Fall Control"
+                       },
+                       {
+                           "id":  1799,
+                           "src":  "https://kshithija.in/wp-content/uploads/2026/02/e4cc9ab9-7da0-4539-904f-c3a08e72a126.jpg",
+                           "thumbnail":  "https://kshithija.in/wp-content/uploads/2026/02/e4cc9ab9-7da0-4539-904f-c3a08e72a126-300x300.jpg",
+                           "srcset":  "https://kshithija.in/wp-content/uploads/2026/02/e4cc9ab9-7da0-4539-904f-c3a08e72a126.jpg 1232w, https://kshithija.in/wp-content/uploads/2026/02/e4cc9ab9-7da0-4539-904f-c3a08e72a126-300x206.jpg 300w, https://kshithija.in/wp-content/uploads/2026/02/e4cc9ab9-7da0-4539-904f-c3a08e72a126-1024x705.jpg 1024w, https://kshithija.in/wp-content/uploads/2026/02/e4cc9ab9-7da0-4539-904f-c3a08e72a126-768x529.jpg 768w, https://kshithija.in/wp-content/uploads/2026/02/e4cc9ab9-7da0-4539-904f-c3a08e72a126-600x413.jpg 600w",
+                           "sizes":  "(max-width: 1232px) 100vw, 1232px",
+                           "thumbnail_srcset":  "https://kshithija.in/wp-content/uploads/2026/02/e4cc9ab9-7da0-4539-904f-c3a08e72a126-300x300.jpg 300w, https://kshithija.in/wp-content/uploads/2026/02/e4cc9ab9-7da0-4539-904f-c3a08e72a126-150x150.jpg 150w, https://kshithija.in/wp-content/uploads/2026/02/e4cc9ab9-7da0-4539-904f-c3a08e72a126-100x100.jpg 100w",
+                           "thumbnail_sizes":  "(max-width: 300px) 100vw, 300px",
+                           "name":  "e4cc9ab9-7da0-4539-904f-c3a08e72a126",
+                           "alt":  ""
+                       },
+                       {
+                           "id":  1798,
+                           "src":  "https://kshithija.in/wp-content/uploads/2026/02/image-2.png",
+                           "thumbnail":  "https://kshithija.in/wp-content/uploads/2026/02/image-2-300x300.png",
+                           "srcset":  "https://kshithija.in/wp-content/uploads/2026/02/image-2.png 1232w, https://kshithija.in/wp-content/uploads/2026/02/image-2-300x206.png 300w, https://kshithija.in/wp-content/uploads/2026/02/image-2-1024x705.png 1024w, https://kshithija.in/wp-content/uploads/2026/02/image-2-768x529.png 768w, https://kshithija.in/wp-content/uploads/2026/02/image-2-600x413.png 600w",
+                           "sizes":  "(max-width: 1232px) 100vw, 1232px",
+                           "thumbnail_srcset":  "https://kshithija.in/wp-content/uploads/2026/02/image-2-300x300.png 300w, https://kshithija.in/wp-content/uploads/2026/02/image-2-150x150.png 150w, https://kshithija.in/wp-content/uploads/2026/02/image-2-100x100.png 100w",
+                           "thumbnail_sizes":  "(max-width: 300px) 100vw, 300px",
+                           "name":  "image (2)",
+                           "alt":  "natural anti dandruff hair cream ingredients Lemon Aloe"
+                       },
+                       {
+                           "id":  1800,
+                           "src":  "https://kshithija.in/wp-content/uploads/2026/02/image-5.webp",
+                           "thumbnail":  "https://kshithija.in/wp-content/uploads/2026/02/image-5-300x300.webp",
+                           "srcset":  "https://kshithija.in/wp-content/uploads/2026/02/image-5.webp 1232w, https://kshithija.in/wp-content/uploads/2026/02/image-5-300x206.webp 300w, https://kshithija.in/wp-content/uploads/2026/02/image-5-1024x705.webp 1024w, https://kshithija.in/wp-content/uploads/2026/02/image-5-768x529.webp 768w, https://kshithija.in/wp-content/uploads/2026/02/image-5-600x413.webp 600w",
+                           "sizes":  "(max-width: 1232px) 100vw, 1232px",
+                           "thumbnail_srcset":  "https://kshithija.in/wp-content/uploads/2026/02/image-5-300x300.webp 300w, https://kshithija.in/wp-content/uploads/2026/02/image-5-150x150.webp 150w, https://kshithija.in/wp-content/uploads/2026/02/image-5-100x100.webp 100w",
+                           "thumbnail_sizes":  "(max-width: 300px) 100vw, 300px",
+                           "name":  "image (5)",
+                           "alt":  "natural anti dandruff hair cream texture close up"
+                       },
+                       {
+                           "id":  4627,
+                           "src":  "https://kshithija.in/wp-content/uploads/2025/12/Untitled-design-19-scaled-e1782902388416.png",
+                           "thumbnail":  "https://kshithija.in/wp-content/uploads/2025/12/Untitled-design-19-scaled-e1782902388416-300x300.png",
+                           "srcset":  "https://kshithija.in/wp-content/uploads/2025/12/Untitled-design-19-scaled-e1782902388416.png 2022w, https://kshithija.in/wp-content/uploads/2025/12/Untitled-design-19-scaled-e1782902388416-237x300.png 237w, https://kshithija.in/wp-content/uploads/2025/12/Untitled-design-19-scaled-e1782902388416-809x1024.png 809w, https://kshithija.in/wp-content/uploads/2025/12/Untitled-design-19-scaled-e1782902388416-768x972.png 768w, https://kshithija.in/wp-content/uploads/2025/12/Untitled-design-19-scaled-e1782902388416-1213x1536.png 1213w, https://kshithija.in/wp-content/uploads/2025/12/Untitled-design-19-scaled-e1782902388416-1618x2048.png 1618w, https://kshithija.in/wp-content/uploads/2025/12/Untitled-design-19-scaled-e1782902388416-600x760.png 600w",
+                           "sizes":  "(max-width: 2022px) 100vw, 2022px",
+                           "thumbnail_srcset":  "https://kshithija.in/wp-content/uploads/2025/12/Untitled-design-19-scaled-e1782902388416-300x300.png 300w, https://kshithija.in/wp-content/uploads/2025/12/Untitled-design-19-scaled-e1782902388416-150x150.png 150w, https://kshithija.in/wp-content/uploads/2025/12/Untitled-design-19-scaled-e1782902388416-100x100.png 100w",
+                           "thumbnail_sizes":  "(max-width: 300px) 100vw, 300px",
+                           "name":  "Untitled design (19)",
+                           "alt":  ""
+                       }
+                   ],
+        "categories":  [
+                           {
+                               "id":  54,
+                               "name":  "All",
+                               "slug":  "all",
+                               "link":  "https://kshithija.in/product-category/all/"
+                           },
+                           {
+                               "id":  55,
+                               "name":  "Beauty Products",
+                               "slug":  "beauty",
+                               "link":  "https://kshithija.in/product-category/all/beauty/"
+                           },
+                           {
+                               "id":  42,
+                               "name":  "hair cream",
+                               "slug":  "hair-cream",
+                               "link":  "https://kshithija.in/product-category/hair-cream/"
+                           }
+                       ],
+        "tags":  [
+
+                 ],
+        "brands":  [
+
+                   ],
+        "attributes":  [
+
+                       ],
+        "variations":  [
+
+                       ],
+        "grouped_products":  [
+
+                             ],
+        "has_options":  false,
+        "is_purchasable":  true,
+        "is_in_stock":  true,
+        "is_on_backorder":  false,
+        "low_stock_remaining":  null,
+        "stock_availability":  {
+                                   "text":  "",
+                                   "class":  "in-stock"
+                               },
+        "sold_individually":  false,
+        "weight":  "",
+        "dimensions":  {
+                           "length":  "",
+                           "width":  "",
+                           "height":  ""
+                       },
+        "formatted_weight":  "N/A",
+        "formatted_dimensions":  "N/A",
+        "add_to_cart":  {
+                            "text":  "Add to cart",
+                            "description":  "Add to cart: \u0026ldquo;Natural Hair Growth Cream for Hair Fall Control\u0026rdquo;",
+                            "url":  "/wp-json/wc/store/v1/products?per_page=100\u0026#038;add-to-cart=1078",
+                            "single_text":  "Add to cart",
+                            "minimum":  1,
+                            "maximum":  9999,
+                            "multiple_of":  1
+                        },
+        "is_password_protected":  false,
+        "extensions":  {
+
+                       },
+        "_links":  {
+                       "self":  [
+                                    {
+                                        "href":  "https://kshithija.in/wp-json/wc/store/v1/products/1078",
+                                        "targetHints":  {
+                                                            "allow":  [
+                                                                          "GET"
+                                                                      ]
+                                                        }
+                                    }
+                                ],
+                       "collection":  [
+                                          {
+                                              "href":  "https://kshithija.in/wp-json/wc/store/v1/products"
+                                          }
+                                      ],
+                       "related":  [
+                                       {
+                                           "embeddable":  true,
+                                           "href":  "https://kshithija.in/wp-json/wc/store/v1/products?related=1078\u0026per_page=10"
+                                       }
+                                   ]
+                   }
+    }
+]

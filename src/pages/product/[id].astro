@@ -1,0 +1,798 @@
+---
+// src/pages/products/[id].astro
+import Layout from '../../layouts/Layout.astro';
+import { getProducts, type Product } from '../../lib/products';
+import InteractiveHoverButton from '../../components/ui/InteractiveHoverButton.astro';
+import { getProductSeo } from '../../data/seo';
+
+export async function getStaticPaths() {
+  const products = await getProducts();
+  const paths = [];
+
+  for (const product of products) {
+    // Primary WordPress WooCommerce slug path: e.g. /products/grow-hair-30-g
+    paths.push({
+      params: { id: product.id },
+      props: { product, allProducts: products },
+    });
+
+    // Also support any legacy aliases so existing links continue working seamlessly
+    if (product.aliasIds) {
+      for (const alias of product.aliasIds) {
+        paths.push({
+          params: { id: alias },
+          props: { product, allProducts: products },
+        });
+      }
+    }
+  }
+
+  return paths;
+}
+
+interface Props {
+  product: Product;
+  allProducts?: Product[];
+}
+
+const { product, allProducts = [] } = Astro.props;
+
+// Related products from WordPress catalog
+const productsPool = allProducts.length > 0 ? allProducts : await getProducts();
+const relatedProducts = productsPool
+  .filter((p) => p.id !== product.id && (p.catalogCategory === product.catalogCategory || p.featured))
+  .slice(0, 4);
+
+// WhatsApp pre-filled order text
+const waMsg = encodeURIComponent(
+  `Hello Kshithija Enterprises, I would like to order: ${product.name} (${product.price}). Please share order and shipping details.`
+);
+const orderUrl = `https://wa.me/919481973468?text=${waMsg}`;
+
+// Category breadcrumb info
+const categoryLabel = product.catalogCategory === 'beauty' ? 'Beauty Products' : 'Wellness Products';
+const categoryHref = product.catalogCategory === 'beauty' ? '/beauty' : '/wellness';
+
+// Chaithanya flavour variation pairing
+const isChaithanya = product.id.includes('chaithanya');
+const isWithoutSugar = product.id.includes('without-sugar');
+
+// Grow Hair size variation pairing (30g & 70g)
+const isGrowHair = product.id.includes('grow-hair') || product.id.includes('anti-dandruff') || product.name.toLowerCase().includes('grow hair');
+const currentGrowHairSize = (product.id.includes('30-g') || product.name.includes('30 g') || product.size === '30 g') ? '30g' : '70g';
+
+const prod30 = productsPool.find((p) => p.id === 'grow-hair-30-g' || p.aliasIds?.includes('grow-hair-30-g') || p.name.includes('30 g'));
+const prod70 = productsPool.find((p) => p.id === 'best-anti-dandruff-hair-cream' || p.aliasIds?.includes('best-anti-dandruff-hair-cream') || p.id.includes('anti-dandruff') || p.name.includes('70 g'));
+
+const variant30 = {
+  size: '30 g',
+  rawSize: '30g',
+  price: prod30 ? prod30.price : '₹369.00',
+  name: prod30 ? prod30.name : 'Grow Hair-100% Natural Anti-Dandruff Hair Cream (30 g)',
+  id: prod30 ? prod30.id : 'grow-hair-30-g',
+  image: prod30?.image || product.image,
+  url: '/product/grow-hair-30-g'
+};
+
+const variant70 = {
+  size: '70 g',
+  rawSize: '70g',
+  price: prod70 ? prod70.price : '₹699.00',
+  name: prod70 ? (prod70.name.includes('Grow Hair') ? prod70.name : 'Grow Hair-100% Natural Anti-Dandruff Hair Cream (70 g)') : 'Grow Hair-100% Natural Anti-Dandruff Hair Cream (70 g)',
+  id: prod70 ? prod70.id : 'best-anti-dandruff-hair-cream',
+  image: prod70?.image || product.image,
+  url: '/product/best-anti-dandruff-hair-cream'
+};
+
+// Gallery images array
+const galleryImages = (product.images && product.images.length > 0)
+  ? product.images
+  : [product.image];
+
+// Product states
+const isProductOnSale = Boolean(product.onSale || product.badge === 'Sale!');
+const isSoldOut = product.inStock === false || product.badge === 'Sold Out';
+const productSeo = getProductSeo(product);
+---
+
+<Layout {...productSeo}>
+  
+  <article class="w-full bg-[#fbf9f4] py-8 sm:py-12 px-4 sm:px-6 lg:px-8 border-b border-[#e8dfcf]">
+    <div class="max-w-7xl mx-auto">
+      
+      <!-- Breadcrumb Navigation -->
+      <nav aria-label="Breadcrumb" class="mb-6 sm:mb-8 text-xs text-[#5a6e61]">
+        <ol class="flex items-center gap-2 flex-wrap">
+          <li>
+            <a href="/" class="hover:text-[#0c3920] transition-colors">Home</a>
+          </li>
+          <li class="text-[#98a89e]">/</li>
+          <li>
+            <a href="/products" class="hover:text-[#0c3920] transition-colors">Products</a>
+          </li>
+          <li class="text-[#98a89e]">/</li>
+          <li>
+            <a href={categoryHref} class="hover:text-[#0c3920] transition-colors">{categoryLabel}</a>
+          </li>
+          <li class="text-[#98a89e]">/</li>
+          <li class="font-semibold text-[#082213] truncate max-w-xs sm:max-w-md" aria-current="page">
+            {product.name}
+          </li>
+        </ol>
+      </nav>
+
+      <!-- Main Product Showcase Grid (2 Columns) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">
+        
+        <!-- Left Column: Product Imagery & Interactive Gallery -->
+        <div class="lg:col-span-6 lg:sticky lg:top-24">
+          <!-- Main Product Hero Image Card -->
+          <div class="relative w-full aspect-square rounded-3xl overflow-hidden bg-white border border-[#e8dfcf] shadow-md group">
+            <img
+              id="main-product-image"
+              src={product.image}
+              alt={product.name}
+              class="w-full h-full object-cover object-center group-hover:scale-105 transition-all duration-500"
+              onerror={product.fallbackImage ? `if(this.src !== '${product.fallbackImage}') { this.src = '${product.fallbackImage}'; }` : undefined}
+            />
+
+            <!-- Circular Olive/Gold Sale! Badge (exact visual match) -->
+            {(product.onSale || product.badge === 'Sale!') && (
+              <div 
+                class="absolute top-4 right-4 w-12 h-12 rounded-full bg-[#858012] text-white text-xs font-bold flex items-center justify-center shadow-lg transform rotate-[-4deg] tracking-tight select-none pointer-events-none"
+              >
+                Sale!
+              </div>
+            )}
+
+            <!-- Stock status pill -->
+            {isSoldOut ? (
+              <div class="absolute bottom-4 left-4 bg-white/95 backdrop-blur-xs border border-rose-200 px-3 py-1.5 rounded-full shadow-xs flex items-center gap-2 text-xs font-semibold text-rose-700">
+                <span class="w-2 h-2 rounded-full bg-rose-500"></span>
+                <span>Sold Out · Inquire for Next Batch</span>
+              </div>
+            ) : (
+              <div class="absolute bottom-4 left-4 bg-white/95 backdrop-blur-xs border border-[#e0ede3] px-3 py-1.5 rounded-full shadow-xs flex items-center gap-2 text-xs font-semibold text-[#1c643b]">
+                <span class="w-2 h-2 rounded-full bg-[#2ea843] animate-pulse"></span>
+                <span>In Stock · Ships from Mangaluru</span>
+              </div>
+            )}
+          </div>
+
+          <!-- Interactive Thumbnail Gallery (Show when multiple images available) -->
+          {galleryImages.length > 1 && (
+            <div class="mt-4">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-[11px] font-semibold text-[#5a6e61] uppercase tracking-wider">
+                  Product Gallery ({galleryImages.length} photos)
+                </span>
+                <span class="text-[11px] text-[#8fa196]">Click to view</span>
+              </div>
+              <div class="flex items-center gap-2.5 overflow-x-auto pb-2 scrollbar-thin">
+                {galleryImages.map((imgSrc, idx) => (
+                  <button
+                    type="button"
+                    class={`relative shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden border-2 bg-white transition-all cursor-pointer focus:outline-none gallery-thumb ${idx === 0 ? 'border-[#1c643b] ring-2 ring-[#1c643b]/30' : 'border-[#e8dfcf] hover:border-[#1c643b]'}`}
+                    data-gallery-thumb
+                    data-src={imgSrc}
+                    aria-label={`View photo ${idx + 1} of ${product.name}`}
+                  >
+                    <img
+                      src={imgSrc}
+                      alt={`${product.name} photo ${idx + 1}`}
+                      class="w-full h-full object-cover object-center"
+                      loading="lazy"
+                    />
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <!-- Top Feature Badges (Matching WordPress Elementor image-boxes) -->
+          {product.badgeIcons && product.badgeIcons.length > 0 ? (
+            <div class="mt-5 grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-center">
+              {product.badgeIcons.map((b) => (
+                <div class="bg-white border border-[#e8dfcf] p-3 rounded-2xl shadow-2xs flex flex-col items-center justify-center">
+                  <div class="w-10 h-10 mb-1.5 flex items-center justify-center">
+                    <img 
+                      src={b.image} 
+                      alt={b.title} 
+                      class="max-w-full max-h-full object-contain"
+                      loading="lazy"
+                    />
+                  </div>
+                  <span class="text-xs font-bold text-[#082213] block leading-tight">
+                    {b.title}
+                  </span>
+                  {b.subtitle && (
+                    <span class="text-[10px] text-[#55695b] leading-tight block mt-0.5">
+                      {b.subtitle}
+                    </span>
+                  )}
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div class="mt-5 grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-center">
+              <div class="bg-white border border-[#e8dfcf] p-3 rounded-2xl shadow-2xs">
+                <span class="text-xl block mb-1">🌿</span>
+                <span class="text-xs font-bold text-[#082213] block">No Added Chemicals</span>
+                <span class="text-[10px] text-[#55695b] leading-tight block mt-0.5">Zero parabens & toxins</span>
+              </div>
+              <div class="bg-white border border-[#e8dfcf] p-3 rounded-2xl shadow-2xs">
+                <span class="text-xl block mb-1">📦</span>
+                <span class="text-xs font-bold text-[#082213] block">Hygienically Packed</span>
+                <span class="text-[10px] text-[#55695b] leading-tight block mt-0.5">Sealed at Mangaluru</span>
+              </div>
+              <div class="bg-white border border-[#e8dfcf] p-3 rounded-2xl shadow-2xs">
+                <span class="text-xl block mb-1">{isWithoutSugar ? '🚫' : '⚡'}</span>
+                <span class="text-xs font-bold text-[#082213] block">
+                  {isWithoutSugar ? 'No Added Sugar' : 'Quick Absorption'}
+                </span>
+                <span class="text-[10px] text-[#55695b] leading-tight block mt-0.5">
+                  {isWithoutSugar ? 'Zero sugar additives' : 'Non-greasy nourishment'}
+                </span>
+              </div>
+              <div class="bg-white border border-[#e8dfcf] p-3 rounded-2xl shadow-2xs">
+                <span class="text-xl block mb-1">🛡️</span>
+                <span class="text-xs font-bold text-[#082213] block">Rich in Antioxidants</span>
+                <span class="text-[10px] text-[#55695b] leading-tight block mt-0.5">Pure botanical potency</span>
+              </div>
+            </div>
+          )}
+        </div>
+
+        <!-- Right Column: Product Info & Actions -->
+        <div class="lg:col-span-6 flex flex-col justify-start text-left">
+          
+          <!-- Category & Badge -->
+          <div class="flex items-center gap-2.5 mb-2.5">
+            <a 
+              href={categoryHref} 
+              class="inline-flex items-center px-3 py-1 rounded-full bg-[#eaf4ed] text-[#1c643b] text-xs font-semibold tracking-wider uppercase hover:bg-[#dcefe2] transition-colors"
+            >
+              {product.category}
+            </a>
+            {product.badge && product.badge !== 'Sale!' && (
+              <span class="inline-flex items-center px-2.5 py-1 rounded-full bg-[#082213] text-white text-[11px] font-semibold tracking-wide">
+                ★ {product.badge}
+              </span>
+            )}
+            {isProductOnSale && (
+              <span class="inline-flex items-center px-2.5 py-1 rounded-full bg-[#858012] text-white text-[11px] font-bold tracking-wide">
+                Special Offer
+              </span>
+            )}
+          </div>
+
+          <!-- Product Title -->
+          <h1 id="product-title-display" class="text-2xl sm:text-3xl lg:text-4xl font-serif font-medium text-[#082213] leading-tight tracking-tight mb-2">
+            {product.name}
+          </h1>
+
+          <!-- Subtitle -->
+          {product.subtitle && (
+            <p id="product-subtitle-display" class="text-sm font-semibold text-[#1c643b] tracking-wide mb-3">
+              {product.subtitle}
+            </p>
+          )}
+
+          <!-- Price & Pack Size Box -->
+          <div class="p-4 sm:p-5 rounded-2xl bg-[#f4ede0] border border-[#e5dec9] mb-4 shadow-2xs">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <span class="text-[11px] text-[#55695b] uppercase font-semibold block mb-0.5">
+                  ( MRP Inclusive of Taxes )
+                </span>
+                <div class="flex items-center gap-3">
+                  {product.originalPrice && isProductOnSale ? (
+                    <>
+                      <span class="text-base text-gray-400 line-through font-normal">
+                        {product.originalPrice}
+                      </span>
+                      <span id="product-price-display" class="text-2xl sm:text-3xl font-bold text-[#082213] underline underline-offset-4">
+                        {product.price}
+                      </span>
+                      <span class="px-2 py-0.5 rounded-md bg-[#858012]/15 text-[#6c670a] text-xs font-bold">
+                        Special Sale
+                      </span>
+                    </>
+                  ) : (
+                    <span id="product-price-display" class="text-2xl sm:text-3xl font-bold text-[#082213]">
+                      {product.price}
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              <!-- Size / Unit Badge OR Customer Switch Option -->
+              <div class="text-right">
+                <span class="text-[11px] text-[#55695b] uppercase font-semibold block mb-1">Pack Size</span>
+                {isGrowHair ? (
+                  <div class="inline-flex p-1 rounded-xl bg-white/90 border border-[#ded5c5] shadow-2xs gap-1" id="growhair-pill-toggle">
+                    <button
+                      type="button"
+                      data-growhair-size="30g"
+                      class:list={[
+                        "px-3 py-1.5 text-xs font-bold rounded-lg transition-all duration-150 cursor-pointer select-none",
+                        currentGrowHairSize === '30g'
+                          ? "bg-[#0c3920] text-white shadow-xs"
+                          : "text-[#082213] hover:bg-[#faf6ee] text-[#55695b]"
+                      ]}
+                      title="Select 30g pack"
+                    >
+                      30 g
+                    </button>
+                    <button
+                      type="button"
+                      data-growhair-size="70g"
+                      class:list={[
+                        "px-3 py-1.5 text-xs font-bold rounded-lg transition-all duration-150 cursor-pointer select-none",
+                        currentGrowHairSize === '70g'
+                          ? "bg-[#0c3920] text-white shadow-xs"
+                          : "text-[#082213] hover:bg-[#faf6ee] text-[#55695b]"
+                      ]}
+                      title="Select 70g pack"
+                    >
+                      70 g
+                    </button>
+                  </div>
+                ) : (
+                  <span class="inline-block bg-white border border-[#ded5c5] px-3.5 py-1.5 rounded-lg text-xs font-bold text-[#082213] shadow-2xs">
+                    {product.size || 'Standard'}
+                  </span>
+                )}
+              </div>
+            </div>
+
+            <!-- Trust Highlights directly under Price (matching live WordPress) -->
+            <div class="mt-3.5 pt-3 border-t border-[#e5dec9] grid grid-cols-3 gap-2 text-center text-[11px] text-[#3e5044] font-medium">
+              <div class="flex items-center justify-center gap-1.5">
+                <span>💳</span>
+                <span>Secure & Easy Payment</span>
+              </div>
+              <div class="flex items-center justify-center gap-1.5">
+                <span>🔬</span>
+                <span>Lab Tested</span>
+              </div>
+              <div class="flex items-center justify-center gap-1.5">
+                <span>🏷️</span>
+                <span>Lowest Price</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Customer Pack Size Switcher (for Grow Hair 30g vs 70g) -->
+          {isGrowHair && (
+            <div class="p-3.5 sm:p-4 rounded-2xl bg-[#faf7f2] border border-[#ded5c5] mb-4 shadow-2xs">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold uppercase tracking-wider text-[#0c3920] flex items-center gap-1.5">
+                  <svg class="w-4 h-4 text-[#1c643b]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                  </svg>
+                  Select Pack Size:
+                </span>
+                <span class="text-[11px] text-[#55695b] font-medium" id="growhair-size-summary">
+                  {currentGrowHairSize === '30g' ? '30 g Selected (₹369.00)' : '70 g Selected (₹699.00)'}
+                </span>
+              </div>
+              <div class="grid grid-cols-2 gap-2.5">
+                <button
+                  type="button"
+                  data-growhair-card="30g"
+                  class:list={[
+                    "flex flex-col p-3 rounded-xl border text-left transition-all duration-150 cursor-pointer relative",
+                    currentGrowHairSize === '30g'
+                      ? "border-[#0c3920] bg-white ring-2 ring-[#0c3920]/25 shadow-xs"
+                      : "border-[#ded5c5] bg-[#fdfbf7] hover:border-[#1c643b] hover:bg-white"
+                  ]}
+                >
+                  <div class="flex items-center justify-between w-full mb-0.5">
+                    <span class="font-bold text-sm text-[#082213]">30 g</span>
+                    <span class="text-xs font-bold text-[#0c3920]">{variant30.price}</span>
+                  </div>
+                  <span class="text-[11px] text-[#55695b]">Standard Jar</span>
+                </button>
+
+                <button
+                  type="button"
+                  data-growhair-card="70g"
+                  class:list={[
+                    "flex flex-col p-3 rounded-xl border text-left transition-all duration-150 cursor-pointer relative",
+                    currentGrowHairSize === '70g'
+                      ? "border-[#0c3920] bg-white ring-2 ring-[#0c3920]/25 shadow-xs"
+                      : "border-[#ded5c5] bg-[#fdfbf7] hover:border-[#1c643b] hover:bg-white"
+                  ]}
+                >
+                  <div class="flex items-center justify-between w-full mb-0.5">
+                    <span class="font-bold text-sm text-[#082213]">70 g</span>
+                    <span class="text-xs font-bold text-[#0c3920]">{variant70.price}</span>
+                  </div>
+                  <span class="text-[11px] text-[#55695b]">Family Value Jar</span>
+                </button>
+              </div>
+
+              <!-- Hidden data container for real-time switcher JS -->
+              <div
+                id="growhair-data"
+                data-active-size={currentGrowHairSize}
+                data-v30={JSON.stringify(variant30)}
+                data-v70={JSON.stringify(variant70)}
+                style="display:none;"
+              ></div>
+            </div>
+          )}
+
+          <!-- Flavour / Sweetness Switcher (for Chaithanya 2000 Plus) -->
+        
+
+          <!-- Order Actions Container -->
+          <div class="space-y-3 pt-4 border-t border-[#e8dfcf] mb-8">
+            {isSoldOut ? (
+              /* SOLD OUT STATE: DO NOT SHOW ADD TO CART BUTTON OR QUANTITY STEPPER */
+              <div class="space-y-3">
+                <!-- Sold Out Notice -->
+                <div class="p-4 rounded-2xl bg-gradient-to-r from-rose-50 to-amber-50 border border-rose-200/80 shadow-2xs">
+                  <div class="flex items-center gap-2 text-rose-900 font-bold text-sm mb-1">
+                    <span class="text-base">📦</span>
+                    <span>Currently Sold Out</span>
+                  </div>
+                  <p class="text-xs text-[#3e5044] leading-relaxed">
+                    This item is currently sold out in our online inventory. You can inquire or pre-order directly via WhatsApp or phone for upcoming batch availability and priority dispatch from our Mangaluru store.
+                  </p>
+                </div>
+
+       
+              </div>
+            ) : (
+              /* IN STOCK STATE (REGULAR & ON SALE): SHOW QUANTITY STEPPER + ADD TO CART BUTTON */
+              <div class="space-y-3">
+                <div class="flex flex-col sm:flex-row gap-3">
+                  <!-- Quantity Stepper -->
+                  <div class="flex items-center border border-[#ded5c5] rounded-xl bg-white overflow-hidden shrink-0 h-12 shadow-2xs">
+                    <button type="button" id="qty-minus" class="px-3.5 h-full text-base font-bold text-[#082213] hover:bg-[#f4ede0] transition-colors cursor-pointer select-none">−</button>
+                    <input type="number" id="detail-qty" value="1" min="1" max="99" class="w-12 text-center text-sm font-bold text-[#082213] border-0 focus:outline-none" readonly />
+                    <button type="button" id="qty-plus" class="px-3.5 h-full text-base font-bold text-[#082213] hover:bg-[#f4ede0] transition-colors cursor-pointer select-none">+</button>
+                  </div>
+
+                  <!-- Primary Add to Cart Button -->
+                  <button
+                    type="button"
+                    data-add-to-cart
+                    data-product-id={product.id}
+                    data-product-name={product.name}
+                    data-product-price={product.price}
+                    data-product-image={product.image}
+                    class="flex-1 inline-flex items-center justify-center gap-2.5 px-6 h-12 rounded-xl bg-[#0c3920] hover:bg-[#15502e] active:scale-95 text-white text-sm font-bold tracking-wide transition-all duration-200 shadow-md hover:shadow-xl cursor-pointer"
+                  >
+                    <svg class="w-4 h-4 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                    <span class="btn-label">Add to Cart</span>
+                  </button>
+                </div>
+
+         
+              </div>
+            )}
+          </div>
+
+          <!-- Interactive Accordions: Specifications, Ingredients, Why Product Works -->
+          <div class="mb-6 space-y-3">
+            
+            {/* ACCORDION 1: SPECIFICATIONS & FEATURES */}
+            {product.specifications && (
+              <details class="group bg-white rounded-2xl border border-[#e8dfcf] p-4 sm:p-5 shadow-2xs open:border-[#1c643b]" open>
+                <summary class="flex items-center justify-between font-serif font-medium text-[#082213] text-base cursor-pointer list-none select-none">
+                  <span class="flex items-center gap-2">
+                    <span class="text-lg">📋</span>
+                    <span>Specifications & Details</span>
+                  </span>
+                  <span class="transition-transform duration-200 group-open:rotate-180 text-xs text-[#5a6e61]">
+                    ▼
+                  </span>
+                </summary>
+
+                <div class="mt-4 pt-3 border-t border-[#e8dfcf] text-xs sm:text-[13px] text-[#3e5044]">
+                  <!-- Key Specs Grid -->
+                  <div class="grid grid-cols-2 gap-x-4 gap-y-2.5 mb-4">
+                    {Object.entries(product.specifications).map(([key, value]) => (
+                      <div class="p-2 rounded-lg bg-[#faf7f2] border border-[#ded5c5]/60">
+                        <span class="font-bold text-[#082213] block mb-0.5">{key}</span>
+                        <span class="text-[#55695b]">{value}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <!-- Additional Features list -->
+                  {product.additionalFeatures && product.additionalFeatures.length > 0 && (
+                    <div class="mt-3 p-3 rounded-xl bg-[#eaf4ed]/60 border border-[#cbe1d2]">
+                      <span class="font-bold text-[#0c3920] block mb-1.5 uppercase text-[11px] tracking-wider">
+                        Additional Features & Care
+                      </span>
+                      <ul class="space-y-1 list-disc list-inside text-[#3e5044]">
+                        {product.additionalFeatures.map((feat) => (
+                          <li>{feat}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              </details>
+            )}
+
+            {/* ACCORDION 2: VISUAL INGREDIENTS SHOWCASE */}
+            {product.detailedIngredients && product.detailedIngredients.length > 0 && (
+              <details class="group bg-white rounded-2xl border border-[#e8dfcf] p-4 sm:p-5 shadow-2xs open:border-[#1c643b]">
+                <summary class="flex items-center justify-between font-serif font-medium text-[#082213] text-base cursor-pointer list-none select-none">
+                  <span class="flex items-center gap-2">
+                    <span class="text-lg">🌿</span>
+                    <span>Active Botanical Ingredients ({product.detailedIngredients.length})</span>
+                  </span>
+                  <span class="transition-transform duration-200 group-open:rotate-180 text-xs text-[#5a6e61]">
+                    ▼
+                  </span>
+                </summary>
+
+                <div class="mt-4 pt-3 border-t border-[#e8dfcf]">
+                  <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                    {product.detailedIngredients.map((ing) => (
+                      <div class="flex flex-col items-center text-center p-3 rounded-xl bg-[#faf7f2] border border-[#ded5c5]/60 hover:shadow-xs transition-shadow">
+                        <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-lg overflow-hidden bg-white mb-2 p-1 border border-[#e8dfcf]">
+                          <img
+                            src={ing.image}
+                            alt={ing.name}
+                            class="w-full h-full object-cover rounded-md"
+                            loading="lazy"
+                          />
+                        </div>
+                        <span class="text-xs font-bold text-[#082213] leading-snug">
+                          {ing.name}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </details>
+            )}
+
+            {/* ACCORDION 3: WHY THIS FORMULATION WORKS (FULL STORY) */}
+            {product.whyItWorks && (
+              <details class="group bg-white rounded-2xl border border-[#e8dfcf] p-4 sm:p-5 shadow-2xs open:border-[#1c643b]">
+                <summary class="flex items-center justify-between font-serif font-medium text-[#082213] text-base cursor-pointer list-none select-none">
+                  <span class="flex items-center gap-2">
+                    <span class="text-lg">💡</span>
+                    <span>Why {product.name.split('-')[0].trim()}</span>
+                  </span>
+                  <span class="transition-transform duration-200 group-open:rotate-180 text-xs text-[#5a6e61]">
+                    ▼
+                  </span>
+                </summary>
+
+                <div class="mt-4 pt-3 border-t border-[#e8dfcf] text-xs sm:text-[13.5px] text-[#3e5044] leading-relaxed space-y-2.5">
+                  {product.whyItWorks.split('\n\n').map((paragraph) => (
+                    <p>{paragraph}</p>
+                  ))}
+                </div>
+              </details>
+            )}
+
+          </div>
+
+          <!-- Authentic "About Product" Section (Exact WordPress Bullet Points) -->
+          {product.highlights && product.highlights.length > 0 && (
+            <div class="mb-6 p-5 rounded-2xl bg-white border border-[#e8dfcf] shadow-2xs">
+              <h2 class="text-xs font-bold uppercase tracking-wider text-[#1c643b] mb-3.5 flex items-center gap-2">
+                <span>About Product</span>
+                <span class="h-px flex-1 bg-[#e8dfcf]"></span>
+              </h2>
+              <ul class="space-y-2.5">
+                {product.highlights.map((highlight) => (
+                  <li class="flex items-start gap-2.5 text-xs sm:text-[13.5px] text-[#3e5044] leading-relaxed">
+                    <span class="text-[#1c643b] font-bold shrink-0 mt-0.5">✔</span>
+                    <span>{highlight}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+
+   
+
+        </div>
+
+      </div>
+
+      <!-- Related Formulations Section -->
+      {relatedProducts.length > 0 && (
+        <section class="mt-16 sm:mt-20 pt-12 border-t border-[#e8dfcf]">
+          <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+            <div>
+              <div class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-[#eaf4ed] text-[#1c643b] text-xs font-semibold tracking-wider uppercase mb-2">
+                Curated Selection
+              </div>
+              <h2 class="text-2xl sm:text-3xl font-serif font-medium text-[#082213]">
+                Complementary Formulations
+              </h2>
+            </div>
+            <InteractiveHoverButton href="/products" text="Explore More" class="self-start sm:self-auto" />
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+            {relatedProducts.map((item) => (
+              <a
+                href={`/product/${item.id}`}
+                class="group flex flex-col items-center text-center bg-white rounded-2xl p-4 sm:p-5 border border-[#e8dfcf] shadow-xs hover:shadow-xl transition-all duration-300"
+              >
+                <div class="relative w-full aspect-square rounded-xl overflow-hidden bg-[#faf7f2] mb-3.5 flex items-center justify-center">
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    loading="lazy"
+                    class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                    onerror={item.fallbackImage ? `if(this.src !== '${item.fallbackImage}') { this.src = '${item.fallbackImage}'; }` : undefined}
+                  />
+                  {(item.onSale || item.badge === 'Sale!') && (
+                    <div class="absolute top-2 right-2 w-9 h-9 rounded-full bg-[#858012] text-white text-[10px] font-bold flex items-center justify-center shadow-md">
+                      Sale!
+                    </div>
+                  )}
+                </div>
+
+                <h3 class="text-xs sm:text-[13px] font-semibold text-[#0c2a1a] leading-snug line-clamp-2 min-h-[36px] flex items-center justify-center mb-1.5 px-1 group-hover:text-[#1c643b] transition-colors">
+                  {item.name}
+                </h3>
+
+                <div class="flex items-center justify-center gap-1.5 mb-3">
+                  {item.originalPrice && item.onSale ? (
+                    <>
+                      <span class="text-xs text-gray-400 line-through">{item.originalPrice}</span>
+                      <span class="text-xs sm:text-sm font-bold text-[#0c2a1a] underline">{item.price}</span>
+                    </>
+                  ) : (
+                    <span class="text-xs sm:text-sm font-bold text-[#0c2a1a]">{item.price}</span>
+                  )}
+                </div>
+
+                <span class="mt-auto inline-flex items-center justify-center px-4 py-1.5 rounded-md bg-[#f4ede0] group-hover:bg-[#0c3920] group-hover:text-white text-[#082213] text-xs font-semibold tracking-wide transition-all">
+                  View Details →
+                </span>
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
+
+    </div>
+  </article>
+
+</Layout>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Quantity Stepper (for regular products)
+    const minus = document.getElementById('qty-minus');
+    const plus = document.getElementById('qty-plus');
+    const input = document.getElementById('detail-qty');
+
+    if (minus && plus && input) {
+      minus.addEventListener('click', () => {
+        let val = parseInt(input.value) || 1;
+        if (val > 1) input.value = val - 1;
+      });
+      plus.addEventListener('click', () => {
+        let val = parseInt(input.value) || 1;
+        if (val < 99) input.value = val + 1;
+      });
+    }
+
+    // Interactive Image Gallery Thumbnails
+    const mainImg = document.getElementById('main-product-image');
+    const thumbs = document.querySelectorAll('[data-gallery-thumb]');
+
+    if (mainImg && thumbs.length > 0) {
+      thumbs.forEach((thumb) => {
+        thumb.addEventListener('click', () => {
+          const newSrc = thumb.getAttribute('data-src');
+          if (newSrc && mainImg.src !== newSrc) {
+            // Smooth fade effect
+            mainImg.style.opacity = '0.3';
+            setTimeout(() => {
+              mainImg.src = newSrc;
+              mainImg.style.opacity = '1';
+            }, 150);
+
+            // Update active thumbnail border styling
+            thumbs.forEach((t) => {
+              t.classList.remove('border-[#1c643b]', 'ring-2', 'ring-[#1c643b]/30');
+              t.classList.add('border-[#e8dfcf]');
+            });
+            thumb.classList.remove('border-[#e8dfcf]');
+            thumb.classList.add('border-[#1c643b]', 'ring-2', 'ring-[#1c643b]/30');
+          }
+        });
+      });
+    }
+
+    // Grow Hair 30g / 70g Customer Switcher
+    const growHairDataEl = document.getElementById('growhair-data');
+    if (growHairDataEl) {
+      try {
+        const v30 = JSON.parse(growHairDataEl.getAttribute('data-v30') || '{}');
+        const v70 = JSON.parse(growHairDataEl.getAttribute('data-v70') || '{}');
+        const pillBtns = document.querySelectorAll('[data-growhair-size]');
+        const cardBtns = document.querySelectorAll('[data-growhair-card]');
+        const titleEl = document.getElementById('product-title-display');
+        const priceEl = document.getElementById('product-price-display');
+        const summaryEl = document.getElementById('growhair-size-summary');
+        const addToCartBtn = document.querySelector('[data-add-to-cart]');
+
+        function switchGrowHairSize(targetSize) {
+          const selected = targetSize === '70g' ? v70 : v30;
+
+          // 1. Update Pill Switcher Buttons in Pack Size area
+          pillBtns.forEach((btn) => {
+            const btnSize = btn.getAttribute('data-growhair-size');
+            if (btnSize === targetSize) {
+              btn.className = 'px-3 py-1.5 text-xs font-bold rounded-lg transition-all duration-150 cursor-pointer select-none bg-[#0c3920] text-white shadow-xs';
+            } else {
+              btn.className = 'px-3 py-1.5 text-xs font-bold rounded-lg transition-all duration-150 cursor-pointer select-none text-[#082213] hover:bg-[#faf6ee] text-[#55695b]';
+            }
+          });
+
+          // 2. Update Card Selection Buttons
+          cardBtns.forEach((btn) => {
+            const btnSize = btn.getAttribute('data-growhair-card');
+            if (btnSize === targetSize) {
+              btn.className = 'flex flex-col p-3 rounded-xl border text-left transition-all duration-150 cursor-pointer relative border-[#0c3920] bg-white ring-2 ring-[#0c3920]/25 shadow-xs';
+            } else {
+              btn.className = 'flex flex-col p-3 rounded-xl border text-left transition-all duration-150 cursor-pointer relative border-[#ded5c5] bg-[#fdfbf7] hover:border-[#1c643b] hover:bg-white';
+            }
+          });
+
+          // 3. Update Title, Price & Summary Display
+          if (titleEl && selected.name) {
+            titleEl.textContent = selected.name;
+          }
+          if (priceEl && selected.price) {
+            priceEl.textContent = selected.price;
+          }
+          if (summaryEl) {
+            summaryEl.textContent = targetSize === '30g' ? '30 g Selected (₹369.00)' : '70 g Selected (₹699.00)';
+          }
+
+          // 4. Update Add to Cart Button dataset
+          if (addToCartBtn) {
+            if (selected.id) addToCartBtn.setAttribute('data-product-id', selected.id);
+            if (selected.name) addToCartBtn.setAttribute('data-product-name', selected.name);
+            if (selected.price) addToCartBtn.setAttribute('data-product-price', selected.price);
+            if (selected.image) addToCartBtn.setAttribute('data-product-image', selected.image);
+          }
+
+          // 5. Update browser URL without full page reload
+          if (window.history && window.history.replaceState && selected.url) {
+            window.history.replaceState({ size: targetSize }, '', selected.url);
+          }
+        }
+
+        pillBtns.forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const size = btn.getAttribute('data-growhair-size');
+            if (size) switchGrowHairSize(size);
+          });
+        });
+
+        cardBtns.forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const size = btn.getAttribute('data-growhair-card');
+            if (size) switchGrowHairSize(size);
+          });
+        });
+      } catch (e) {
+        console.error('Grow Hair switcher init error:', e);
+      }
+    }
+  });
+</script>

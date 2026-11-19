@@ -1,0 +1,101 @@
+﻿[
+    {
+        "id":  54,
+        "name":  "All",
+        "slug":  "all",
+        "description":  "",
+        "parent":  0,
+        "count":  7,
+        "image":  null,
+        "review_count":  0,
+        "permalink":  "https://kshithija.in/product-category/all/"
+    },
+    {
+        "id":  44,
+        "name":  "all day smart",
+        "slug":  "all-day-smart",
+        "description":  "",
+        "parent":  0,
+        "count":  1,
+        "image":  null,
+        "review_count":  0,
+        "permalink":  "https://kshithija.in/product-category/all-day-smart/"
+    },
+    {
+        "id":  55,
+        "name":  "Beauty Products",
+        "slug":  "beauty",
+        "description":  "",
+        "parent":  54,
+        "count":  4,
+        "image":  null,
+        "review_count":  0,
+        "permalink":  "https://kshithija.in/product-category/all/beauty/"
+    },
+    {
+        "id":  45,
+        "name":  "chaithanya 2000+",
+        "slug":  "chaithanya-2000",
+        "description":  "",
+        "parent":  0,
+        "count":  1,
+        "image":  null,
+        "review_count":  0,
+        "permalink":  "https://kshithija.in/product-category/chaithanya-2000/"
+    },
+    {
+        "id":  49,
+        "name":  "chaithanya 2000+ (WS)",
+        "slug":  "chaithanya-2000-ws",
+        "description":  "",
+        "parent":  0,
+        "count":  1,
+        "image":  null,
+        "review_count":  0,
+        "permalink":  "https://kshithija.in/product-category/chaithanya-2000-ws/"
+    },
+    {
+        "id":  42,
+        "name":  "hair cream",
+        "slug":  "hair-cream",
+        "description":  "",
+        "parent":  0,
+        "count":  2,
+        "image":  null,
+        "review_count":  0,
+        "permalink":  "https://kshithija.in/product-category/hair-cream/"
+    },
+    {
+        "id":  41,
+        "name":  "honey",
+        "slug":  "honey",
+        "description":  "",
+        "parent":  0,
+        "count":  1,
+        "image":  null,
+        "review_count":  0,
+        "permalink":  "https://kshithija.in/product-category/honey/"
+    },
+    {
+        "id":  43,
+        "name":  "vasel",
+        "slug":  "vasel",
+        "description":  "",
+        "parent":  0,
+        "count":  1,
+        "image":  null,
+        "review_count":  0,
+        "permalink":  "https://kshithija.in/product-category/vasel/"
+    },
+    {
+        "id":  56,
+        "name":  "Wellness Products",
+        "slug":  "wellness",
+        "description":  "",
+        "parent":  54,
+        "count":  3,
+        "image":  null,
+        "review_count":  0,
+        "permalink":  "https://kshithija.in/product-category/all/wellness/"
+    }
+]

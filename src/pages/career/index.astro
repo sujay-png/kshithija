@@ -1,0 +1,22 @@
+---
+// src/pages/career.astro
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/Careers/Hero.astro';
+import OpeningsAndForm from '../../components/Careers/OpeningsAndForm.astro';
+import RoleOverview from '../../components/Careers/RoleOverview.astro';
+
+---
+
+<Layout title="Career - Kshithija Enterprises">
+  <!-- Hero Banner matching reference screenshot & kshithija.in tagline -->
+  <Hero />
+
+  <!-- Vacancies 2x2 Grid + Application Form (Matching exact kshithija.in form fields & WhatsApp handler) -->
+  <OpeningsAndForm />
+
+  <!-- In-Depth Role Overview: Why BDE & Future Growth (Exact copy from https://kshithija.in/careers/) -->
+  <RoleOverview />
+
+  <!-- Benefits & 20-Year Heritage Section matching reference screenshot -->
+  <!-- <Benefits /> -->
+</Layout>

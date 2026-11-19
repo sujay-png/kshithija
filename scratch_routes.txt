@@ -1,0 +1,51 @@
+Created At: 2026-11-14T15:45:27+05:30
+Completed At: 2026-11-14T15:45:27+05:30
+Created At: 2026-11-14T15:45:27+05:30
+Completed At: 2026-11-14T15:45:27+05:30
+Showing lines 120-165 of 988
+120:      */
+121:     public function register_routes(): void {
+122:         // 1. Verify Cart & Prices against WooCommerce database (Single Source of Truth)
+123:         register_rest_route( self::NAMESPACE, '/checkout/verify-cart', [
+124:             'methods'             => WP_REST_Server::CREATABLE,
+125:             'callback'            => [ $this, 'verify_cart' ],
+126:             'permission_callback' => [ $this, 'verify_headless_secret' ],
+127:         ] );
+128: 
+129:         // 2. Validate Coupon dynamically using WooCommerce WC_Coupon engine
+130:         register_rest_route( self::NAMESPACE, '/checkout/apply-coupon', [
+131:             'methods'             => WP_REST_Server::CREATABLE,
+132:             'callback'            => [ $this, 'apply_coupon' ],
+133:             'permission_callback' => [ $this, 'verify_headless_secret' ],
+134:         ] );
+135: 
+136:         // 3. Create real WooCommerce Order (Idempotent)
+137:         register_rest_route( self::NAMESPACE, '/checkout/create-order', [
+138:             'methods'             => WP_REST_Server::CREATABLE,
+139:             'callback'            => [ $this, 'create_order' ],
+140:             'permission_callback' => [ $this, 'verify_headless_secret' ],
+141:         ] );
+142: 
+143:         // 4. Create Razorpay Order using credentials from WooCommerce Razorpay plugin (Idempotent)
+144:         register_rest_route( self::NAMESPACE, '/checkout/create-razorpay-order', [
+145:             'methods'             => WP_REST_Server::CREATABLE,
+146:             'callback'            => [ $this, 'create_razorpay_order' ],
+147:             'permission_callback' => [ $this, 'verify_headless_secret' ],
+148:         ] );
+149: 
+150:         // 5. Verify Razorpay Payment Signature and complete WooCommerce Order (Idempotent)
+151:         register_rest_route( self::NAMESPACE, '/checkout/verify-payment', [
+152:             'methods'             => WP_REST_Server::CREATABLE,
+153:             'callback'            => [ $this, 'verify_payment' ],
+154:             'permission_callback' => [ $this, 'verify_headless_secret' ],
+155:         ] );
+156: 
+157:         // 6. Get Razorpay Public Key ID (Safe to expose to frontend)
+158:         register_rest_route( self::NAMESPACE, '/checkout/payment-config', [
+159:             'methods'             => WP_REST_Server::READABLE,
+160:             'callback'            => [ $this, 'get_payment_config' ],
+161:             'permission_callback' => [ $this, 'verify_headless_secret' ],
+162:         ] );
+163: 
+164:         // 7. Cancel Order and Refund via Razorpay (if paid online)
+165:         register_rest_route( self::NAMESPACE, '/checkout/cancel-order', [

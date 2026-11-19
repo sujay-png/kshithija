@@ -1,0 +1,14 @@
+---
+// src/pages/my-account/edit-address/[type].astro
+// Native WooCommerce route support for /my-account/edit-address/shipping/ and /billing/
+export function getStaticPaths() {
+  return [
+    { params: { type: 'shipping' } },
+    { params: { type: 'billing' } },
+  ];
+}
+
+const { type } = Astro.params;
+return Astro.redirect(`/addresses?edit=${type}`);
+---
+

@@ -1,0 +1,339 @@
+---
+// src/pages/dashboard.astro
+// Dedicated Customer Account Dashboard for Kshithija Enterprises in Light Mode
+// Replicates WooCommerce standard /my-account/ dashboard
+import Layout from '../layouts/Layout.astro';
+import AccountSidebar from '@components/common/AccountSidebar.astro';
+---
+
+<Layout title="Dashboard - Kshithija Enterprises">
+  
+  <main class="min-h-screen bg-[#f8fafc] text-[#082213] py-8 sm:py-12 px-4 sm:px-6 lg:px-8 relative">
+    
+    <div class="max-w-7xl mx-auto">
+
+      <!-- Breadcrumbs -->
+      <nav aria-label="Breadcrumb" class="mb-6 text-xs text-[#64748b]">
+        <ol class="inline-flex items-center gap-2">
+          <li><a href="/" class="hover:text-[#0c3920] transition-colors">Home</a></li>
+          <li>/</li>
+          <li><a href="/dashboard" class="hover:text-[#0c3920] transition-colors">My account</a></li>
+          <li>/</li>
+          <li class="font-semibold text-[#082213]" aria-current="page">Dashboard</li>
+        </ol>
+      </nav>
+
+      <!-- Main Layout: Sidebar + Dashboard Content -->
+      <div class="flex flex-col lg:flex-row gap-6 sm:gap-8 items-start">
+        
+        <!-- Persistent Sidebar with 'dashboard' active -->
+        <AccountSidebar activeItem="dashboard" />
+
+        <!-- Right Content Section: Dashboard Panels -->
+        <div class="flex-1 w-full min-w-0 space-y-6">
+          
+          <!-- Not Logged In State -->
+          <div id="state-not-logged-in" class="hidden bg-white rounded-3xl border border-[#cbd5e1] py-16 text-center text-[#64748b] shadow-xs">
+            <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-[#f1f5f9] border border-[#e2e8f0] flex items-center justify-center text-2xl">
+              🔒
+            </div>
+            <h3 class="text-base font-bold text-[#082213] mb-1">Sign in to view your account dashboard</h3>
+            <p class="text-xs text-[#64748b] max-w-sm mx-auto mb-5 leading-relaxed">
+              Log in with your Kshithija customer credentials to manage your orders, delivery addresses, and personal details.
+            </p>
+            <a
+              href="/login?redirect=/dashboard"
+              class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0c3920] hover:bg-[#164e2d] active:scale-95 text-white text-xs font-semibold transition shadow-xs cursor-pointer"
+            >
+              <span>Sign In to Your Account</span>
+              <span>→</span>
+            </a>
+          </div>
+
+          <!-- Loading State -->
+          <div id="state-loading" class="bg-white rounded-3xl border border-[#cbd5e1] py-16 text-center text-[#64748b] shadow-xs">
+            <div class="inline-block animate-spin rounded-full h-8 w-8 border-2 border-[#0c3920] border-t-transparent mb-3"></div>
+            <p class="text-xs font-semibold text-[#082213]">Loading dashboard </p>
+          </div>
+
+          <!-- Main Dashboard Content (Logged In) -->
+          <div id="dashboard-content" class="hidden space-y-6">
+
+ 
+            
+            <!-- 1. Welcome Greeting Banner (Matches WooCommerce /my-account/) -->
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border border-[#cbd5e1] shadow-xs relative overflow-hidden">
+              <div class="max-w-2xl">
+               
+                
+                <h1 class="text-xl sm:text-2xl font-bold text-[#082213] tracking-tight mb-2">
+                  Hello, <span id="welcome-name">Customer</span>!
+                </h1>
+
+                <!-- WooCommerce Standard Dashboard Overview Text -->
+                <p class="text-xs sm:text-sm text-[#475569] leading-relaxed mb-4">
+                  (not <strong id="welcome-username" class="text-[#082213]">Customer</strong>? 
+                  <button type="button" id="btn-inline-logout" class="text-[#0284c7] hover:underline font-semibold cursor-pointer">Log out</button>)
+                </p>
+
+                <p class="text-xs sm:text-sm text-[#475569] leading-relaxed">
+                  From your account dashboard you can easily track your 
+                  <a href="/orders" class="text-[#0284c7] font-semibold hover:underline">recent orders</a>, 
+                  manage your 
+                  <a href="/addresses" class="text-[#0284c7] font-semibold hover:underline">shipping and billing addresses</a>, 
+                  and edit your 
+                  <a href="/my-account/edit-account" class="text-[#0284c7] font-semibold hover:underline">password and account details</a>.
+                </p>
+              </div>
+            </div>
+
+            <!-- 2. Quick Navigation Tiles (3 Cards: Orders, Addresses, Account Details) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              
+              <!-- Tile 1: Orders -->
+              <div class="bg-white rounded-3xl border border-[#cbd5e1] p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition-shadow">
+                <div>
+                  <div class="w-10 h-10 rounded-2xl bg-[#f0fdf4] border border-[#bbf7d0] text-[#16a34a] flex items-center justify-center text-lg mb-4">
+                    📦
+                  </div>
+                  <h3 class="text-base font-bold text-[#082213] mb-1">Orders</h3>
+                  <p class="text-xs text-[#64748b] leading-relaxed mb-3">
+                    Track shipments, check pending payments, and view past order history.
+                  </p>
+                  <p id="stat-orders-count" class="text-xs font-semibold text-[#0c3920] mb-4">
+                    Loading orders...
+                  </p>
+                </div>
+                <a
+                  href="/orders"
+                  class="inline-flex items-center gap-1.5 text-xs font-semibold text-[#0284c7] hover:underline pt-3 border-t border-[#e2e8f0]"
+                >
+                  <span>View recent orders</span>
+                  <span>→</span>
+                </a>
+              </div>
+
+              <!-- Tile 2: Addresses -->
+              <div class="bg-white rounded-3xl border border-[#cbd5e1] p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition-shadow">
+                <div>
+                  <div class="w-10 h-10 rounded-2xl bg-[#f0f9ff] border border-[#bae6fd] text-[#0284c7] flex items-center justify-center text-lg mb-4">
+                    🏠
+                  </div>
+                  <h3 class="text-base font-bold text-[#082213] mb-1">Addresses</h3>
+                  <p class="text-xs text-[#64748b] leading-relaxed mb-3">
+                    Manage default delivery and billing addresses used during checkout.
+                  </p>
+                  <p id="stat-addresses-snippet" class="text-xs font-semibold text-[#0c3920] mb-4 truncate">
+                    Shipping & billing addresses
+                  </p>
+                </div>
+                <a
+                  href="/addresses"
+                  class="inline-flex items-center gap-1.5 text-xs font-semibold text-[#0284c7] hover:underline pt-3 border-t border-[#e2e8f0]"
+                >
+                  <span>Manage addresses</span>
+                  <span>→</span>
+                </a>
+              </div>
+
+              <!-- Tile 3: Account Details -->
+              <div class="bg-white rounded-3xl border border-[#cbd5e1] p-6 shadow-xs flex flex-col justify-between hover:shadow-md transition-shadow">
+                <div>
+                  <div class="w-10 h-10 rounded-2xl bg-[#fff7ed] border border-[#ffedd5] text-[#ea580c] flex items-center justify-center text-lg mb-4">
+                    👤
+                  </div>
+                  <h3 class="text-base font-bold text-[#082213] mb-1">Account details</h3>
+                  <p class="text-xs text-[#64748b] leading-relaxed mb-3">
+                    Update personal profile name, registered email address, and change password.
+                  </p>
+                  <p id="stat-account-email" class="text-xs font-semibold text-[#0c3920] mb-4 truncate">
+                    Account security & password
+                  </p>
+                </div>
+                <a
+                  href="/my-account/edit-account"
+                  class="inline-flex items-center gap-1.5 text-xs font-semibold text-[#0284c7] hover:underline pt-3 border-t border-[#e2e8f0]"
+                >
+                  <span>Edit account details</span>
+                  <span>→</span>
+                </a>
+              </div>
+
+            </div>
+
+            <!-- 3. Recent Orders Snapshot (Latest 3 Orders) -->
+            <div class="bg-white rounded-3xl border border-[#cbd5e1] p-6 sm:p-8 shadow-xs space-y-4">
+              <div class="flex items-center justify-between pb-3 border-b border-[#e2e8f0]">
+                <div>
+                  <h2 class="text-base sm:text-lg font-bold text-[#082213] tracking-tight">
+                    Recent Orders
+                  </h2>
+                  <p class="text-xs text-[#64748b]">Your most recent purchases on Kshithija Enterprises</p>
+                </div>
+                <a href="/orders" class="text-xs font-semibold text-[#0284c7] hover:underline">
+                  View all →
+                </a>
+              </div>
+
+              <!-- Orders Snapshot Container -->
+              <div id="recent-orders-container" class="divide-y divide-[#e2e8f0]">
+                <!-- Populated dynamically -->
+              </div>
+            </div>
+
+          
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+</Layout>
+
+<script>
+  import { getStoredToken, getStoredUser, getCustomerProfile, getCustomerOrders, logout } from '../lib/auth';
+
+  document.addEventListener('DOMContentLoaded', async () => {
+    const stateLoading = document.getElementById('state-loading');
+    const stateNotLoggedIn = document.getElementById('state-not-logged-in');
+    const dashboardContent = document.getElementById('dashboard-content');
+
+    const welcomeName = document.getElementById('welcome-name');
+    const welcomeUsername = document.getElementById('welcome-username');
+    const inlineLogout = document.getElementById('btn-inline-logout');
+
+    const statOrdersCount = document.getElementById('stat-orders-count');
+    const statAddressesSnippet = document.getElementById('stat-addresses-snippet');
+    const statAccountEmail = document.getElementById('stat-account-email');
+    const recentOrdersContainer = document.getElementById('recent-orders-container');
+
+    // Logout action
+    inlineLogout?.addEventListener('click', () => {
+      logout();
+    });
+
+    const token = getStoredToken();
+    const user = getStoredUser();
+
+    if (!token) {
+      stateLoading?.classList.add('hidden');
+      dashboardContent?.classList.add('hidden');
+      stateNotLoggedIn?.classList.remove('hidden');
+      return;
+    }
+
+    stateNotLoggedIn?.classList.add('hidden');
+    stateLoading?.classList.remove('hidden');
+    dashboardContent?.classList.add('hidden');
+
+    try {
+      // Concurrently fetch profile and orders from WooCommerce
+      const [profile, orders] = await Promise.all([
+        getCustomerProfile().catch(() => null),
+        getCustomerOrders().catch(() => []),
+      ]);
+
+      const displayName = profile?.displayName || user?.displayName || user?.firstName || 'Customer';
+      const email = profile?.email || user?.email || '';
+
+      if (welcomeName) welcomeName.textContent = displayName;
+      if (welcomeUsername) welcomeUsername.textContent = displayName;
+      if (statAccountEmail) statAccountEmail.textContent = email || 'Manage profile';
+
+      // Orders Stat
+      const ordersCount = Array.isArray(orders) ? orders.length : 0;
+      if (statOrdersCount) {
+        statOrdersCount.textContent = ordersCount === 1 
+          ? '1 order on file' 
+          : `${ordersCount} orders on file`;
+      }
+
+      // Addresses Stat
+      const shippingCity = profile?.shipping?.city || '';
+      const shippingState = profile?.shipping?.state || '';
+      if (statAddressesSnippet) {
+        if (shippingCity || shippingState) {
+          statAddressesSnippet.textContent = `${shippingCity}${shippingCity && shippingState ? ', ' : ''}${shippingState}`;
+        } else {
+          statAddressesSnippet.textContent = 'Manage shipping & billing';
+        }
+      }
+
+      // Render top 3 recent orders
+      if (recentOrdersContainer) {
+        if (!orders || orders.length === 0) {
+          recentOrdersContainer.innerHTML = `
+            <div class="py-8 text-center text-[#64748b]">
+              <p class="text-xs mb-3">No orders placed yet.</p>
+              <a href="/products" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#0c3920] text-white text-xs font-semibold hover:bg-[#164e2d] transition">
+                <span>Browse Products</span>
+                <span>→</span>
+              </a>
+            </div>
+          `;
+        } else {
+          const top3 = orders.slice(0, 3);
+          recentOrdersContainer.innerHTML = top3.map((o: any) => {
+            const rawNum = o.orderNumber || o.id;
+            const dateStr = o.dateCreated
+              ? new Date(o.dateCreated).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+              : 'Recent';
+            const statusLabel = o.statusLabel || o.status || 'Processing';
+            const total = o.total || `₹${o.rawTotal || '0.00'}`;
+
+            return `
+              <div class="py-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+                <div>
+                  <div class="flex items-center gap-2">
+                    <span class="font-bold text-[#082213]">Order #${rawNum}</span>
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-[#f1f5f9] text-[#334155] border border-[#cbd5e1]">
+                      ${statusLabel}
+                    </span>
+                  </div>
+                  <p class="text-[11px] text-[#64748b] mt-0.5">Placed on ${dateStr}</p>
+                </div>
+
+                <div class="flex items-center gap-4 justify-between sm:justify-end">
+                  <span class="font-bold text-[#082213] text-sm">${total}</span>
+                  <a
+                    href="/orders"
+                    class="px-3 py-1.5 rounded-lg border border-[#cbd5e1] text-[#0284c7] hover:bg-[#f0f9ff] text-xs font-semibold transition"
+                  >
+                    View order
+                  </a>
+                </div>
+              </div>
+            `;
+          }).join('');
+        }
+      }
+
+      // Check if user is an Affiliate Partner
+      const affBanner = document.getElementById('affiliate-partner-banner');
+      const isAff = profile?.isAffiliate || user?.isAffiliate || (Array.isArray(profile?.roles) && (profile.roles.includes('affiliate') || profile.roles.includes('affilate'))) || (Array.isArray(user?.roles) && (user.roles.includes('affiliate') || user.roles.includes('affilate')));
+      if (affBanner && isAff) {
+        affBanner.classList.remove('hidden');
+      }
+
+      stateLoading?.classList.add('hidden');
+      dashboardContent?.classList.remove('hidden');
+    } catch (err) {
+      console.error('Failed to load dashboard:', err);
+      // Check if user is an Affiliate Partner
+      const affBanner = document.getElementById('affiliate-partner-banner');
+      const isAff = profile?.isAffiliate || user?.isAffiliate || (Array.isArray(profile?.roles) && (profile.roles.includes('affiliate') || profile.roles.includes('affilate'))) || (Array.isArray(user?.roles) && (user.roles.includes('affiliate') || user.roles.includes('affilate')));
+      if (affBanner && isAff) {
+        affBanner.classList.remove('hidden');
+      }
+
+      stateLoading?.classList.add('hidden');
+      dashboardContent?.classList.remove('hidden');
+    }
+  });
+</script>
+

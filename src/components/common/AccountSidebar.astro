@@ -1,0 +1,246 @@
+---
+// src/components/AccountSidebar.astro
+// Exact Flowbite-style Account Sidebar (Avatar, Name, Email, Profile/Gifts/Wallet tiles & Navigation)
+export interface Props {
+  activeItem?:'dashboard' | 'orders' | 'reviews' | 'addresses' | 'recent' | 'favorites' | 'settings' | 'profile';
+}
+
+const { activeItem = 'orders' } = Astro.props;
+---
+
+<aside class="w-full lg:w-72 shrink-0">
+  <div class="bg-[#071911] text-white rounded-3xl border border-[#1a3a29] p-4 sm:p-5 shadow-xl sticky top-24 transition-all select-none">
+    
+    <!-- User Profile Header Section -->
+    <div class="flex items-center justify-between pb-4 border-b border-[#143323]">
+      <div class="flex items-center gap-3 min-w-0">
+        <!-- User Avatar -->
+        <div class="relative shrink-0">
+          <div
+            id="sidebar-avatar-img"
+            class="w-10 h-10 rounded-xl bg-[#143323] border border-[#2a543b] text-white flex items-center justify-center font-bold text-sm shadow-inner overflow-hidden"
+          >
+            <span id="sidebar-avatar-text">JL</span>
+          </div>
+        </div>
+
+        <!-- User Identity -->
+        <div class="min-w-0">
+          <div class="flex items-center gap-1">
+            <h3 id="sidebar-name" class="text-xs sm:text-sm font-semibold text-white truncate leading-tight">
+              Jese Leos (Personal)
+            </h3>
+          </div>
+          <p id="sidebar-email" class="text-[11px] text-[#8ea998] truncate leading-tight mt-0.5">
+            jese@flowbite.com
+          </p>
+        </div>
+      </div>
+
+      <!-- Selector Icon (Up-Down Chevron) -->
+      <a
+        href="/my-account"
+        class="text-[#8ea998] hover:text-white p-1 rounded-lg hover:bg-white/10 transition-colors"
+        title="Account Options"
+        aria-label="Account Options"
+      >
+      </a>
+    </div>
+
+    <!-- 3 Quick Action Colored Tiles (Profile, Gifts, Wallet) -->
+    <div class="grid grid-cols-3 gap-2 my-3.5">
+      
+     
+
+    </div>
+
+    <!-- Vertical Navigation Menu -->
+    <nav class="space-y-1 pt-1" aria-label="Customer Navigation">
+           <a
+        href="/dashboard"
+        class={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-medium transition-all ${
+          activeItem === 'dashboard'
+            ? 'bg-[#153424] text-white font-semibold shadow-xs'
+            : 'text-[#cbd5e1] hover:bg-white/10 hover:text-white'
+        }`}
+      >
+        <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
+        </svg>
+        <span>Dashboard</span>
+      </a>
+      <!-- My orders -->
+      <a
+        href="/orders"
+        class={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-medium transition-all ${
+          activeItem === 'orders'
+            ? 'bg-[#153424] text-white font-semibold shadow-xs'
+            : 'text-[#cbd5e1] hover:bg-white/10 hover:text-white'
+        }`}
+      >
+        <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0" />
+        </svg>
+        <span>My orders</span>
+      </a>
+
+      <!-- Reviews -->
+    
+      <!-- Delivery addresses -->
+      <a
+        href="/addresses"
+        class={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-medium transition-all ${
+          activeItem === 'addresses'
+            ? 'bg-[#153424] text-white font-semibold shadow-xs'
+            : 'text-[#cbd5e1] hover:bg-white/10 hover:text-white'
+        }`}
+      >
+        <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+        </svg>
+        <span>Delivery addresses</span>
+      </a>
+
+      <!-- Recently viewed -->
+      
+      <!-- Favourite items -->
+      <a
+        href="/my-account/edit-account"
+        class={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-medium transition-all ${
+          activeItem === 'favorites'
+            ? 'bg-[#153424] text-white font-semibold shadow-xs'
+            : 'text-[#cbd5e1] hover:bg-white/10 hover:text-white'
+        }`}
+      >
+        <svg class="w-4 h-4 shrink-0 text-rose-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+        </svg>
+        <span>Account Details</span>
+      </a>
+
+      <!-- Affiliate Portal -->
+      <a
+        href="/affiliate-dashboard"
+        class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-medium text-[#86efac] hover:bg-emerald-950/60 hover:text-white transition-all border border-emerald-500/20 my-1"
+      >
+      
+        <span class="font-semibold">Affiliate Portal</span>
+    
+      </a>
+
+      <!-- Divider -->
+      <div class="pt-2 my-1 border-t border-[#143323]">
+        <!-- Settings -->
+      
+
+        <!-- Log out (Coral Red) -->
+        <button
+          type="button"
+          id="btn-sidebar-logout"
+          class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-medium text-[#f87171] hover:bg-red-500/10 hover:text-red-300 transition-all cursor-pointer mt-1"
+        >
+          <svg class="w-4 h-4 shrink-0 text-[#f87171]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+          </svg>
+          <span>Log out</span>
+        </button>
+      </div>
+
+    </nav>
+
+  </div>
+</aside>
+
+<!-- Interactive Gifts Modal -->
+<div id="modal-gifts" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs hidden flex items-center justify-center p-4">
+  <div class="bg-[#071911] text-white rounded-3xl border border-[#1a3a29] max-w-md w-full p-6 shadow-2xl relative">
+    <button type="button" id="btn-close-gifts" class="absolute top-5 right-5 text-gray-400 hover:text-white p-1 text-base cursor-pointer">✕</button>
+    <div class="w-12 h-12 rounded-2xl bg-[#7c3aed] text-white flex items-center justify-center mb-4 text-xl shadow-md">🎁</div>
+    <h3 class="text-lg font-serif font-bold text-white mb-1">Gifts & Rewards</h3>
+    <p class="text-xs text-[#8ea998] mb-4">Exclusive herbal rewards and coupons for Kshithija members.</p>
+    <div class="space-y-2.5 mb-5 text-xs">
+      <div class="p-3.5 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-between">
+        <div>
+          <span class="font-bold text-white block">KSHITHIJA10</span>
+          <span class="text-[11px] text-[#8ea998]">10% off on all Ayurvedic Creams</span>
+        </div>
+        <span class="text-[10px] font-bold text-emerald-400 bg-emerald-950/80 border border-emerald-500/30 px-2 py-0.5 rounded-full">Active</span>
+      </div>
+      <div class="p-3.5 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-between">
+        <div>
+          <span class="font-bold text-white block">FREESHIP</span>
+          <span class="text-[11px] text-[#8ea998]">Free shipping on orders above ₹999</span>
+        </div>
+        <span class="text-[10px] font-bold text-emerald-400 bg-emerald-950/80 border border-emerald-500/30 px-2 py-0.5 rounded-full">Active</span>
+      </div>
+    </div>
+    <a href="/products" class="w-full block text-center py-2.5 rounded-xl bg-[#2ea843] hover:bg-[#268f38] text-white text-xs font-bold transition-colors">
+      Apply to Next Order
+    </a>
+  </div>
+</div>
+
+<!-- Interactive Wallet Modal -->
+<div id="modal-wallet" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs hidden flex items-center justify-center p-4">
+  <div class="bg-[#071911] text-white rounded-3xl border border-[#1a3a29] max-w-md w-full p-6 shadow-2xl relative">
+    <button type="button" id="btn-close-wallet" class="absolute top-5 right-5 text-gray-400 hover:text-white p-1 text-base cursor-pointer">✕</button>
+    <div class="w-12 h-12 rounded-2xl bg-[#0f766e] text-white flex items-center justify-center mb-4 text-xl shadow-md">💳</div>
+    <h3 class="text-lg font-serif font-bold text-white mb-1">Kshithija Wallet</h3>
+    <p class="text-xs text-[#8ea998] mb-4">Cashback, rewards balance and store credits.</p>
+    <div class="p-4 rounded-2xl bg-white/5 border border-white/10 mb-5">
+      <span class="text-xs text-[#8ea998] block">Available Credits</span>
+      <span class="text-2xl font-serif font-bold text-emerald-400">₹250.00</span>
+      <span class="text-[11px] text-[#8ea998] block mt-1">✓ Automatically applied at checkout</span>
+    </div>
+    <a href="/products" class="w-full block text-center py-2.5 rounded-xl bg-[#2ea843] hover:bg-[#268f38] text-white text-xs font-bold transition-colors">
+      Browse Products →
+    </a>
+  </div>
+</div>
+
+<script>
+  import { getStoredUser, logout } from '@lib/auth';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // Populate User Identity if logged in
+    const user = getStoredUser();
+    const nameEl = document.getElementById('sidebar-name');
+    const emailEl = document.getElementById('sidebar-email');
+    const avatarTextEl = document.getElementById('sidebar-avatar-text');
+
+    if (user) {
+      const displayName = user.displayName || `${user.firstName || ''} ${user.lastName || ''}`.trim() || user.username || 'Jese Leos (Personal)';
+      const initials = (user.firstName?.[0] || displayName[0] || 'J') + (user.lastName?.[0] || 'L');
+      if (nameEl) nameEl.textContent = displayName;
+      if (emailEl) emailEl.textContent = user.email || 'jese@flowbite.com';
+      if (avatarTextEl) avatarTextEl.textContent = initials.toUpperCase();
+    }
+
+    // Modal listeners
+    const modalGifts = document.getElementById('modal-gifts');
+    const modalWallet = document.getElementById('modal-wallet');
+
+    document.getElementById('btn-sidebar-gifts')?.addEventListener('click', () => {
+      modalGifts?.classList.remove('hidden');
+    });
+    document.getElementById('btn-close-gifts')?.addEventListener('click', () => {
+      modalGifts?.classList.add('hidden');
+    });
+
+    document.getElementById('btn-sidebar-wallet')?.addEventListener('click', () => {
+      modalWallet?.classList.remove('hidden');
+    });
+    document.getElementById('btn-close-wallet')?.addEventListener('click', () => {
+      modalWallet?.classList.add('hidden');
+    });
+
+    // Logout
+    document.getElementById('btn-sidebar-logout')?.addEventListener('click', () => {
+      if (confirm('Are you sure you want to log out?')) {
+        logout('/login');
+      }
+    });
+  });
+</script>

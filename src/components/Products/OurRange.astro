@@ -1,0 +1,341 @@
+---
+// src/components/Products/OurRange.astro - Full Catalog with Tabs (All Products / Beauty / Wellness)
+import { getProducts, type Product } from '../../lib/products';
+
+interface Props {
+  activeCategory?: 'all' | 'beauty' | 'wellness';
+  sectionTitle?: string;
+  heading?: string;
+  showTabs?: boolean;
+  strictCategory?: boolean;
+  showGuarantees?: boolean;
+}
+
+const {
+  activeCategory = 'all',
+  sectionTitle = 'Our Range',
+  heading = activeCategory === 'beauty' ? 'Beauty Products' : activeCategory === 'wellness' ? 'Wellness Products' : 'All Products',
+  showTabs = activeCategory === 'all',
+  strictCategory = activeCategory !== 'all',
+  showGuarantees = activeCategory !== 'wellness',
+} = Astro.props;
+
+// Fetch live products directly from WordPress / WooCommerce Store API
+const allProducts = await getProducts();
+
+// Filter products: if strictCategory is true, ONLY include products of activeCategory
+const displayProducts = strictCategory && activeCategory !== 'all'
+  ? allProducts.filter((p) => p.catalogCategory === activeCategory)
+  : allProducts;
+
+const guarantees = [
+  {
+    title: 'Lab Tested',
+    description: 'Our Natural personal care products are verified for purity and efficacy.',
+  },
+  {
+    title: '100% Natural',
+    description: 'No petroleum jelly, parabens, or synthetic preservatives',
+  },
+  {
+    title: 'All Skin Types',
+    description: 'Gentle formulas crafted for even sensitive skin',
+  },
+    {
+    title: 'Chemical-Free',
+    description: 'Kshithija Natural personal care products are harsh additives',
+  },
+];
+
+const categories = [
+  { id: 'all', label: 'ALL PRODUCTS', href: '/products' },
+  { id: 'beauty', label: 'BEAUTY', href: '/beauty' },
+  { id: 'wellness', label: 'WELLNESS', href: '/wellness-products' },
+];
+---
+
+<section 
+  id="catalog" 
+  class="relative w-full bg-[#fbf9f4] py-8 sm:py-12 px-4 sm:px-6 lg:px-8 border-t border-[#e8dfcf] scroll-mt-20"
+>
+  <div class="max-w-7xl mx-auto">
+    
+    <!-- Section Header (Exact match to reference image) -->
+    <div class="mb-5 sm:mb-6 text-left">
+      <span class="text-xs sm:text-[13px] font-semibold text-[#1c643b] tracking-wider uppercase block mb-1">
+        {sectionTitle}
+      </span>
+      <h2 class="text-3xl sm:text-4xl lg:text-[40px] font-serif font-medium text-[#082213] tracking-tight">
+        {heading}
+      </h2>
+    </div>
+
+    <!-- Guarantees 4-Column Banner (Exact match to reference image; hidden on Wellness page) -->
+    {showGuarantees && (
+      <div class="bg-[#f4ede0] border border-[#e5dec9] rounded-2xl p-6 sm:p-8 mb-8 sm:mb-10 shadow-2xs">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 sm:gap-8">
+          {guarantees.map((item) => (
+            <div class="flex flex-col items-start text-left">
+              <!-- Botanical Leaf-in-Droplet Icon -->
+              <div class="mb-3 text-[#1c643b]">
+                <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" />
+                  <path d="M12 9c-1.8 1.8-1.8 4.2 0 6 1.8-1.8 1.8-4.2 0-6z" fill="currentColor" fill-opacity="0.22" />
+                  <path d="M12 9v6" />
+                </svg>
+              </div>
+              
+              <!-- Title in Serif font matching reference image -->
+              <h3 class="text-lg sm:text-xl font-serif font-medium text-[#082213] mb-2 tracking-tight">
+                {item.title}
+              </h3>
+              
+              <!-- Description -->
+              <p class="text-xs sm:text-[16px] text-[#4d5e52] leading-relaxed">
+                {item.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+
+
+    <!-- Category Filter Tabs: Rendered only when showTabs is true (on All Products page) -->
+    {showTabs && (
+      <div class="flex items-center justify-center gap-1.5 sm:gap-2 mb-8 sm:mb-10 flex-wrap" role="tablist">
+        {categories.map((cat) => {
+          const isActive = cat.id === activeCategory;
+          return (
+            <button
+              type="button"
+              data-category-target={cat.id}
+              data-page-href={cat.href}
+              role="tab"
+              aria-selected={isActive ? 'true' : 'false'}
+              class={`catalog-tab-btn px-5 sm:px-6 py-2 sm:py-2.5 text-xs sm:text-[13px] font-bold tracking-wider uppercase transition-all duration-200 cursor-pointer rounded-xs select-none ${
+                isActive
+                  ? 'bg-[#082213] text-white shadow-xs'
+                  : 'bg-[#eee8db] text-[#33463a] hover:bg-[#e2dac9] hover:text-[#082213]'
+              }`}
+            >
+              {cat.label}
+            </button>
+          );
+        })}
+      </div>
+    )}
+    <!-- Product Grid (4 Columns matching screenshot) -->
+    <div 
+      id="products-catalog-grid"
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 items-stretch"
+    >
+      {displayProducts.map((product) => {
+        const isInitialVisible =
+          strictCategory || activeCategory === 'all' || product.catalogCategory === activeCategory;
+
+        // WhatsApp Direct Order Link
+        const waMsg = encodeURIComponent(
+          `Hello Kshithija Enterprises, I am interested in ordering: ${product.name} (${product.price}). Please share ordering details.`
+        );
+        const orderUrl = `https://wa.me/919481973468?text=${waMsg}`;
+
+        return (
+          <article
+            data-product-card
+            data-catalog-category={product.catalogCategory}
+            class={`product-card group relative flex flex-col items-center text-center bg-white rounded-2xl p-4 sm:p-5 border border-[#e8dfcf] shadow-xs hover:shadow-xl transition-all duration-300 ${
+              isInitialVisible ? 'flex' : 'hidden'
+            }`}
+          >
+            <!-- Product Image Container (Clickable -> Product Detail Page) -->
+            <a 
+              href={`/product/${product.id}`}
+              class="relative w-full aspect-square rounded-xl overflow-hidden bg-[#faf7f2] mb-3.5 flex items-center justify-center cursor-pointer block"
+              aria-label={`View ${product.name} details`}
+            >
+              <img
+                src={product.image}
+                alt={product.name}
+                loading="lazy"
+                class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                onerror={product.fallbackImage ? `if(this.src !== '${product.fallbackImage}') { this.src = '${product.fallbackImage}'; }` : undefined}
+              />
+
+              <!-- Circular Olive/Gold Sale! Badge or Sold Out Badge -->
+              {(!product.inStock || product.badge === 'Sold Out') ? (
+                <div 
+                  class="absolute top-2.5 right-2.5 px-2.5 py-1 rounded-full bg-rose-700 text-white text-[10px] font-bold shadow-md tracking-tight select-none pointer-events-none uppercase"
+                  aria-label="Sold Out"
+                >
+                  Sold Out
+                </div>
+              ) : (product.onSale || product.badge === 'Sale!') ? (
+                <div 
+                  class="absolute top-2.5 right-2.5 w-10 h-10 rounded-full bg-[#858012] text-white text-[11px] font-bold flex items-center justify-center shadow-md transform rotate-[-4deg] tracking-tight select-none pointer-events-none"
+                  aria-label="On Sale"
+                >
+                  Sale!
+                </div>
+              ) : null}
+            </a>
+
+         
+            <a 
+              href={`/product/${product.id}`}
+              class="block w-full"
+            >
+              <h3 class="text-xs sm:text-[13.5px] font-semibold text-[#0c2a1a] leading-snug line-clamp-2 min-h-[38px] flex items-center justify-center mb-2 px-1 hover:text-[#1c643b] transition-colors">
+                {product.name}
+              </h3>
+            </a>
+
+
+            <div class="flex items-center justify-center gap-2 mb-3.5">
+              {product.originalPrice && product.onSale ? (
+                <>
+                  <span class="text-xs sm:text-[13px] text-gray-500 line-through font-normal">
+                    {product.originalPrice}
+                  </span>
+                  <span class="text-xs sm:text-[14px] font-bold text-[#0c2a1a] underline underline-offset-2">
+                    {product.price}
+                  </span>
+                </>
+              ) : (
+                <span class="text-xs sm:text-[14px] font-semibold text-[#0c2a1a]">
+                  {product.price}
+                </span>
+              )}
+            </div>
+
+          
+            <!-- Action Buttons: If Sold Out -> Full-Width "View Details"; If In Stock -> "View Details" + "Add to Cart" -->
+            <div class="mt-auto w-full pt-2 flex items-center gap-1.5">
+              {(!product.inStock || product.badge === 'Sold Out') ? (
+                /* Sold Out: View Details Only (No Add to Cart button) */
+                <a
+                  href={`/product/${product.id}`}
+                  class="w-full inline-flex items-center justify-center px-3 py-2 rounded-lg bg-[#f4ede0] hover:bg-[#eae0cf] text-[#0c2a1a] border border-[#ded5c5] text-xs font-semibold tracking-tight transition-all text-center cursor-pointer hover:shadow-xs"
+                  title={`View ${product.name} details`}
+                >
+                  <span>View Details (Sold Out)</span>
+                </a>
+              ) : (
+                /* In Stock: Both View Details and Add to Cart */
+                <>
+                  <a
+                    href={`/product/${product.id}`}
+                    class="flex-1 min-w-0 inline-flex items-center justify-center px-2 py-2 rounded-lg bg-[#f4ede0] hover:bg-[#eae0cf] text-[#0c2a1a] border border-[#ded5c5] text-[11px] sm:text-xs font-semibold tracking-tight transition-all text-center whitespace-nowrap cursor-pointer hover:shadow-xs"
+                    title={`View ${product.name} details`}
+                  >
+                    <span>View Details</span>
+                  </a>
+
+                  <button
+                    type="button"
+                    data-add-to-cart
+                    data-product-id={product.id}
+                    data-product-name={product.name}
+                    data-product-price={product.price}
+                    data-product-image={product.image}
+                    class="flex-1 min-w-0 inline-flex items-center justify-center gap-1 px-2 py-2 rounded-lg bg-[#164e2d] hover:bg-[#0c3920] active:scale-95 text-white text-[11px] sm:text-xs font-semibold tracking-tight transition-all shadow-xs hover:shadow-md cursor-pointer text-center whitespace-nowrap"
+                    title={`Add ${product.name} to cart`}
+                  >
+                    <svg class="w-3.5 h-3.5 fill-none stroke-current stroke-2 shrink-0" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                    <span class="btn-label">Add to cart</span>
+                  </button>
+                </>
+              )}
+            </div>
+          </article>
+        );
+      })}
+    </div>
+
+    <!-- Empty State (Fallback) -->
+    <div 
+      id="products-empty-state" 
+      class="hidden py-12 text-center"
+    >
+      <p class="text-sm text-[#4d5e52]">No products found in this category.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- Client-side Interactive Tab Filtering (Active only when tabs are enabled) -->
+{showTabs && (
+  <script>
+    function setupCatalogTabs() {
+      const tabButtons = document.querySelectorAll<HTMLButtonElement>('.catalog-tab-btn');
+      const productCards = document.querySelectorAll<HTMLElement>('[data-product-card]');
+      const emptyState = document.getElementById('products-empty-state');
+
+      if (!tabButtons.length || !productCards.length) return;
+
+      function activateTab(targetCategory: string) {
+        // 1. Update button styling
+        tabButtons.forEach((btn) => {
+          const isMatch = btn.getAttribute('data-category-target') === targetCategory;
+          btn.setAttribute('aria-selected', isMatch ? 'true' : 'false');
+
+          if (isMatch) {
+            btn.classList.remove('bg-[#eee8db]', 'text-[#33463a]', 'hover:bg-[#e2dac9]', 'hover:text-[#082213]');
+            btn.classList.add('bg-[#082213]', 'text-white', 'shadow-xs');
+          } else {
+            btn.classList.remove('bg-[#082213]', 'text-white', 'shadow-xs');
+            btn.classList.add('bg-[#eee8db]', 'text-[#33463a]', 'hover:bg-[#e2dac9]', 'hover:text-[#082213]');
+          }
+        });
+
+        // 2. Filter product cards with smooth transition
+        let visibleCount = 0;
+        productCards.forEach((card) => {
+          const cardCat = card.getAttribute('data-catalog-category');
+          const shouldShow = targetCategory === 'all' || cardCat === targetCategory;
+
+          if (shouldShow) {
+            card.classList.remove('hidden');
+            card.classList.add('flex');
+            visibleCount++;
+          } else {
+            card.classList.add('hidden');
+            card.classList.remove('flex');
+          }
+        });
+
+        if (emptyState) {
+          if (visibleCount === 0) {
+            emptyState.classList.remove('hidden');
+          } else {
+            emptyState.classList.add('hidden');
+          }
+        }
+      }
+
+      tabButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const targetCategory = btn.getAttribute('data-category-target');
+          if (!targetCategory) return;
+          activateTab(targetCategory);
+        });
+      });
+
+      // Check URL parameters on page load (e.g. ?category=wellness)
+      const urlParams = new URLSearchParams(window.location.search);
+      const categoryParam = urlParams.get('category');
+      if (categoryParam && ['all', 'beauty', 'wellness'].includes(categoryParam)) {
+        activateTab(categoryParam);
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', setupCatalogTabs);
+    } else {
+      setupCatalogTabs();
+    }
+    document.addEventListener('astro:page-load', setupCatalogTabs);
+  </script>
+)}

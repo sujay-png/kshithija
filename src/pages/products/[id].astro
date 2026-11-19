@@ -1,0 +1,49 @@
+---
+// src/pages/products/[id].astro
+// Backward compatibility redirect from /products/[id] to /product/[id]
+import { getProducts } from '../../lib/products';
+
+export async function getStaticPaths() {
+  const products = await getProducts();
+  const paths = [];
+
+  for (const product of products) {
+    paths.push({
+      params: { id: product.id },
+      props: { targetId: product.id },
+    });
+
+    if (product.aliasIds) {
+      for (const alias of product.aliasIds) {
+        paths.push({
+          params: { id: alias },
+          props: { targetId: product.id },
+        });
+      }
+    }
+  }
+
+  return paths;
+}
+
+const { id } = Astro.params;
+const { targetId } = Astro.props;
+const finalId = targetId || id;
+const targetUrl = `/product/${finalId}/`;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" content={`0;url=${targetUrl}`} />
+    <link rel="canonical" href={`https://kshithija.in/product/${finalId}`} />
+    <script is:inline define:vars={{ targetUrl }}>
+      window.location.replace(targetUrl);
+    </script>
+    <title>Redirecting to {targetUrl}...</title>
+  </head>
+  <body>
+    <p>Redirecting to <a href={targetUrl}>{targetUrl}</a>...</p>
+  </body>
+</html>

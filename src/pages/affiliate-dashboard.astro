@@ -1,0 +1,972 @@
+---
+// src/pages/affiliate-dashboard.astro
+// Luxury Dedicated Affiliate Dashboard & Partner Portal for Kshithija Enterprises
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Affiliate Partner Dashboard & Portal | Kshithija Enterprises"
+  description="Official Kshithija Enterprises Affiliate Partner Control Center. Track real-time commissions, generate custom referral links and discount coupons, and monitor payouts."
+>
+
+  <main class="min-h-screen bg-[#fcfaf6] text-[#082213] relative overflow-hidden py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
+    
+    <!-- Ambient Botanical Glows & Subtle Organic Accents -->
+    <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-[#2ea843]/6 rounded-full blur-3xl pointer-events-none select-none"></div>
+    <div class="absolute -bottom-32 right-10 w-96 h-96 bg-[#c99f5b]/8 rounded-full blur-3xl pointer-events-none select-none"></div>
+
+    <div class="max-w-7xl mx-auto relative z-10">
+
+      <!-- Breadcrumbs -->
+      <nav aria-label="Breadcrumb" class="mb-6 flex items-center justify-between">
+        <ol class="inline-flex items-center gap-2 text-xs text-[#5a6e61] bg-white/80 backdrop-blur-xs px-3.5 py-1.5 rounded-full border border-[#ded5c5] shadow-2xs">
+          <li>
+            <a href="/" class="hover:text-[#164e2d] transition-colors">Home</a>
+          </li>
+          <li class="text-[#a4b5aa]">/</li>
+          <li>
+            <a href="/affiliate-registration" class="hover:text-[#164e2d] transition-colors">Affiliate Program</a>
+          </li>
+          <li class="text-[#a4b5aa]">/</li>
+          <li class="font-semibold text-[#082213] tracking-wide" aria-current="page">Partner Dashboard</li>
+        </ol>
+
+      
+        
+      </nav>
+
+      <!-- ==============================================================
+           STATE 1: LOADING SKELETON
+           ============================================================== -->
+      <div id="state-loading" class="bg-white rounded-3xl border border-[#ded5c5] p-12 text-center text-[#5a6e61] shadow-sm my-8">
+        <div class="inline-block animate-spin rounded-full h-10 w-10 border-3 border-[#164e2d] border-t-transparent mb-4"></div>
+        <h3 class="text-base font-serif font-bold text-[#082213]">Loading Affiliate Control Center...</h3>
+        <p class="text-xs text-[#5a6e61] mt-1">Connecting to Kshithija partner authentication system</p>
+      </div>
+
+      <!-- Instant inline script: Prevents spinner hanging and immediately shows correct view -->
+      <script is:inline>
+        (function() {
+          try {
+            var token = localStorage.getItem('kshithija_auth_token');
+            var userRaw = localStorage.getItem('kshithija_auth_user');
+            var loader = document.getElementById('state-loading');
+            var guest = document.getElementById('view-guest');
+            var loggedIn = document.getElementById('view-logged-in');
+            if (token && userRaw) {
+              if (loader) loader.classList.add('hidden');
+              if (loggedIn) loggedIn.classList.remove('hidden');
+            } else {
+              if (loader) loader.classList.add('hidden');
+              if (guest) guest.classList.remove('hidden');
+            }
+          } catch(e) {}
+        })();
+      </script>
+
+      <!-- ==============================================================
+           STATE 2: GUEST / SIGN-IN REQUIRED
+           ============================================================== -->
+      <div id="view-guest" class="hidden bg-white rounded-3xl border border-[#ded5c5] p-8 sm:p-12 text-center shadow-sm my-8 max-w-xl mx-auto">
+        <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-[#eaf4ed] text-[#164e2d] border border-[#c2dfcb] flex items-center justify-center text-2xl shadow-xs">
+          🔒
+        </div>
+        <h2 class="text-xl sm:text-2xl font-serif font-bold text-[#082213] mb-2">
+          Affiliate Partner Sign In Required
+        </h2>
+        <p class="text-xs sm:text-sm text-[#5a6e61] max-w-sm mx-auto mb-6 leading-relaxed">
+          Please log in with your Kshithija partner credentials to view your live commissions, referral links, and payouts.
+        </p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+          <a
+            href="/affiliate-login"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#164e2d] hover:bg-[#0c3920] active:scale-95 text-white text-xs font-bold uppercase tracking-wider transition-all shadow-md cursor-pointer"
+          >
+            <span>Go to Affiliate Login</span>
+            <span>→</span>
+          </a>
+          <a
+            href="/affiliate-registration"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#faf8f4] hover:bg-[#f0eae0] text-[#082213] text-xs font-semibold border border-[#ded5c5] transition-all cursor-pointer"
+          >
+            <span>Become an Affiliate</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- ==============================================================
+           STATE 3: LOGGED-IN AFFILIATE PARTNER DASHBOARD
+           ============================================================== -->
+      <div id="view-logged-in" class="hidden space-y-8">
+
+
+
+        <!-- 1. Hero Header Banner (Deep Forest Green & Gold Ambient) -->
+        <div class="relative bg-gradient-to-br from-[#071a10] via-[#0c2a1a] to-[#143d26] text-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-[#235837] shadow-xl overflow-hidden">
+          
+          <!-- Decorative Watermark & Light Accents -->
+          <div class="absolute -right-16 -top-16 w-80 h-80 opacity-10 pointer-events-none select-none text-white">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L6.66,19.7C7.14,19.87 7.64,20 8,20C19,20 22,3 22,3C21,5 14,5.25 9,6.25C4,7.25 2,11.5 2,13.5C2,15.5 3.75,17.25 3.75,17.25C7,8 17,8 17,8Z"/>
+            </svg>
+          </div>
+          <div class="absolute -bottom-24 left-1/3 w-80 h-80 bg-[#c99f5b]/15 rounded-full blur-3xl pointer-events-none"></div>
+
+          <div class="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+            
+            <!-- Left: Avatar + Identity + Status -->
+            <div class="flex items-center gap-4 sm:gap-5 min-w-0">
+              <div class="relative shrink-0">
+                <div id="partner-avatar" class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-[#1c5535] to-[#082213] border-2 border-[#a3cf54]/50 text-white flex items-center justify-center font-serif font-bold text-xl sm:text-2xl shadow-lg shadow-black/30">
+                  <span id="partner-avatar-text">KA</span>
+                </div>
+                <span class="absolute -bottom-1 -right-1 w-5 h-5 bg-[#2ea843] border-2 border-[#071a10] rounded-full flex items-center justify-center text-[10px]" title="Active Ambassador">
+                  ✓
+                </span>
+              </div>
+
+              <div class="min-w-0">
+                <div class="flex flex-wrap items-center gap-2 mb-1">
+                
+                </div>
+
+                <h1 class="text-xl sm:text-2xl lg:text-3xl font-serif font-bold text-white tracking-tight truncate">
+                  Welcome back, <span id="partner-display-name">Ambassador</span>!
+                </h1>
+
+                <div class="flex flex-wrap items-center gap-3 text-xs text-[#9ebaa7] mt-1">
+                  
+                  <span>Username: <strong id="partner-username" class="text-white">@partner</strong></span>
+                  <span>•</span>
+                  <span id="partner-email" class="hidden sm:inline text-[#9ebaa7]">partner@kshithija.in</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Quick Action Controls -->
+            <div class="flex flex-wrap items-center gap-2.5 shrink-0">
+              <button
+                type="button"
+                id="btn-quick-copy-link"
+                class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#2ea843] to-[#208332] hover:from-[#35be4d] hover:to-[#26973a] text-white text-xs font-bold uppercase tracking-wider transition-all shadow-md active:scale-95 cursor-pointer"
+              >
+                <svg class="w-4 h-4 fill-none stroke-current stroke-2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                </svg>
+                <span id="btn-quick-copy-text">Copy Referral Link</span>
+              </button>
+
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 2. Performance Metrics KPI Grid (4 High Impact Cards) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          
+          <!-- Card 1: Total Orders -->
+          <div class="bg-white rounded-3xl p-6 border border-[#ded5c5] shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold uppercase tracking-wider text-[#5a6e61]">Total Orders</span>
+              <div class="w-9 h-9 rounded-xl bg-[#eaf4ed] text-[#164e2d] flex items-center justify-center text-base">
+                🛍️
+              </div>
+            </div>
+            <div id="stat-total-orders" class="text-2xl sm:text-3xl font-serif font-bold text-[#082213] tracking-tight mb-1.5">
+              0 Orders
+            </div>
+            <div class="flex items-center gap-1.5 text-xs text-[#5a6e61]">
+              <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+              <span>Orders placed with your coupon</span>
+            </div>
+          </div>
+
+          <!-- Card 2: Total Sales -->
+          <div class="bg-white rounded-3xl p-6 border border-[#ded5c5] shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold uppercase tracking-wider text-[#5a6e61]">Total Sales</span>
+              <div class="w-9 h-9 rounded-xl bg-[#f0f4ff] text-[#2563eb] flex items-center justify-center text-base">
+                📈
+              </div>
+            </div>
+            <div id="stat-total-sales" class="text-2xl sm:text-3xl font-serif font-bold text-[#082213] tracking-tight mb-1.5">
+              ₹0
+            </div>
+            <div class="flex items-center gap-1.5 text-xs text-[#5a6e61]">
+              <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+              <span>Gross sales value generated</span>
+            </div>
+          </div>
+
+          <!-- Card 3: Sales Rewards Earned -->
+          <div class="bg-white rounded-3xl p-6 border border-[#ded5c5] shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold uppercase tracking-wider text-[#5a6e61]">Sales Rewards Earned</span>
+              <div class="w-9 h-9 rounded-xl bg-[#eaf4ed] text-[#164e2d] flex items-center justify-center text-base">
+                💰
+              </div>
+            </div>
+            <div id="stat-sales-rewards-earned" class="text-2xl sm:text-3xl font-serif font-bold text-emerald-800 tracking-tight mb-1.5">
+              ₹0
+            </div>
+            <div class="flex items-center gap-1.5 text-xs text-[#5a6e61]">
+              <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+              <span>10% reward on completed orders</span>
+            </div>
+          </div>
+
+          <!-- Card 4: Pending Sales Rewards -->
+          <div class="bg-white rounded-3xl p-6 border border-[#ded5c5] shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-bold uppercase tracking-wider text-[#5a6e61]">Pending Sales Rewards</span>
+              <div class="w-9 h-9 rounded-xl bg-[#fef7ea] text-[#b45309] flex items-center justify-center text-base">
+                ⏳
+              </div>
+            </div>
+            <div id="stat-pending-sales-rewards" class="text-2xl sm:text-3xl font-serif font-bold text-amber-700 tracking-tight mb-1.5">
+              ₹0
+            </div>
+            <div class="flex items-center gap-1.5 text-xs text-[#5a6e61]">
+              <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+              <span>Processing / awaiting delivery</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- 3. Real-Time Referral Link & Custom Coupon Suite (Interactive) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          <!-- Left: Dedicated Referral Link Builder (7 cols) -->
+          <div class="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-8 border border-[#ded5c5] shadow-sm">
+            <div class="flex items-center justify-between mb-4 pb-3 border-b border-[#f0eae0]">
+              <div>
+               
+              </div>
+            
+            </div>
+
+        
+
+            <!-- Link Box with Copy Button -->
+            <div class="relative mb-5">
+              <label for="affiliate-link-input" class="block text-xs font-bold uppercase tracking-wider text-[#082213] mb-1.5">
+                Generated Affiliate URL
+              </label>
+              <div class="flex flex-col sm:flex-row items-stretch gap-2">
+                <input
+                  type="text"
+                  id="affiliate-link-input"
+                  readonly
+                  value="https://kshithija.in/?ref=partner"
+                  class="flex-1 px-4 py-3 rounded-xl bg-[#f4ede0]/50 border border-[#ded5c5] text-xs sm:text-sm font-mono text-[#082213] select-all focus:outline-none"
+                />
+                <button
+                  type="button"
+                  id="btn-copy-ref-link"
+                  class="px-5 py-3 rounded-xl bg-[#164e2d] hover:bg-[#0c3920] active:scale-95 text-white text-xs font-bold uppercase tracking-wider transition-all shadow-sm flex items-center justify-center gap-1.5 shrink-0 cursor-pointer"
+                >
+                  <span id="btn-copy-ref-text">Copy Link</span>
+                </button>
+              </div>
+             
+            </div>
+
+         
+
+          </div>
+
+          <!-- Right: Custom Follower Coupon & Ambassador Tier (5 cols) -->
+          <div class="lg:col-span-5 space-y-6">
+            
+            <!-- Exclusive Coupon Card -->
+            <div class="bg-gradient-to-br from-[#faf7f0] to-[#f4ede0] rounded-3xl p-6 sm:p-7 border-2 border-dashed border-[#c99f5b] shadow-sm relative overflow-hidden">
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-[11px] font-bold uppercase tracking-wider text-[#926c27] bg-[#fbf5e6] px-2.5 py-1 rounded-full border border-[#e8d2a6]">
+                  Exclusive Follower Discount
+                </span>
+                <span class="text-xl">🏷️</span>
+              </div>
+
+              <h3 class="text-base sm:text-lg font-serif font-bold text-[#082213] mb-1">
+                Your Personal Coupon Code
+              </h3>
+             
+              
+              <!-- Coupon Display Box -->
+              <div class="bg-white rounded-2xl p-4 border border-[#e2d5be] shadow-xs flex items-center justify-between gap-3 mb-3">
+                <div class="min-w-0">
+                  <span class="text-[10px] uppercase font-bold text-[#7c9082] block tracking-widest">Active Coupon</span>
+                  <span id="partner-coupon-code" class="text-lg sm:text-xl font-mono font-bold text-[#164e2d] tracking-wider truncate block">
+                    NAVNEET101
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  id="btn-copy-coupon"
+                  class="px-5 py-2.5 rounded-xl bg-[#164e2d] hover:bg-[#0c3920] active:scale-95 text-white text-xs font-bold transition-all shadow-xs shrink-0 cursor-pointer"
+                >
+                  <span id="btn-copy-coupon-text">Copy Code</span>
+                </button>
+              </div>
+
+          
+            </div>
+
+           
+          </div>
+
+        </div>
+
+        <!-- 4. Top Selling Products to Promote (High-Converting Catalog) -->
+        
+
+        <!-- 5. Recent Referral Activity Ledger (Commission History Table) -->
+        <div class="bg-white rounded-3xl p-6 sm:p-8 border border-[#ded5c5] shadow-sm">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5 pb-4 border-b border-[#f0eae0]">
+            <div>
+              <h2 class="text-xl sm:text-2xl font-serif font-bold text-[#082213] tracking-tight">
+                Recent Orders
+              </h2>
+              <p class="text-xs text-[#5a6e61] mt-0.5">Live orders placed by customers using your partner coupon code</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <span id="orders-count-badge" class="px-3 py-1 rounded-full text-xs font-semibold bg-[#eaf4ed] text-[#164e2d] border border-[#c4e1cc]">
+                Syncing with store...
+              </span>
+            </div>
+          </div>
+
+          <!-- Table Container -->
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead>
+                <tr class="border-b border-[#ded5c5] text-[#5a6e61] uppercase tracking-wider font-semibold text-[11px]">
+                  <th class="py-3 px-3">Date</th>
+                  <th class="py-3 px-3">Order Ref</th>
+                  <th class="py-3 px-3">Customer</th>
+                  <th class="py-3 px-3">Products Purchased</th>
+                  <th class="py-3 px-3">Order Total</th>
+                  <th class="py-3 px-3">Your Commission</th>
+                  <th class="py-3 px-3 text-right">Status</th>
+                </tr>
+              </thead>
+              <tbody id="affiliate-orders-tbody" class="divide-y divide-[#f0eae0] text-[#082213]">
+                <tr>
+                  <td colspan="7" class="py-8 px-4 text-center text-[#5a6e61]">
+                    <div class="inline-flex items-center gap-2 text-xs">
+                      <svg class="animate-spin h-4 w-4 text-[#164e2d]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+                      </svg>
+                      <span>Loading orders from WordPress store...</span>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+       
+
+
+      </div>
+
+    </div>
+  </main>
+
+</Layout>
+
+<!-- Client Authentication & Dynamic Dashboard Controller -->
+<script>
+  import { loginWithWordPress, isAuthenticated, getStoredUser, logout, getAffiliateCoupon, getAffiliateOrders } from '../lib/auth';
+
+  function escapeHtml(str: any): string {
+    if (!str && str !== 0) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
+  function initAffiliateDashboard() {
+    const loadingState = document.getElementById('state-loading');
+    const guestView = document.getElementById('view-guest');
+    const loggedInView = document.getElementById('view-logged-in');
+    const statusPill = document.getElementById('top-partner-status-pill');
+
+    // Guest elements
+    const loginForm = document.getElementById('affiliate-login-form') as HTMLFormElement;
+    const userField = document.getElementById('user_login') as HTMLInputElement;
+    const pwdInput = document.getElementById('user_pass') as HTMLInputElement;
+    const rememberCheckbox = document.getElementById('rememberme') as HTMLInputElement;
+    const togglePwdBtn = document.getElementById('toggle-pwd-btn');
+    const loginBtn = document.getElementById('btn-login-submit') as HTMLButtonElement;
+    const loginBtnText = document.getElementById('btn-login-text');
+    const errorAlert = document.getElementById('login-error-alert');
+    const errorText = document.getElementById('login-error-text');
+    const successAlert = document.getElementById('login-success-alert');
+
+    // Password visibility toggle
+    if (togglePwdBtn && pwdInput) {
+      togglePwdBtn.addEventListener('click', () => {
+        const isPwd = pwdInput.type === 'password';
+        pwdInput.type = isPwd ? 'text' : 'password';
+        togglePwdBtn.textContent = isPwd ? '🙈' : '👁️';
+      });
+    }
+
+    // Determine current user state
+    function evaluateAuthState() {
+      try {
+        const loggedIn = isAuthenticated();
+        const user = getStoredUser();
+
+        if (loadingState) loadingState.classList.add('hidden');
+
+        if (loggedIn && user) {
+          showLoggedInDashboard(user);
+        } else {
+          showGuestPortal();
+        }
+      } catch (err) {
+        console.error('Affiliate dashboard auth evaluation error:', err);
+        if (loadingState) loadingState.classList.add('hidden');
+        if (guestView) guestView.classList.remove('hidden');
+      }
+    }
+
+    function showGuestPortal() {
+      if (guestView) guestView.classList.remove('hidden');
+      if (loggedInView) loggedInView.classList.add('hidden');
+      if (statusPill) statusPill.classList.add('hidden');
+    }
+
+    function showLoggedInDashboard(user: any) {
+      if (guestView) guestView.classList.add('hidden');
+      if (loggedInView) loggedInView.classList.remove('hidden');
+      if (statusPill) statusPill.classList.remove('hidden');
+
+      const username = user.username || user.email?.split('@')[0] || 'partner';
+      const displayName = user.displayName || user.firstName || username;
+      const initials = (user.firstName?.[0] || username[0] || 'A').toUpperCase() + (user.lastName?.[0] || '').toUpperCase();
+
+      // Populate User Identity
+      const nameEl = document.getElementById('partner-display-name');
+      const userEl = document.getElementById('partner-username');
+      const emailEl = document.getElementById('partner-email');
+      const avatarText = document.getElementById('partner-avatar-text');
+      const idCode = document.getElementById('partner-id-code');
+
+      if (nameEl) nameEl.textContent = displayName;
+      if (userEl) userEl.textContent = `@${username}`;
+      if (emailEl && user.email) emailEl.textContent = user.email;
+      if (avatarText) avatarText.textContent = initials || 'KA';
+      if (idCode) idCode.textContent = `KSH-AFF-${user.id || '2026'}`;
+
+      // Check non-affiliate customer upgrade banner
+      const isAffiliate = user.isAffiliate || (Array.isArray(user.roles) && (user.roles.includes('affiliate') || user.roles.includes('affilate')));
+      const upgradeAlert = document.getElementById('customer-upgrade-alert');
+      if (upgradeAlert) {
+        if (!isAffiliate) {
+          upgradeAlert.classList.remove('hidden');
+        } else {
+          upgradeAlert.classList.add('hidden');
+        }
+      }
+
+      // Initialize Link Generator
+      setupReferralLinks(username);
+
+      // Initialize Personal WooCommerce Coupon & WordPress Sync
+      setupCouponManagement(username, user);
+
+      // Setup Social Sharing Links
+      setupSocialSharing(username);
+
+      // Setup Payout Settings
+      setupPayoutSettings(user);
+
+      // Fetch live orders & compute performance KPI metrics from WordPress
+      setupAffiliateOrdersAndMetrics();
+    }
+
+    // Referral Link Generator
+    function setupReferralLinks(username: string) {
+      const linkInput = document.getElementById('affiliate-link-input') as HTMLInputElement;
+      const copyBtn = document.getElementById('btn-copy-ref-link');
+      const copyText = document.getElementById('btn-copy-ref-text');
+      const quickCopyBtn = document.getElementById('btn-quick-copy-link');
+      const quickCopyText = document.getElementById('btn-quick-copy-text');
+
+      const domain = window.location.origin || 'https://kshithija.in';
+
+      const destinations: Record<string, string> = {
+        home: `${domain}/?ref=${encodeURIComponent(username)}`,
+        beauty: `${domain}/beauty?ref=${encodeURIComponent(username)}`,
+        wellness: `${domain}/wellness?ref=${encodeURIComponent(username)}`,
+        vishaka: `${domain}/product/vishaka-aloe-vera-multipurpose-skin-cream-80g?ref=${encodeURIComponent(username)}`,
+        growhair: `${domain}/product/grow-hair-30-g?ref=${encodeURIComponent(username)}`,
+        chaithanya: `${domain}/product/chaithanya-2000-plus?ref=${encodeURIComponent(username)}`,
+      };
+
+      if (linkInput) {
+        linkInput.value = destinations.home;
+      }
+
+      // Tab switcher
+      const tabBtns = document.querySelectorAll('.link-tab-btn');
+      tabBtns.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          tabBtns.forEach((b) => {
+            b.classList.remove('bg-[#164e2d]', 'text-white', 'border-[#164e2d]');
+            b.classList.add('bg-[#faf8f4]', 'text-[#082213]', 'border-[#ded5c5]');
+          });
+
+          const current = e.currentTarget as HTMLElement;
+          current.classList.add('bg-[#164e2d]', 'text-white', 'border-[#164e2d]');
+          current.classList.remove('bg-[#faf8f4]', 'text-[#082213]', 'border-[#ded5c5]');
+
+          const target = current.getAttribute('data-target') || 'home';
+          if (linkInput && destinations[target]) {
+            linkInput.value = destinations[target];
+          }
+        });
+      });
+
+      // Copy Main Link Button
+      function handleCopy(url: string, btnElement: HTMLElement | null, textEl: HTMLElement | null) {
+        navigator.clipboard.writeText(url).then(() => {
+          if (textEl) textEl.textContent = 'Copied! ✓';
+          setTimeout(() => {
+            if (textEl) textEl.textContent = 'Copy Link';
+          }, 2000);
+        }).catch(() => {
+          if (linkInput) {
+            linkInput.select();
+            document.execCommand('copy');
+            if (textEl) textEl.textContent = 'Copied! ✓';
+            setTimeout(() => {
+              if (textEl) textEl.textContent = 'Copy Link';
+            }, 2000);
+          }
+        });
+      }
+
+      if (copyBtn) {
+        copyBtn.addEventListener('click', () => {
+          const val = linkInput ? linkInput.value : destinations.home;
+          handleCopy(val, copyBtn, copyText);
+        });
+      }
+
+      if (quickCopyBtn) {
+        quickCopyBtn.addEventListener('click', () => {
+          handleCopy(destinations.home, quickCopyBtn, quickCopyText);
+        });
+      }
+
+      // Copy individual product link buttons
+      const prodButtons = document.querySelectorAll('.btn-copy-prod-link');
+      prodButtons.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          const currentBtn = e.currentTarget as HTMLButtonElement;
+          const slug = currentBtn.getAttribute('data-prod-slug');
+          const prodUrl = `${domain}/product/${slug}?ref=${encodeURIComponent(username)}`;
+          navigator.clipboard.writeText(prodUrl).then(() => {
+            const originalText = currentBtn.textContent;
+            currentBtn.textContent = 'Copied Link! ✓';
+            currentBtn.classList.add('bg-[#164e2d]', 'text-white');
+            setTimeout(() => {
+              currentBtn.textContent = originalText;
+              currentBtn.classList.remove('bg-[#164e2d]', 'text-white');
+            }, 2000);
+          });
+        });
+      });
+    }
+
+    // Automatic Follower Coupon Sync with WordPress WooCommerce
+    function setupCouponManagement(username: string, user: any) {
+      const partnerCouponCodeEl = document.getElementById('partner-coupon-code');
+      const couponWpStatusText = document.getElementById('coupon-wp-status-text');
+      const couponUsageBadge = document.getElementById('coupon-usage-badge');
+      const copyCouponBtn = document.getElementById('btn-copy-coupon');
+      const copyCouponText = document.getElementById('btn-copy-coupon-text');
+
+      // Dynamic Name + Number format for whoever logs in
+      function deriveNameNumberCode(u: any, uname: string): string {
+        let code = '';
+        if (u?.coupon?.code && !u.coupon.code.startsWith('KSHI-') && !u.coupon.code.startsWith('PARTNER') && !u.coupon.code.startsWith('AFFILIATE')) {
+          code = u.coupon.code.toUpperCase();
+        } else {
+          const firstName = u?.firstName || '';
+          const lastName = u?.lastName || '';
+          const cleanFullName = (firstName + lastName).replace(/[^A-Za-z0-9]/g, '').toUpperCase();
+          const cleanUsername = (uname || '').replace(/[^A-Za-z0-9]/g, '').toUpperCase();
+          code = cleanFullName || cleanUsername || 'AFFILIATE';
+        }
+
+        // Guarantee coupon code ends with numbers (e.g. SHRUTHI -> SHRUTHI101)
+        if (/\d+$/.test(code)) return code;
+        return `${code}101`;
+      }
+
+      let currentCode = deriveNameNumberCode(user, username);
+
+      if (partnerCouponCodeEl) partnerCouponCodeEl.textContent = currentCode;
+
+      // Copy Button Handler
+      if (copyCouponBtn) {
+        copyCouponBtn.addEventListener('click', () => {
+          navigator.clipboard.writeText(currentCode).then(() => {
+            if (copyCouponText) copyCouponText.textContent = 'Copied! ✓';
+            setTimeout(() => {
+              if (copyCouponText) copyCouponText.textContent = 'Copy Code';
+            }, 2000);
+          }).catch(() => {
+            if (copyCouponText) copyCouponText.textContent = 'Copied! ✓';
+          });
+        });
+      }
+
+      // Automatically fetch / create coupon in WordPress shop_coupon in the background
+      async function autoSyncWordPressCoupon() {
+        try {
+          const coupon = await getAffiliateCoupon();
+          if (coupon && coupon.code) {
+            let code = coupon.code.toUpperCase();
+            const isPlaceholder = code.startsWith('PARTNER') || code.startsWith('KSHI-') || code.startsWith('AFFILIATE');
+            
+            // If the coupon in WordPress has no numbers (e.g. SHRUTHI), append 101 and update in WordPress!
+            if (!/\d+$/.test(code)) {
+              code = `${code}101`;
+              try {
+                await saveAffiliateCoupon(code);
+              } catch (e) {}
+            } else if (isPlaceholder && currentCode !== code) {
+              code = currentCode;
+              try {
+                await saveAffiliateCoupon(code);
+              } catch (e) {}
+            }
+
+            currentCode = code;
+            if (partnerCouponCodeEl) partnerCouponCodeEl.textContent = currentCode;
+            if (couponWpStatusText) couponWpStatusText.textContent = `Active in Store · ${coupon.amount || 5}% Off Storewide`;
+            if (couponUsageBadge) couponUsageBadge.textContent = `${coupon.amount || 5}% Off (${coupon.usageCount || 0} uses)`;
+          }
+        } catch (err) {
+          console.warn('Automatic coupon sync note:', (err as Error).message);
+        }
+      }
+
+      autoSyncWordPressCoupon();
+    }
+
+    // Setup 1-Click Social Media Sharing
+    function setupSocialSharing(username: string) {
+      const domain = window.location.origin || 'https://kshithija.in';
+      const refUrl = `${domain}/?ref=${encodeURIComponent(username)}`;
+      const message = `🌿 Check out 100% natural, chemical-free Ayurvedic skincare and wellness formulations from Kshithija Enterprises (Mangaluru). Use my partner link for special member pricing: ${refUrl}`;
+
+      const waBtn = document.getElementById('share-whatsapp') as HTMLAnchorElement;
+      const tgBtn = document.getElementById('share-telegram') as HTMLAnchorElement;
+      const twBtn = document.getElementById('share-twitter') as HTMLAnchorElement;
+      const emBtn = document.getElementById('share-email') as HTMLAnchorElement;
+
+      if (waBtn) waBtn.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
+      if (tgBtn) tgBtn.href = `https://t.me/share/url?url=${encodeURIComponent(refUrl)}&text=${encodeURIComponent(message)}`;
+      if (twBtn) twBtn.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(message)}`;
+      if (emBtn) emBtn.href = `mailto:?subject=${encodeURIComponent('Authentic Botanical Wellness from Kshithija')}&body=${encodeURIComponent(message)}`;
+    }
+
+    // Setup Payout Settings
+    function setupPayoutSettings(user: any) {
+      const payoutForm = document.getElementById('payout-form') as HTMLFormElement;
+      if (!payoutForm) return;
+
+      const upiRadio = document.querySelector('input[name="payoutMethod"][value="upi"]') as HTMLInputElement;
+      const bankRadio = document.querySelector('input[name="payoutMethod"][value="bank"]') as HTMLInputElement;
+      const fieldUpi = document.getElementById('field-upi');
+      const fieldsBank = document.getElementById('fields-bank');
+      const upiInput = document.getElementById('payout-upi-id') as HTMLInputElement;
+      const bankNameInput = document.getElementById('payout-bank-name') as HTMLInputElement;
+      const bankAccInput = document.getElementById('payout-bank-account') as HTMLInputElement;
+      const bankIfscInput = document.getElementById('payout-bank-ifsc') as HTMLInputElement;
+      const saveMsg = document.getElementById('payout-save-msg');
+
+      // Load saved preferences from localStorage
+      const storageKey = `kshithija_payout_${user.id || user.username || 'default'}`;
+      const saved = localStorage.getItem(storageKey);
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          if (parsed.method === 'bank') {
+            if (bankRadio) bankRadio.checked = true;
+            if (fieldUpi) fieldUpi.classList.add('hidden');
+            if (fieldsBank) fieldsBank.classList.remove('hidden');
+          } else {
+            if (upiRadio) upiRadio.checked = true;
+            if (fieldUpi) fieldUpi.classList.remove('hidden');
+            if (fieldsBank) fieldsBank.classList.add('hidden');
+          }
+          if (upiInput && parsed.upi) upiInput.value = parsed.upi;
+          if (bankNameInput && parsed.bankName) bankNameInput.value = parsed.bankName;
+          if (bankAccInput && parsed.bankAcc) bankAccInput.value = parsed.bankAcc;
+          if (bankIfscInput && parsed.bankIfsc) bankIfscInput.value = parsed.bankIfsc;
+        } catch {}
+      }
+
+      // Method switcher
+      document.querySelectorAll('input[name="payoutMethod"]').forEach((radio) => {
+        radio.addEventListener('change', (e) => {
+          const val = (e.target as HTMLInputElement).value;
+          if (val === 'bank') {
+            if (fieldUpi) fieldUpi.classList.add('hidden');
+            if (fieldsBank) fieldsBank.classList.remove('hidden');
+          } else {
+            if (fieldUpi) fieldUpi.classList.remove('hidden');
+            if (fieldsBank) fieldsBank.classList.add('hidden');
+          }
+        });
+      });
+
+      // Submit handler
+      payoutForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const selectedMethod = (document.querySelector('input[name="payoutMethod"]:checked') as HTMLInputElement)?.value || 'upi';
+        const payload = {
+          method: selectedMethod,
+          upi: upiInput ? upiInput.value.trim() : '',
+          bankName: bankNameInput ? bankNameInput.value.trim() : '',
+          bankAcc: bankAccInput ? bankAccInput.value.trim() : '',
+          bankIfsc: bankIfscInput ? bankIfscInput.value.trim().toUpperCase() : '',
+          updatedAt: new Date().toISOString(),
+        };
+
+        localStorage.setItem(storageKey, JSON.stringify(payload));
+        if (saveMsg) {
+          saveMsg.classList.remove('hidden');
+          setTimeout(() => {
+            saveMsg.classList.add('hidden');
+          }, 3000);
+        }
+      });
+    }
+
+    // Fetch live orders & compute performance KPI metrics from WordPress
+    async function setupAffiliateOrdersAndMetrics() {
+      const statTotalOrders = document.getElementById('stat-total-orders');
+      const statTotalSales = document.getElementById('stat-total-sales');
+      const statSalesRewardsEarned = document.getElementById('stat-sales-rewards-earned');
+      const statPendingSalesRewards = document.getElementById('stat-pending-sales-rewards');
+      const ordersCountBadge = document.getElementById('orders-count-badge');
+      const ordersTbody = document.getElementById('affiliate-orders-tbody');
+
+      try {
+        const data = await getAffiliateOrders();
+        if (!data || !data.success) {
+          if (ordersCountBadge) ordersCountBadge.textContent = '0 Orders';
+          if (ordersTbody) {
+            ordersTbody.innerHTML = `
+              <tr>
+                <td colspan="7" class="py-12 px-4 text-center">
+                  <div class="max-w-sm mx-auto space-y-2">
+                    <div class="text-3xl">🛍️</div>
+                    <p class="font-serif font-bold text-base text-[#082213]">No orders placed yet</p>
+                    <p class="text-xs text-[#5a6e61]">When customers use your coupon code at checkout, their orders will appear here automatically with live commission tracking.</p>
+                  </div>
+                </td>
+              </tr>
+            `;
+          }
+          return;
+        }
+
+        const { summary, orders } = data;
+
+        // 1. Update the 4 KPI Cards
+        if (statTotalOrders) {
+          statTotalOrders.textContent = `${summary.totalOrders || 0} Orders`;
+        }
+        if (statTotalSales) {
+          statTotalSales.textContent = summary.totalSalesFormatted || `₹${summary.totalSales || 0}`;
+        }
+        if (statSalesRewardsEarned) {
+          statSalesRewardsEarned.textContent = summary.salesRewardsEarnedFormatted || `₹${summary.salesRewardsEarned || 0}`;
+        }
+        if (statPendingSalesRewards) {
+          statPendingSalesRewards.textContent = summary.pendingSalesRewardsFormatted || `₹${summary.pendingSalesRewards || 0}`;
+        }
+
+        if (ordersCountBadge) {
+          const count = orders?.length || 0;
+          ordersCountBadge.textContent = `${count} ${count === 1 ? 'Order' : 'Orders'} Tracked`;
+        }
+
+        // 2. Render Orders Table
+        if (ordersTbody) {
+          if (!orders || orders.length === 0) {
+            ordersTbody.innerHTML = `
+              <tr>
+                <td colspan="7" class="py-12 px-4 text-center">
+                  <div class="max-w-sm mx-auto space-y-2">
+                    <div class="text-3xl">🛍️</div>
+                    <p class="font-serif font-bold text-base text-[#082213]">No orders placed yet</p>
+                    <p class="text-xs text-[#5a6e61]">When customers use your coupon code at checkout, their orders will appear here automatically with live commission tracking.</p>
+                  </div>
+                </td>
+              </tr>
+            `;
+            return;
+          }
+
+          ordersTbody.innerHTML = orders.map((order) => {
+            const isCompleted = order.status === 'completed';
+            const isPending = ['processing', 'on-hold', 'pending'].includes(order.status);
+
+            let statusBadge = '';
+            if (isCompleted) {
+              statusBadge = `
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                  ✓ Completed
+                </span>
+              `;
+            } else if (isPending) {
+              statusBadge = `
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-200">
+                  ⏳ Pending (${escapeHtml(order.statusLabel || order.status)})
+                </span>
+              `;
+            } else {
+              statusBadge = `
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-gray-100 text-gray-700 border border-gray-200">
+                  ${escapeHtml(order.statusLabel || order.status)}
+                </span>
+              `;
+            }
+
+            return `
+              <tr class="hover:bg-[#faf8f4]/60 transition-colors">
+                <td class="py-3.5 px-3 font-medium whitespace-nowrap text-[#082213]">${escapeHtml(order.dateFormatted || order.date)}</td>
+                <td class="py-3.5 px-3 font-mono font-semibold text-[#164e2d] whitespace-nowrap">
+                  ${escapeHtml(order.orderNumber)}
+                  ${order.couponUsed ? `<span class="block text-[10px] font-mono text-[#5a6e61] font-normal">Coupon: ${escapeHtml(order.couponUsed)}</span>` : ''}
+                </td>
+                <td class="py-3.5 px-3 whitespace-nowrap font-medium text-[#082213]">${escapeHtml(order.customer || 'Customer')}</td>
+                <td class="py-3.5 px-3 text-[#5a6e61] max-w-xs truncate" title="${escapeHtml(order.itemsSummary)}">${escapeHtml(order.itemsSummary)}</td>
+                <td class="py-3.5 px-3 font-semibold text-[#082213] whitespace-nowrap">${escapeHtml(order.totalFormatted)}</td>
+                <td class="py-3.5 px-3 font-bold text-[#164e2d] whitespace-nowrap">${escapeHtml(order.commissionFormatted)}</td>
+                <td class="py-3.5 px-3 text-right whitespace-nowrap">${statusBadge}</td>
+              </tr>
+            `;
+          }).join('');
+        }
+      } catch (err) {
+        console.warn('Failed to load affiliate orders:', err);
+        if (ordersCountBadge) ordersCountBadge.textContent = '0 Orders';
+        if (ordersTbody) {
+          ordersTbody.innerHTML = `
+            <tr>
+              <td colspan="7" class="py-12 px-4 text-center">
+                <div class="max-w-sm mx-auto space-y-2">
+                  <div class="text-3xl">🛍️</div>
+                  <p class="font-serif font-bold text-base text-[#082213]">No orders placed yet</p>
+                  <p class="text-xs text-[#5a6e61]">When customers use your coupon code at checkout, their orders will appear here automatically with live commission tracking.</p>
+                </div>
+              </td>
+            </tr>
+          `;
+        }
+      }
+    }
+
+    // 1-Click Upgrade for existing customer
+    const activateBtn = document.getElementById('btn-activate-ambassador');
+    if (activateBtn) {
+      activateBtn.addEventListener('click', () => {
+        const user = getStoredUser();
+        if (user) {
+          user.isAffiliate = true;
+          if (!user.roles) user.roles = [];
+          if (!user.roles.includes('affiliate')) user.roles.push('affiliate');
+          localStorage.setItem('kshithija_auth_user', JSON.stringify(user));
+          
+          activateBtn.textContent = 'Ambassador Activated! ✓';
+          setTimeout(() => {
+            const upgradeAlert = document.getElementById('customer-upgrade-alert');
+            if (upgradeAlert) upgradeAlert.classList.add('hidden');
+          }, 800);
+        }
+      });
+    }
+
+    // Logout Handler
+    const logoutBtn = document.getElementById('btn-partner-logout');
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', () => {
+        logout('/affiliate-login');
+      });
+    }
+
+    // Login Form Submit (Authenticates and stays on this page!)
+    if (loginForm) {
+      loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        if (errorAlert) errorAlert.classList.add('hidden');
+        if (successAlert) successAlert.classList.add('hidden');
+
+        const username = userField ? userField.value.trim() : '';
+        const password = pwdInput ? pwdInput.value : '';
+        const remember = rememberCheckbox ? rememberCheckbox.checked : true;
+
+        if (!username || !password) {
+          if (errorText && errorAlert) {
+            errorText.textContent = 'Please enter both username/email and password.';
+            errorAlert.classList.remove('hidden');
+          }
+          return;
+        }
+
+        if (loginBtn) loginBtn.disabled = true;
+        if (loginBtnText) loginBtnText.textContent = 'LOGGING IN...';
+
+        try {
+          const authData = await loginWithWordPress(username, password, remember);
+
+          if (successAlert) successAlert.classList.remove('hidden');
+
+          // Transition immediately to the attractive affiliate dashboard on this page!
+          setTimeout(() => {
+            showLoggedInDashboard(authData.user);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }, 400);
+
+        } catch (err: any) {
+          if (loginBtn) loginBtn.disabled = false;
+          if (loginBtnText) loginBtnText.textContent = 'LOGIN TO PARTNER DASHBOARD';
+
+          if (errorText && errorAlert) {
+            errorText.textContent = err.message || 'Login failed. Please verify your credentials.';
+            errorAlert.classList.remove('hidden');
+          }
+        }
+      });
+    }
+
+    // Initial check
+    evaluateAuthState();
+  }
+
+  // Robust initialization: runs immediately if DOM already parsed, or waits for DOMContentLoaded
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAffiliateDashboard);
+  } else {
+    initAffiliateDashboard();
+  }
+</script>

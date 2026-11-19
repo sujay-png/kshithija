@@ -1,0 +1,295 @@
+---
+// src/pages/affiliate-login.astro
+// Original Dedicated Affiliate Login Portal for Kshithija Enterprises
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Affiliate Dashboard & Login - Kshithija Enterprises">
+  
+  <!-- Main Background Container -->
+  <main class="relative min-h-[90vh] bg-[#fcfaf6] text-[#082213] py-10 sm:py-16 px-4 sm:px-6 lg:px-8 flex flex-col justify-center overflow-hidden">
+    
+    <!-- Subtle Botanical Ambient Background Glows -->
+    <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[650px] h-[650px] bg-[#2ea843]/10 rounded-full blur-3xl pointer-events-none select-none"></div>
+    <div class="absolute -bottom-32 right-10 w-96 h-96 bg-[#c99f5b]/10 rounded-full blur-3xl pointer-events-none select-none"></div>
+
+    <div class="relative z-10 w-full max-w-xl mx-auto">
+
+      <!-- Breadcrumb Navigation -->
+      <nav aria-label="Breadcrumb" class="mb-5 flex justify-center">
+        <ol class="inline-flex items-center gap-2 text-xs text-[#5a6e61] bg-white/80 backdrop-blur-xs px-3.5 py-1 rounded-full border border-[#ded5c5]">
+          <li>
+            <a href="/" class="hover:text-[#164e2d] transition-colors">Home</a>
+          </li>
+          <li class="text-[#a4b5aa]">/</li>
+          <li class="font-semibold text-[#082213] tracking-wide" aria-current="page">Affiliate Portal</li>
+        </ol>
+      </nav>
+
+    
+
+      <!-- Main Unified Card -->
+      <div class="bg-white rounded-3xl border border-[#ded5c5] shadow-xl overflow-hidden transition-all duration-300">
+        
+        <!-- ==============================================
+             SECTION 1: AFFILIATE DASHBOARD & NOTIFICATION
+             ============================================== -->
+        <div class="p-6 sm:p-8 bg-gradient-to-br from-[#f8f5ee] to-white border-b border-[#e8dfcf]">
+          
+          <!-- Register Now CTA Button & Perks -->
+          <div class="mt-5 pt-4 border-t border-[#ebd8bc]/60 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <a
+              href="/affiliate-registration"
+              class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#164e2d] hover:bg-[#0c3920] active:scale-98 text-white text-xs sm:text-sm font-bold uppercase tracking-wider transition-all duration-200 shadow-md hover:shadow-lg cursor-pointer group"
+            >
+              <span>Register Now</span>
+              <span class="text-sm group-hover:translate-x-1 transition-transform">→</span>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- ==============================================
+             DIVIDER: "Already Registered?"
+             ============================================== -->
+        <div class="relative py-3 bg-[#faf7f0] border-b border-[#e8dfcf] flex items-center justify-center">
+          <div class="absolute inset-0 flex items-center px-8" aria-hidden="true">
+            <div class="w-full border-t border-[#ded5c5]"></div>
+          </div>
+          <div class="relative bg-[#faf7f0] px-4 flex items-center gap-1.5 text-xs font-bold text-[#4d5e52] uppercase tracking-wider">
+            <span>Already registered? Log in below</span>
+          </div>
+        </div>
+
+        <!-- ==============================================
+             SECTION 2: AFFILIATE LOGIN FORM
+             ============================================== -->
+        <div class="p-6 sm:p-8">
+          
+          <div class="mb-6">
+            <h2 class="text-lg sm:text-xl font-serif font-bold text-[#082213] tracking-tight">
+              Affiliate Login
+            </h2>
+            <p class="text-xs text-[#5a6e61] mt-0.5">
+              Enter your credentials to securely access your partner control center.
+            </p>
+          </div>
+
+          <!-- Error Alert Banner -->
+          <div
+            id="login-error-alert"
+            class="hidden mb-5 p-4 rounded-2xl bg-rose-50 border border-rose-200 text-rose-800 text-xs sm:text-sm flex items-start gap-3 shadow-xs"
+            role="alert"
+          >
+            <span class="text-rose-600 text-base leading-none">⚠️</span>
+            <div id="login-error-text" class="flex-1 font-medium leading-relaxed">
+              Invalid credentials.
+            </div>
+          </div>
+
+          <!-- Success Alert Banner -->
+          <div
+            id="login-success-alert"
+            class="hidden mb-5 p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs sm:text-sm flex items-start gap-3 shadow-xs"
+            role="alert"
+          >
+            <span class="text-emerald-600 text-base leading-none">✓</span>
+            <div class="flex-1 font-medium leading-relaxed">
+              <strong>Login Successful!</strong> Redirecting to your dashboard...
+            </div>
+          </div>
+
+          <!-- Official Login Form -->
+          <form
+            name="loginform"
+            id="loginform"
+            action="/affiliate-dashboard"
+            method="post"
+            class="space-y-4 sm:space-y-5"
+          >
+            <!-- Username or Email Field -->
+            <div>
+              <label for="user_login" class="block text-xs font-bold uppercase tracking-wider text-[#082213] mb-1.5">
+                Username or Email <span class="text-red-500">*</span>
+              </label>
+              <div class="relative">
+                <input
+                  type="text"
+                  name="log"
+                  id="user_login"
+                  required
+                  autocomplete="username"
+                  placeholder="Enter your registered username or email"
+                  class="w-full pl-11 pr-4 py-3.5 rounded-xl bg-[#f7f5ef] border border-[#ded5c5] text-xs sm:text-sm text-[#082213] placeholder-[#8c9e92] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#164e2d] focus:border-transparent transition-all shadow-2xs"
+                />
+                <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-base">
+                  👤
+                </span>
+              </div>
+            </div>
+
+            <!-- Password Field -->
+            <div>
+              <div class="flex items-center justify-between mb-1.5">
+                <label for="user_pass" class="block text-xs font-bold uppercase tracking-wider text-[#082213]">
+                  Password <span class="text-red-500">*</span>
+                </label>
+                <a
+                  href="/forgotpassword"
+                  class="text-xs font-semibold text-[#164e2d] hover:text-[#082213] hover:underline transition-colors"
+                >
+                  Forgot your password?
+                </a>
+              </div>
+              <div class="relative">
+                <input
+                  type="password"
+                  name="pwd"
+                  id="user_pass"
+                  required
+                  autocomplete="current-password"
+                  spellcheck="false"
+                  placeholder="••••••••••••"
+                  class="w-full pl-11 pr-11 py-3.5 rounded-xl bg-[#f7f5ef] border border-[#ded5c5] text-xs sm:text-sm text-[#082213] placeholder-[#8c9e92] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#164e2d] focus:border-transparent transition-all shadow-2xs"
+                />
+                <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-base">
+                  🔑
+                </span>
+                <button
+                  type="button"
+                  id="toggle-pwd-btn"
+                  class="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-700 text-sm cursor-pointer p-1 transition-colors"
+                  aria-label="Toggle password visibility"
+                  title="Show/Hide Password"
+                >
+                  👁️
+                </button>
+              </div>
+            </div>
+
+            <!-- Remember Me Checkbox -->
+            <div class="flex items-center justify-between pt-1">
+              <label class="flex items-center gap-2.5 cursor-pointer select-none text-xs text-[#3e5044] font-medium group">
+                <input
+                  type="checkbox"
+                  name="rememberme"
+                  id="rememberme"
+                  value="forever"
+                  class="w-4 h-4 rounded border-[#ded5c5] text-[#164e2d] focus:ring-[#164e2d] cursor-pointer accent-[#164e2d]"
+                />
+                <span class="group-hover:text-[#082213] transition-colors">Remember Me</span>
+              </label>
+            </div>
+
+            <!-- Hidden Redirect Destination -->
+            <input type="hidden" name="redirect_to" value="/affiliate-dashboard" />
+
+            <!-- Login Action Button -->
+            <div class="pt-2">
+              <button
+                type="submit"
+                name="wp-submit"
+                id="wp-submit"
+                class="w-full py-4 px-6 rounded-xl bg-[#164e2d] hover:bg-[#0c3920] active:scale-98 text-white font-bold text-xs sm:text-sm uppercase tracking-widest shadow-md hover:shadow-xl transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 group"
+              >
+                <span id="login-btn-text">LOGIN</span>
+                <span class="text-base group-hover:translate-x-1 transition-transform">→</span>
+              </button>
+            </div>
+          </form>
+
+          <!-- Forgot Password Fallback Link -->
+          <div class="mt-5 pt-4 border-t border-[#f0eae0] text-center">
+            <a
+              href="/forgotpassword"
+              class="text-xs text-[#55695b] hover:text-[#164e2d] hover:underline font-medium transition-colors"
+            >
+              Forgot your password? Click here to reset it.
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+</Layout>
+
+<!-- Client Authentication & Interactivity Script -->
+<script>
+  import { loginWithWordPress, isAuthenticated } from '../lib/auth';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // If user is already authenticated, forward directly to /affiliate-dashboard
+    if (isAuthenticated()) {
+      window.location.href = '/affiliate-dashboard';
+      return;
+    }
+
+    const toggleBtn = document.getElementById('toggle-pwd-btn');
+    const pwdInput = document.getElementById('user_pass') as HTMLInputElement;
+    const form = document.getElementById('loginform') as HTMLFormElement;
+    const userField = document.getElementById('user_login') as HTMLInputElement;
+    const rememberCheckbox = document.getElementById('rememberme') as HTMLInputElement;
+    const submitBtn = document.getElementById('wp-submit') as HTMLButtonElement;
+    const btnText = document.getElementById('login-btn-text');
+    const errorAlert = document.getElementById('login-error-alert');
+    const errorText = document.getElementById('login-error-text');
+    const successAlert = document.getElementById('login-success-alert');
+
+    // Password visibility toggle
+    if (toggleBtn && pwdInput) {
+      toggleBtn.addEventListener('click', () => {
+        const isPwd = pwdInput.type === 'password';
+        pwdInput.type = isPwd ? 'text' : 'password';
+        toggleBtn.textContent = isPwd ? '🙈' : '👁️';
+      });
+    }
+
+    // Headless Authentication & Redirection to /affiliate-dashboard
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        // Reset alert states
+        if (errorAlert) errorAlert.classList.add('hidden');
+        if (successAlert) successAlert.classList.add('hidden');
+
+        const username = userField ? userField.value.trim() : '';
+        const password = pwdInput ? pwdInput.value : '';
+        const remember = rememberCheckbox ? rememberCheckbox.checked : true;
+
+        if (!username || !password) {
+          if (errorText && errorAlert) {
+            errorText.textContent = 'Please enter both username/email and password.';
+            errorAlert.classList.remove('hidden');
+          }
+          return;
+        }
+
+        // Set UI loading state
+        if (submitBtn) submitBtn.disabled = true;
+        if (btnText) btnText.textContent = 'LOGGING IN...';
+
+        try {
+          await loginWithWordPress(username, password, remember);
+
+          if (successAlert) successAlert.classList.remove('hidden');
+          setTimeout(() => {
+            window.location.href = '/affiliate-dashboard';
+          }, 400);
+        } catch (err: any) {
+          if (submitBtn) submitBtn.disabled = false;
+          if (btnText) btnText.textContent = 'LOGIN';
+
+          if (errorText && errorAlert) {
+            errorText.textContent = err.message || 'Login failed. Please verify your credentials.';
+            errorAlert.classList.remove('hidden');
+          }
+        }
+      });
+    }
+  });
+</script>

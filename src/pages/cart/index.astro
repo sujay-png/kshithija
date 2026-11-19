@@ -1,0 +1,532 @@
+---
+// src/pages/cart/index.astro
+// Clean, Human-Crafted E-Commerce Cart Page for Kshithija Enterprises
+import Layout from '../../layouts/Layout.astro';
+
+const wpBaseUrl = (import.meta.env.PUBLIC_WP_BASE_URL || 'https://kshithija.in').replace(/\/+$/, '');
+const headlessSecret =
+  import.meta.env.PUBLIC_HEADLESS_VERIFY_SECRET ||
+  import.meta.env.HEADLESS_VERIFY_SECRET ||
+  '19827fe00484d444da19911adf8110ec30dc2d4e51cfe55f47a22c02d8d18d71';
+---
+
+<Layout title="Shopping Cart - Kshithija Enterprises">
+  <div id="cart-page-root" data-wp-base={wpBaseUrl} data-headless-secret={headlessSecret} class="min-h-screen bg-[#faf8f5] text-[#0a1c12] py-8 sm:py-14 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-6xl mx-auto">
+
+      <!-- Breadcrumbs -->
+      <nav aria-label="Breadcrumb" class="mb-4 text-xs text-[#607065]">
+        <ol class="flex items-center gap-2 flex-wrap">
+          <li>
+            <a href="/" class="hover:text-[#0f3822] transition-colors">Home</a>
+          </li>
+          <li class="text-[#b5c0b9]">/</li>
+          <li>
+            <a href="/products" class="hover:text-[#0f3822] transition-colors">Products</a>
+          </li>
+          <li class="text-[#b5c0b9]">/</li>
+          <li class="text-[#0a1c12] font-semibold">Shopping Cart</li>
+        </ol>
+      </nav>
+
+      <!-- Page Heading -->
+      <header class="mb-8 pb-5 border-b border-[#e2dcd2] flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+        <h1 class="text-2xl sm:text-3xl lg:text-4xl font-serif font-semibold tracking-tight text-[#0a1c12]">
+          Shopping Cart
+        </h1>
+        <p class="text-xs text-[#607065]" id="cart-item-header-count">
+          Showing items in your cart
+        </p>
+      </header>
+
+      <!-- Empty Cart Screen (Hidden when cart has items) -->
+      <section
+        id="cart-empty-view"
+        class="hidden py-16 sm:py-24 text-center max-w-lg mx-auto bg-white rounded-2xl border border-[#e2dcd2] p-8 sm:p-12 shadow-2xs"
+      >
+        <div class="w-16 h-16 rounded-full bg-[#f4ede0] text-[#0f3822] flex items-center justify-center mx-auto mb-5">
+          <svg class="w-7 h-7 fill-none stroke-current stroke-1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+          </svg>
+        </div>
+        <h2 class="text-xl sm:text-2xl font-serif font-semibold text-[#0a1c12] mb-2">
+          Your cart is currently empty
+        </h2>
+        <p class="text-xs sm:text-sm text-[#607065] mb-8 leading-relaxed max-w-sm mx-auto">
+          Explore our collection of authentic, chemical-free botanical skincare and Ayurvedic wellness formulations.
+        </p>
+        <a
+          href="/products"
+          class="inline-flex items-center justify-center px-7 py-3 rounded-xl bg-[#0f3822] hover:bg-[#184f32] active:scale-98 text-white text-xs font-semibold uppercase tracking-wider transition-all shadow-xs"
+        >
+          Return to Shop &rarr;
+        </a>
+      </section>
+
+      <!-- Main Cart Layout (2 Columns: Items Table + Totals Summary) -->
+      <div id="cart-content-view" class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+
+        <!-- LEFT COLUMN: Product Table (7 / 8 Cols) -->
+        <div class="lg:col-span-8 space-y-6">
+
+      
+
+          <!-- Desktop Cart Table -->
+          <div class="hidden md:block bg-white rounded-2xl border border-[#e2dcd2] shadow-2xs overflow-hidden">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="border-b border-[#e2dcd2] bg-[#f9f7f2] text-[11px] font-semibold uppercase tracking-wider text-[#607065]">
+                  <th class="py-3.5 pl-6 pr-4">Product</th>
+                  <th class="py-3.5 px-4">Price</th>
+                  <th class="py-3.5 px-4 text-center">Quantity</th>
+                  <th class="py-3.5 px-4 text-right">Subtotal</th>
+                  <th class="py-3.5 pr-6 pl-4 text-center w-12"><span class="sr-only">Remove</span></th>
+                </tr>
+              </thead>
+              <tbody id="cart-table-body" class="divide-y divide-[#ece6dc]">
+                <!-- Dynamically populated via client script -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Mobile Cart Cards List -->
+          <div id="cart-mobile-list" class="md:hidden space-y-3">
+            <!-- Dynamically populated via client script -->
+          </div>
+
+          <!-- Actions Row: Coupon & Continue Shopping -->
+          <div class="bg-white rounded-2xl p-5 border border-[#e2dcd2] shadow-2xs flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
+            
+            <!-- Coupon Input -->
+            <div class="flex items-center gap-2 w-full sm:w-auto">
+              <input
+                type="text"
+                id="cart-coupon-input"
+                placeholder="Coupon code"
+                class="flex-1 sm:w-48 px-3.5 py-2 text-xs rounded-xl border border-[#d5cec3] bg-[#faf8f4] text-[#0a1c12] uppercase font-medium focus:outline-none focus:ring-1 focus:ring-[#0f3822] focus:bg-white transition-all"
+              />
+              <button
+                type="button"
+                id="cart-apply-coupon-btn"
+                class="px-4 py-2 text-xs font-semibold rounded-xl bg-[#0f3822] hover:bg-[#184f32] active:scale-95 text-white transition-colors cursor-pointer shrink-0"
+              >
+                Apply
+              </button>
+            </div>
+
+            <!-- Continue Shopping Link -->
+            <a
+              href="/products"
+              class="text-xs font-semibold text-[#0f3822] hover:text-[#1c643b] underline underline-offset-2 transition-colors text-center sm:text-right"
+            >
+              &larr; Continue Shopping
+            </a>
+          </div>
+
+          <div id="cart-coupon-feedback" class="hidden text-xs px-2"></div>
+
+        </div>
+
+        <!-- RIGHT COLUMN: Cart Totals (4 / 5 Cols) -->
+        <div class="lg:col-span-4">
+          <aside class="bg-white rounded-2xl p-6 sm:p-7 border border-[#e2dcd2] shadow-2xs space-y-5 sticky top-24">
+            
+            <h2 class="text-lg font-serif font-semibold text-[#0a1c12] pb-4 border-b border-[#e2dcd2]">
+              Cart Totals
+            </h2>
+
+            <div class="space-y-3.5 text-xs text-[#506155]">
+              
+              <!-- Subtotal -->
+              <div class="flex justify-between items-center">
+                <span>Subtotal</span>
+                <span id="totals-subtotal" class="font-semibold text-[#0a1c12] text-sm">₹0</span>
+              </div>
+
+              <!-- Shipping Info -->
+              <div class="pt-3 border-t border-[#f0eae0] space-y-1">
+                <div class="flex justify-between items-center">
+                  <span>Shipping</span>
+                  <span class="font-semibold text-[#1c643b]">Free Shipping</span>
+                </div>
+                <p class="text-[11px] text-[#7d8d82]">
+                  Door delivery to Karnataka & across India.
+                </p>
+              </div>
+
+              <!-- Discount Row (Visible only when coupon applied) -->
+              <div id="totals-discount-row" class="hidden pt-3 border-t border-[#f0eae0] flex justify-between items-center text-[#1c643b]">
+                <div class="flex items-center gap-1.5">
+                  <span id="totals-discount-label">Coupon Discount</span>
+                  <button type="button" id="remove-coupon-btn" class="text-[11px] text-red-600 hover:underline">
+                    [Remove]
+                  </button>
+                </div>
+                <span id="totals-discount-amount" class="font-semibold">-₹0</span>
+              </div>
+
+              <!-- Total -->
+              <div class="pt-4 border-t border-[#d8d2c7] flex justify-between items-baseline">
+                <span class="text-sm font-semibold text-[#0a1c12]">Total</span>
+                <span id="totals-grand-total" class="text-2xl font-serif font-bold text-[#0a1c12]">₹0</span>
+              </div>
+            </div>
+
+            <!-- Checkout CTA Button -->
+            <div class="pt-2 space-y-2.5">
+              <a
+                href="/checkout"
+                class="w-full inline-flex items-center justify-center gap-2 py-3.5 px-5 rounded-xl bg-[#0f3822] hover:bg-[#184f32] active:scale-98 text-white text-xs sm:text-sm font-semibold tracking-wide transition-all shadow-sm hover:shadow-md text-center cursor-pointer"
+              >
+                <span>Proceed to Checkout</span>
+                <span>&rarr;</span>
+              </a>
+
+         
+            </div>
+
+         
+
+          </aside>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</Layout>
+
+<!-- Client Script to bind live cart data, real-time quantity stepper, coupon, and WhatsApp link -->
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const STORAGE_KEY = 'kshithija_cart_v1';
+    const root = document.getElementById('cart-page-root');
+    const WP_BASE = (root?.getAttribute('data-wp-base') || 'https://kshithija.in').replace(/\/+$/, '');
+    const HEADLESS_SECRET = root?.getAttribute('data-headless-secret') || '19827fe00484d444da19911adf8110ec30dc2d4e51cfe55f47a22c02d8d18d71';
+    const CHECKOUT_API = `${WP_BASE}/wp-json/headless/v1/checkout`;
+
+    let discountAmount = 0;
+    let appliedCouponName = '';
+
+    function getAuthHeaders(extra = {}) {
+      return {
+        'Content-Type': 'application/json',
+        'X-Headless-Secret': HEADLESS_SECRET,
+        ...extra,
+      };
+    }
+
+    function getCart() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        return raw ? JSON.parse(raw) : [];
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function saveCart(cart) {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
+      } catch (e) {}
+    }
+
+    function parsePrice(priceStr) {
+      if (!priceStr) return 0;
+      const clean = priceStr.toString().replace(/[^0-9.]/g, '');
+      const num = parseFloat(clean);
+      return isNaN(num) ? 0 : num;
+    }
+
+    function renderCart() {
+      const cart = getCart();
+      const emptyView = document.getElementById('cart-empty-view');
+      const contentView = document.getElementById('cart-content-view');
+      const tableBody = document.getElementById('cart-table-body');
+      const mobileList = document.getElementById('cart-mobile-list');
+      const headerCount = document.getElementById('cart-item-header-count');
+      const subtotalEl = document.getElementById('totals-subtotal');
+      const grandTotalEl = document.getElementById('totals-grand-total');
+      const discountRow = document.getElementById('totals-discount-row');
+      const discountEl = document.getElementById('totals-discount-amount');
+      const discountLabel = document.getElementById('totals-discount-label');
+     
+
+      if (!emptyView || !contentView) return;
+
+      if (!cart || cart.length === 0) {
+        contentView.classList.add('hidden');
+        emptyView.classList.remove('hidden');
+        if (headerCount) headerCount.textContent = '0 items';
+        return;
+      }
+
+      contentView.classList.remove('hidden');
+      emptyView.classList.add('hidden');
+
+      let subtotal = 0;
+      let totalQty = 0;
+
+      // 1. Desktop Table Rows
+      if (tableBody) {
+        tableBody.innerHTML = cart
+          .map((item) => {
+            const unitPrice = item.priceNum || parsePrice(item.price);
+            const lineTotal = unitPrice * item.quantity;
+            subtotal += lineTotal;
+            totalQty += item.quantity;
+
+            return `
+              <tr class="hover:bg-[#faf9f6] transition-colors">
+                <!-- Product Image & Name -->
+                <td class="py-4 pl-6 pr-4">
+                  <div class="flex items-center gap-3.5">
+                    <a href="/product/${item.id}" class="shrink-0 w-16 h-16 rounded-xl overflow-hidden bg-[#faf8f5] border border-[#e2dcd2] block">
+                      <img src="${item.image || '/products/placeholder.webp'}" alt="${item.name}" class="w-full h-full object-cover" />
+                    </a>
+                    <div>
+                      <a href="/product/${item.id}" class="text-xs sm:text-sm font-semibold text-[#0a1c12] hover:text-[#1c643b] transition-colors leading-snug line-clamp-2">
+                        ${item.name}
+                      </a>
+                      <span class="text-[11px] text-[#7d8d82] mt-0.5 block">100% Herbal formulation</span>
+                    </div>
+                  </div>
+                </td>
+
+                <!-- Unit Price -->
+                <td class="py-4 px-4 text-xs font-medium text-[#0a1c12] whitespace-nowrap">
+                  ${item.price}
+                </td>
+
+                <!-- Quantity Stepper -->
+                <td class="py-4 px-4 text-center">
+                  <div class="inline-flex items-center border border-[#d5cec3] rounded-lg bg-white overflow-hidden shadow-2xs">
+                    <button type="button" class="cart-stepper-btn px-2.5 py-1 text-xs font-bold text-[#0a1c12] hover:bg-[#f4ede0] transition-colors cursor-pointer select-none" data-action="minus" data-id="${item.id}">−</button>
+                    <span class="px-3 text-xs font-semibold text-[#0a1c12] min-w-[24px] text-center">${item.quantity}</span>
+                    <button type="button" class="cart-stepper-btn px-2.5 py-1 text-xs font-bold text-[#0a1c12] hover:bg-[#f4ede0] transition-colors cursor-pointer select-none" data-action="plus" data-id="${item.id}">+</button>
+                  </div>
+                </td>
+
+                <!-- Subtotal -->
+                <td class="py-4 px-4 text-right text-xs sm:text-sm font-semibold text-[#0a1c12] whitespace-nowrap font-serif">
+                  ₹${lineTotal.toLocaleString('en-IN')}
+                </td>
+
+                <!-- Remove Button -->
+                <td class="py-4 pr-6 pl-4 text-center">
+                  <button type="button" class="cart-delete-btn w-7 h-7 rounded-full text-[#7d8d82] hover:text-red-600 hover:bg-red-50 flex items-center justify-center text-base font-bold transition-colors cursor-pointer" data-id="${item.id}" title="Remove item">
+                    &times;
+                  </button>
+                </td>
+              </tr>
+            `;
+          })
+          .join('');
+      }
+
+      // 2. Mobile Cards
+      if (mobileList) {
+        mobileList.innerHTML = cart
+          .map((item) => {
+            const unitPrice = item.priceNum || parsePrice(item.price);
+            const lineTotal = unitPrice * item.quantity;
+
+            return `
+              <div class="bg-white rounded-2xl p-4 border border-[#e2dcd2] shadow-2xs flex gap-3.5 items-start">
+                <a href="/product/${item.id}" class="w-16 h-16 rounded-xl overflow-hidden bg-[#faf8f5] border border-[#e2dcd2] shrink-0 block">
+                  <img src="${item.image || '/products/placeholder.webp'}" alt="${item.name}" class="w-full h-full object-cover" />
+                </a>
+
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-start justify-between gap-2">
+                    <a href="/product/${item.id}" class="text-xs font-semibold text-[#0a1c12] truncate block">
+                      ${item.name}
+                    </a>
+                    <button type="button" class="cart-delete-btn text-[#7d8d82] hover:text-red-600 text-lg leading-none cursor-pointer p-0.5" data-id="${item.id}" title="Remove">
+                      &times;
+                    </button>
+                  </div>
+
+                  <p class="text-xs font-bold text-[#1c643b] mt-0.5">${item.price}</p>
+
+                  <div class="flex items-center justify-between mt-3 pt-2 border-t border-[#f4ede0]">
+                    <div class="inline-flex items-center border border-[#d5cec3] rounded-md bg-white">
+                      <button type="button" class="cart-stepper-btn px-2 py-0.5 text-xs font-bold text-[#0a1c12]" data-action="minus" data-id="${item.id}">−</button>
+                      <span class="px-2 text-xs font-semibold text-[#0a1c12]">${item.quantity}</span>
+                      <button type="button" class="cart-stepper-btn px-2 py-0.5 text-xs font-bold text-[#0a1c12]" data-action="plus" data-id="${item.id}">+</button>
+                    </div>
+
+                    <span class="text-xs font-serif font-bold text-[#0a1c12]">
+                      ₹${lineTotal.toLocaleString('en-IN')}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            `;
+          })
+          .join('');
+      }
+
+      const grandTotal = Math.max(0, subtotal - discountAmount);
+
+      if (headerCount) headerCount.textContent = `${totalQty} item${totalQty === 1 ? '' : 's'} in your cart`;
+      if (subtotalEl) subtotalEl.textContent = `₹${subtotal.toLocaleString('en-IN')}`;
+      if (grandTotalEl) grandTotalEl.textContent = `₹${grandTotal.toLocaleString('en-IN')}`;
+
+      // Handle Discount row
+      if (discountAmount > 0 && discountRow && discountEl) {
+        discountRow.classList.remove('hidden');
+        discountEl.textContent = `-₹${discountAmount.toLocaleString('en-IN')}`;
+        if (discountLabel) discountLabel.textContent = `Discount (${appliedCouponName})`;
+      } else if (discountRow) {
+        discountRow.classList.add('hidden');
+      }
+
+      // WhatsApp Order Link generator
+  
+    }
+
+    // Event Delegation: Quantity Stepper & Delete
+    document.addEventListener('click', (e) => {
+      const target = e.target;
+      const stepper = target.closest('.cart-stepper-btn');
+      const deleteBtn = target.closest('.cart-delete-btn');
+
+      if (stepper) {
+        const id = stepper.getAttribute('data-id');
+        const action = stepper.getAttribute('data-action');
+        const cart = getCart();
+        const item = cart.find((i) => i.id === id);
+
+        if (item) {
+          item.quantity += action === 'plus' ? 1 : -1;
+          if (item.quantity <= 0) {
+            const updated = cart.filter((i) => i.id !== id);
+            saveCart(updated);
+          } else {
+            saveCart(cart);
+          }
+          if (appliedCouponName) {
+            applyCoupon();
+          } else {
+            renderCart();
+          }
+        }
+      } else if (deleteBtn) {
+        const id = deleteBtn.getAttribute('data-id');
+        const cart = getCart();
+        const updated = cart.filter((i) => i.id !== id);
+        saveCart(updated);
+        if (appliedCouponName) {
+          applyCoupon();
+        } else {
+          renderCart();
+        }
+      }
+    });
+
+    // Dynamic Coupon Code Application (WooCommerce API as Single Source of Truth)
+    const couponInput = document.getElementById('cart-coupon-input');
+    const applyCouponBtn = document.getElementById('cart-apply-coupon-btn');
+    const feedbackEl = document.getElementById('cart-coupon-feedback');
+    const removeCouponBtn = document.getElementById('remove-coupon-btn');
+
+    async function applyCoupon(codeToApply) {
+      const code = (codeToApply || couponInput?.value || '').trim().toUpperCase();
+      if (!code) return;
+
+      if (applyCouponBtn) {
+        applyCouponBtn.disabled = true;
+        applyCouponBtn.textContent = 'Applying...';
+      }
+
+      const cart = getCart();
+      const subtotal = cart.reduce((acc, i) => acc + (i.priceNum || parsePrice(i.price)) * i.quantity, 0);
+
+      try {
+        const payloadItems = cart.map((i) => ({
+          id: i.id,
+          slug: i.slug || (typeof i.id === 'string' ? i.id : ''),
+          quantity: i.quantity,
+        }));
+
+        const res = await fetch(`${CHECKOUT_API}/apply-coupon`, {
+          method: 'POST',
+          headers: getAuthHeaders(),
+          body: JSON.stringify({
+            code: code,
+            items: payloadItems,
+            subtotal: subtotal,
+          }),
+        });
+
+        const data = await res.json();
+
+        if (res.ok && data.success) {
+          discountAmount = Number(data.discount_amount) || 0;
+          appliedCouponName = `${data.code} (${data.description || 'Discount Applied'})`;
+          if (couponInput) couponInput.value = data.code || code;
+          sessionStorage.setItem('kshithija_applied_coupon', data.code || code);
+
+          if (feedbackEl) {
+            feedbackEl.className = 'text-xs text-[#1c643b] font-medium block';
+            feedbackEl.textContent = `✓ ${data.message || 'Coupon applied successfully!'} (${data.description || ''})`;
+          }
+        } else {
+          discountAmount = 0;
+          appliedCouponName = '';
+          sessionStorage.removeItem('kshithija_applied_coupon');
+          if (feedbackEl) {
+            feedbackEl.className = 'text-xs text-red-600 font-medium block';
+            feedbackEl.textContent = data.message || 'Invalid coupon code.';
+          }
+        }
+      } catch (err) {
+        discountAmount = 0;
+        appliedCouponName = '';
+        sessionStorage.removeItem('kshithija_applied_coupon');
+        if (feedbackEl) {
+          feedbackEl.className = 'text-xs text-red-600 font-medium block';
+          feedbackEl.textContent = 'Unable to apply coupon. Please check your connection.';
+        }
+      } finally {
+        if (applyCouponBtn) {
+          applyCouponBtn.disabled = false;
+          applyCouponBtn.textContent = 'Apply';
+        }
+        renderCart();
+      }
+    }
+
+    if (applyCouponBtn && couponInput) {
+      applyCouponBtn.addEventListener('click', () => applyCoupon());
+      couponInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          applyCoupon();
+        }
+      });
+    }
+
+    if (removeCouponBtn) {
+      removeCouponBtn.addEventListener('click', () => {
+        discountAmount = 0;
+        appliedCouponName = '';
+        sessionStorage.removeItem('kshithija_applied_coupon');
+        if (couponInput) couponInput.value = '';
+        if (feedbackEl) feedbackEl.classList.add('hidden');
+        renderCart();
+      });
+    }
+
+    // Initial Render & Auto-Apply Saved Coupon
+    const savedCoupon = sessionStorage.getItem('kshithija_applied_coupon');
+    if (savedCoupon) {
+      if (couponInput) couponInput.value = savedCoupon;
+      applyCoupon(savedCoupon);
+    } else {
+      renderCart();
+    }
+  });
+</script>
+

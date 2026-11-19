@@ -1,0 +1,58 @@
+---
+// src/components/Careers/Hero.astro
+interface Props {
+  title?: string;
+  tagline?: string;
+  subtitle?: string;
+  bgImage?: string;
+}
+
+const {
+  title = 'Career',
+  tagline = 'The Easiest Way to Get Your New Job',
+  subtitle = 'Start Your Journey With Us · Kshithija Enterprises, Mangaluru',
+  bgImage = 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1920&q=80',
+} = Astro.props;
+---
+
+<section class="relative w-full h-60 sm:h-72 md:h-84 lg:h-96 overflow-hidden flex items-center justify-center bg-[#071911]">
+  <!-- Grayscale Collaborative Team Photo with Dark Overlay (Matching Reference Screenshot) -->
+  <div class="absolute inset-0 z-0">
+    <img
+      src={bgImage}
+      alt="Kshithija Enterprises Careers"
+      class="w-full h-full object-cover object-center grayscale contrast-110 brightness-75 scale-105"
+      loading="eager"
+    />
+    <!-- Dark Forest Vignette Gradient Overlay -->
+    <div class="absolute inset-0 bg-gradient-to-b from-[#071911]/85 via-[#0a2317]/75 to-[#071911]/90 backdrop-blur-[0.5px]"></div>
+  </div>
+
+  <!-- Content Container -->
+  <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center text-white">
+    <!-- Breadcrumb Navigation -->
+    <nav aria-label="Breadcrumb" class="mb-3">
+      <ol class="inline-flex items-center justify-center gap-2 text-xs sm:text-[13px] text-[#c0d6c7] bg-black/30 backdrop-blur-xs px-3.5 py-1 rounded-full border border-white/10">
+        <li>
+          <a href="/" class="hover:text-white transition-colors">Home</a>
+        </li>
+        <li class="text-[#729c80]">/</li>
+        <li class="font-semibold text-white tracking-wide" aria-current="page">Career</li>
+      </ol>
+    </nav>
+
+    <!-- Centered Bold Title matching reference screenshot -->
+    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-white tracking-tight drop-shadow-md mb-2">
+      {title}
+    </h1>
+
+    <!-- Exact Tagline from kshithija.in/careers/ -->
+    <span class="inline-block text-xs sm:text-sm font-semibold tracking-wider text-[#a3cf54] uppercase mb-1">
+      {tagline}
+    </span>
+
+    <p class="text-xs sm:text-sm text-[#d4e4da] max-w-md mx-auto font-normal leading-relaxed">
+      {subtitle}
+    </p>
+  </div>
+</section>

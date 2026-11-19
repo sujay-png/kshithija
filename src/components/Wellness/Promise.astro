@@ -1,0 +1,40 @@
+---
+// src/components/Wellness/Promise.astro
+interface Props {
+  eyebrow?: string;
+  quote?: string;
+  description?: string;
+}
+
+const {
+  eyebrow = 'Our Promise',
+  quote = '"No chemicals. No compromises. Only nature."',
+  description = 'All Kshithija Enterprises products are formulated without petroleum jelly, parabens, artificial fragrance, or synthetic preservatives — and every batch is lab-tested before it reaches you.',
+} = Astro.props;
+---
+
+<section class="relative w-full bg-[#082213] py-16 sm:py-20 lg:py-24 px-4 sm:px-6 mb-16 lg:px-8 border-y border-[#123822] overflow-hidden">
+  
+  <!-- Subtle ambient botanical glow -->
+  <div class="absolute -top-20 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#2ea843]/10 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute bottom-0 right-10 w-64 h-64 bg-[#a3cf54]/5 rounded-full blur-2xl pointer-events-none"></div>
+
+  <div class="relative z-10 max-w-4xl mx-auto text-center flex flex-col items-center justify-center">
+    
+    <!-- Eyebrow Tag (Exact match to reference image) -->
+    <span class="text-xs sm:text-[13px] font-medium tracking-wider text-[#d4ded7] mb-4 sm:mb-5 block">
+      {eyebrow}
+    </span>
+
+    <!-- Main Quote Heading (Exact match to reference image) -->
+    <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-[44px] font-serif font-normal text-white leading-[1.25] tracking-tight mb-4 sm:mb-5 max-w-3xl">
+      {quote}
+    </h2>
+
+    <!-- Description Paragraph (Exact match to reference image) -->
+    <p class="text-xs sm:text-[18px] text-[#b8c9be] leading-relaxed max-w-2xl mx-auto font-normal">
+      {description}
+    </p>
+
+  </div>
+</section>
