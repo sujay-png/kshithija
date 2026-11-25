@@ -183,3 +183,112 @@ img, svg, video, canvas, audio, iframe, embed, object {
     @apply font-sans;
   }
 }
+
+
+/* Blog Prose & Elementor FAQ Accordion Enhancements */
+.blog-content h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  color: #082213;
+}
+.blog-content h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #082213;
+}
+.blog-content p {
+  margin-bottom: 1.25rem;
+  line-height: 1.75;
+  color: #3e5044;
+}
+.blog-content ul, .blog-content ol {
+  margin-left: 1.5rem;
+  margin-bottom: 1.25rem;
+  list-style-type: disc;
+  color: #3e5044;
+}
+.blog-content li {
+  margin-bottom: 0.35rem;
+}
+.blog-content img {
+  border-radius: 1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+  height: auto;
+}
+.blog-content details summary {
+  list-style: none !important;
+}
+.blog-content details summary::-webkit-details-marker,
+.blog-content details summary::marker {
+  display: none !important;
+}
+.blog-content .elementor-accordion,
+.blog-content .eael-adv-accordion,
+.blog-content .elementor-toggle,
+.blog-content .e-n-accordion {
+  margin-top: 2rem !important;
+  margin-bottom: 2.5rem !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.85rem !important;
+}
+.blog-content .elementor-accordion-item,
+.blog-content .eael-accordion-list,
+.blog-content .elementor-toggle-item,
+.blog-content .e-n-accordion-item {
+  border: 1px solid #e8dfcf !important;
+  border-radius: 1.25rem !important;
+  background-color: #fcfaf6 !important;
+  overflow: hidden !important;
+  box-shadow: 0 1px 3px rgba(8, 34, 19, 0.03) !important;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+.blog-content .elementor-tab-title,
+.blog-content .eael-accordion-header,
+.blog-content .e-n-accordion-item-title {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 1.125rem 1.5rem !important;
+  font-weight: 700 !important;
+  font-size: 0.95rem !important;
+  color: #082213 !important;
+  background-color: #faf7f2 !important;
+  cursor: pointer !important;
+  user-select: none !important;
+  gap: 1rem !important;
+  border-bottom: 1px solid transparent !important;
+  outline: none !important;
+}
+.blog-content .elementor-tab-title.is-active,
+.blog-content .elementor-tab-title.elementor-active,
+.blog-content .eael-accordion-header.is-active,
+.blog-content .eael-accordion-header.eael-active,
+.blog-content .e-n-accordion-item[open] > .e-n-accordion-item-title {
+  background-color: #eaf4ed !important;
+  color: #164e2d !important;
+  border-bottom: 1px solid #d1e7d8 !important;
+}
+.blog-content .elementor-tab-content,
+.blog-content .eael-accordion-content,
+.blog-content .e-n-accordion-item > :not(summary) {
+  padding: 1.25rem 1.5rem !important;
+  background-color: #ffffff !important;
+  font-size: 0.925rem !important;
+  line-height: 1.75 !important;
+  color: #384a3e !important;
+}
+.blog-content .elementor-tab-content,
+.blog-content .eael-accordion-content {
+  display: none;
+}
+.blog-content .elementor-tab-content.is-active,
+.blog-content .eael-accordion-content.is-active {
+  display: block !important;
+}

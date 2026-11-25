@@ -1,17 +1,8 @@
 // src/components/shadcn-space/button/button-19.tsx
-// @ts-ignore React's type declarations are missing in this project.
 import React from "react";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      [elementName: string]: any;
-    }
-  }
-}
 
 interface InteractiveHoverButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {

@@ -11,9 +11,9 @@ import {
 export type { Product, ProductCategory, CatalogCategory };
 export { productsHeroData };
 
-const WP_BASE_URL = (import.meta.env.PUBLIC_WP_BASE_URL || 'https://kshithija.in').replace(/\/+$/, '');
-const WC_CONSUMER_KEY = (import.meta.env.WC_CONSUMER_KEY || (typeof process !== 'undefined' ? process.env?.WC_CONSUMER_KEY : '') || '').trim();
-const WC_CONSUMER_SECRET = (import.meta.env.WC_CONSUMER_SECRET || (typeof process !== 'undefined' ? process.env?.WC_CONSUMER_SECRET : '') || '').trim();
+const WP_BASE_URL = (process.env.NEXT_PUBLIC_WP_BASE_URL || 'https://kshithija.in').replace(/\/+$/, '');
+const WC_CONSUMER_KEY = (typeof process !== 'undefined' ? process.env?.WC_CONSUMER_KEY || '' : '').trim();
+const WC_CONSUMER_SECRET = (typeof process !== 'undefined' ? process.env?.WC_CONSUMER_SECRET || '' : '').trim();
 
 // WooCommerce Official REST API v3 Endpoint (Requires Consumer Key & Secret)
 const V3_PRODUCTS_URL = `${WP_BASE_URL}/wp-json/wc/v3/products?per_page=100`;
@@ -429,7 +429,7 @@ export function transformWooV3Product(woo: any, liveHtml?: string): Product {
   else if (slug.includes('80g') || rawName.includes('80g')) size = '80 g';
   else if (slug.includes('honey') || slug.includes('chaithanya') || rawDescHtml.includes('500.g')) size = '500 g';
   else if (specifications['Quantity'] || specifications['Size'] || specifications['Weight'] || parsed.specifications?.['Quantity']) {
-    size = specifications['Quantity'] || specifications['Size'] || specifications['Weight'] || parsed.specifications?.['Quantity'];
+    size = specifications['Quantity'] || specifications['Size'] || specifications['Weight'] || parsed.specifications?.['Quantity'] || 'Standard Pack';
   }
 
   // Key natural ingredients

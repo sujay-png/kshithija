@@ -2,7 +2,7 @@
 // Direct WordPress REST API integration with local fallback for Kshithija Enterprises
 import localBlogs from '../data/blogs.json';
 
-const WP_BASE_URL = (import.meta.env.PUBLIC_WP_BASE_URL || 'https://kshithija.in/').replace(/\/+$/, '');
+const WP_BASE_URL = (process.env.NEXT_PUBLIC_WP_BASE_URL || 'https://kshithija.in/').replace(/\/+$/, '');
 const REST_API_URL = `${WP_BASE_URL}/wp-json/wp/v2/posts?_embed&per_page=100`;
 
 export const POSTS_PER_PAGE = 9;

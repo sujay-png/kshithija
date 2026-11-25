@@ -2,12 +2,12 @@
 // Production Headless Client Authentication & Account Service for Kshithija Enterprises
 
 const WP_BASE_URL = (
-  import.meta.env.PUBLIC_WP_BASE_URL || 'https://kshithija.in'
+  process.env.NEXT_PUBLIC_WP_BASE_URL || 'https://kshithija.in'
 ).replace(/\/+$/, '');
 
 const HEADLESS_SECRET =
-  import.meta.env.PUBLIC_HEADLESS_VERIFY_SECRET ||
-  import.meta.env.HEADLESS_VERIFY_SECRET ||
+  process.env.NEXT_PUBLIC_HEADLESS_VERIFY_SECRET ||
+  process.env.HEADLESS_VERIFY_SECRET ||
   '19827fe00484d444da19911adf8110ec30dc2d4e51cfe55f47a22c02d8d18d71';
 
 export const TOKEN_STORAGE_KEY = 'kshithija_auth_token';

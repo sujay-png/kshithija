@@ -2,12 +2,12 @@
 // Live WooCommerce Checkout & Razorpay Bridge Service for Kshithija Enterprises Headless Frontend
 
 const WP_BASE_URL = (
-  import.meta.env.PUBLIC_WP_BASE_URL || 'https://kshithija.in'
+  process.env.NEXT_PUBLIC_WP_BASE_URL || 'https://kshithija.in'
 ).replace(/\/+$/, '');
 
 const HEADLESS_SECRET =
-  import.meta.env.PUBLIC_HEADLESS_VERIFY_SECRET ||
-  import.meta.env.HEADLESS_VERIFY_SECRET ||
+  process.env.NEXT_PUBLIC_HEADLESS_VERIFY_SECRET ||
+  process.env.HEADLESS_VERIFY_SECRET ||
   '19827fe00484d444da19911adf8110ec30dc2d4e51cfe55f47a22c02d8d18d71';
 
 const CHECKOUT_API = `${WP_BASE_URL}/wp-json/headless/v1/checkout`;

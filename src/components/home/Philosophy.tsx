@@ -1,0 +1,85 @@
+import { philosophyData } from '@data/philosophy';
+
+export default function Philosophy() {
+  const { eyebrow, title, paragraphs, badges, exclusions, labImage } = philosophyData;
+
+  return (
+    <section className="relative w-full bg-[#fbf9f4] py-8 sm:py-14 px-4 sm:px-8 lg:px-16 overflow-hidden">
+      <div className="absolute -top-24 -left-24 w-96 h-96 bg-[#164e2d]/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-[#c99f5b]/10 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto relative z-10">
+        <div className="bg-white rounded-3xl p-6 sm:p-10 lg:p-12 border border-[#e8e2d5] shadow-sm hover:shadow-md transition-all duration-300">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            {/* Left Content Column */}
+            <div className="lg:col-span-7 flex flex-col justify-between">
+              <div>
+                <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#eaf4ed] text-[#1c643b] text-xs font-semibold tracking-widest uppercase mb-4">
+                  <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                    <path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 0 0 8 20C19 20 22 3 22 3c-1 2-8 2.25-13 3.25S2 11.5 2 13.5s1.75 3.75 1.75 3.75C7 8 17 8 17 8z" />
+                  </svg>
+                  <span>{eyebrow}</span>
+                </div>
+
+                <h2 className="text-2xl sm:text-3xl lg:text-[40px] text-[#0e2a1e] font-serif font-medium leading-[1.2] tracking-tight mb-4">
+                  {title}
+                </h2>
+
+                <div className="space-y-3 text-sm sm:text-base text-[#415b4d] leading-relaxed font-normal mb-6">
+                  {paragraphs.map((p, idx) => (
+                    <p key={idx}>{p}</p>
+                  ))}
+                </div>
+
+                <div className="flex flex-wrap items-center gap-2 mb-6">
+                  {badges.map((badge) => (
+                    <span
+                      key={badge}
+                      className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-[#f4ede0] text-[#0e2a1e] border border-[#e2dcd2]"
+                    >
+                      {badge}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="pt-6 border-t border-[#f0eae0]">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-[11px] font-bold uppercase tracking-widest text-[#237042]">
+                    Zero Compromise Clean Beauty · What We Never Use
+                  </span>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-2.5">
+                  {exclusions.map((item) => (
+                    <div
+                      key={item.name}
+                      className="bg-[#fcfbf7] border border-[#e8e0d3] rounded-xl px-3 py-2 flex items-center gap-2"
+                    >
+                      <span className="text-xs font-semibold text-[#183a2a]">{item.name}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Right Image Column */}
+            <div className="lg:col-span-5">
+              <div className="relative rounded-2xl overflow-hidden border border-[#e8e2d5] shadow-md group aspect-[4/3] sm:aspect-[4/3] lg:aspect-[5/4] bg-[#faf8f5]">
+                <img
+                  src={labImage.src}
+                  alt={labImage.alt}
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-white">
+                  <span className="text-xs font-medium tracking-wide drop-shadow">{labImage.caption}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

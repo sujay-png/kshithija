@@ -1,0 +1,32 @@
+export interface WellnessPromiseProps {
+  eyebrow?: string;
+  quote?: string;
+  description?: string;
+}
+
+export default function WellnessPromise({
+  eyebrow = 'Our Promise',
+  quote = '"No chemicals. No compromises. Only nature."',
+  description = 'All Kshithija Enterprises products are formulated without petroleum jelly, parabens, artificial fragrance, or synthetic preservatives — and every batch is lab-tested before it reaches you.',
+}: WellnessPromiseProps) {
+  return (
+    <section className="relative w-full bg-[#082213] py-16 sm:py-20 lg:py-24 px-4 sm:px-6 mb-16 lg:px-8 border-y border-[#123822] overflow-hidden">
+      <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#2ea843]/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 right-10 w-64 h-64 bg-[#a3cf54]/5 rounded-full blur-2xl pointer-events-none" />
+
+      <div className="relative z-10 max-w-4xl mx-auto text-center flex flex-col items-center justify-center">
+        <span className="text-xs sm:text-[13px] font-medium tracking-wider text-[#d4ded7] mb-4 sm:mb-5 block">
+          {eyebrow}
+        </span>
+
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[44px] font-serif font-normal text-white leading-[1.25] tracking-tight mb-4 sm:mb-5 max-w-3xl">
+          {quote}
+        </h2>
+
+        <p className="text-xs sm:text-[18px] text-[#b8c9be] leading-relaxed max-w-2xl mx-auto font-normal">
+          {description}
+        </p>
+      </div>
+    </section>
+  );
+}

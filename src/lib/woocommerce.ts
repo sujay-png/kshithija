@@ -3,7 +3,7 @@
 import localCategories from '../data/product-categories.json';
 import localProducts from '../data/wc-products.json';
 
-const WP_BASE_URL = (import.meta.env.PUBLIC_WP_BASE_URL || 'https://kshithija.in').replace(/\/+$/, '');
+const WP_BASE_URL = (process.env.NEXT_PUBLIC_WP_BASE_URL || 'https://kshithija.in').replace(/\/+$/, '');
 const STORE_CATEGORIES_URL = `${WP_BASE_URL}/wp-json/wc/store/v1/products/categories`;
 const STORE_PRODUCTS_URL = `${WP_BASE_URL}/wp-json/wc/store/v1/products?per_page=100`;
 
